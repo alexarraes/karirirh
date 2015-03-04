@@ -35,6 +35,7 @@ public class UsuarioTeste {
 		Usuario usu = new Usuario();
 		UsuarioDAO usuDAO = new UsuarioDAO();
 		usu = (Usuario) usuDAO.pesquisarEq("id", 19).get(0);
+		
 		usuDAO.excluir(usu);
 		System.out.println("Excluido!");
 	}
@@ -64,10 +65,10 @@ public class UsuarioTeste {
 	}
 
 	public static void main(String[] args) {
-		// cadastrar();
+		cadastrar();
 		// buscar();
 		// excluir();
 		// alterar();
-		lista();
+		//lista();
 	}
 }
