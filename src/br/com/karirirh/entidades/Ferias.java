@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Ferias {
@@ -15,10 +18,48 @@ public class Ferias {
 	@Column
 	private int id;
 	
-	@Column
-	private Date entradaPFerias;
+	@Column(nullable=false)
+	@Temporal(TemporalType.DATE)
+	private Date dataInicio;
 	
-	@Column
-	private Date terminoFerias;
+	@Column(nullable=false)
+	@Temporal(TemporalType.DATE)
+	private Date dataFim;
+	
+	@ManyToOne
+	private Colaborador colaborador;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
+	}
+
 
 }

@@ -17,6 +17,14 @@
         <mapping class="br.com.karirirh.entidades.Admin"/>
         <mapping class="br.com.karirirh.entidades.Usuario"/>
         <mapping class="br.com.karirirh.entidades.Setor"/>
-        <mapping class="br.com.karirirh.entidades.Cargo"/>         
+        <mapping class="br.com.karirirh.entidades.Cargo"/>
+        <mapping class="br.com.karirirh.entidades.Colaborador"/> 
+        <mapping class="br.com.karirirh.entidades.Dependente"/>
+        <mapping class="br.com.karirirh.entidades.Ferias"/> 
+        <mapping class="br.com.karirirh.entidades.HistoricoAfastamento"/>
+        <mapping class="br.com.karirirh.entidades.HistoricoSalario"/>
+        <mapping class="br.com.karirirh.entidades.HistoricoSetor"/> 
+        <mapping class="br.com.karirirh.entidades.MedidaDisciplinar"/>
+        <mapping class="br.com.karirirh.entidades.Telefone"/>           
     </session-factory>
 </hibernate-configuration>

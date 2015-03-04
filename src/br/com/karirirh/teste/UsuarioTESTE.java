@@ -9,73 +9,65 @@ import br.com.karirirh.dao.UsuarioDAO;
 import br.com.karirirh.entidades.Admin;
 import br.com.karirirh.entidades.Usuario;
 
-public class UsuarioTESTE {
+public class UsuarioTeste {
 
-	public static void main(String[] args) {
-		
-		
-	}
-}
-		/*String login = "4";
-		String senha = "4";
+	public static void cadastrar() {
 		Usuario usu = new Usuario();
 		UsuarioDAO usuDAO = new UsuarioDAO();
-		usu = usuDAO.autenticador(login, senha);
-		if(usu==null){
-			System.out.println("Usuário Não encotrado");
-		}else{
-			System.out.println("Login:"+usu.getLogin()+" Senha:"+usu.getSenha());
+		usu.setCnpj("0000");
+		usu.setLogin("Atacadao");
+		usu.setRazaoSociao("Atacadao LTDA");
+		usu.setSenha("1234");
+		usuDAO.salvar(usu);
+		System.out.println("Cadastro Salvo!");
+	}
+
+	public static void buscar() {
+		Usuario usu = new Usuario();
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		usu = (Usuario) usuDAO.pesquisarEq("login", "KaririRH").get(0);
+		System.out.println(usu.getId() + " " + usu.getLogin() + " "
+				+ usu.getSenha() + " " + usu.getCnpj() + " "
+				+ usu.getRazaoSociao());
+	}
+
+	public static void excluir() {
+		Usuario usu = new Usuario();
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		usu = (Usuario) usuDAO.pesquisarEq("id", 19).get(0);
+		usuDAO.excluir(usu);
+		System.out.println("Excluido!");
+	}
+
+	public static void alterar() {
+		Usuario usu = new Usuario();
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		usu = usuDAO.pesquisarEq("id", 16).get(0);
+		usu.setLogin("LOGOS");
+		usu.setRazaoSociao("LOGOS ltda");
+		usu.setCnpj("14123");
+		usu.setSenha("098213");
+		usuDAO.editar(usu);
+		System.out.println("Alterado");
+	}
+
+	public static void lista() {
+
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		List<Usuario> u = usuDAO.listar();
+		for (Usuario usu : u) {
+			System.out.println(usu.getId() + " " + usu.getLogin() + " "
+					+ usu.getSenha() + " " + usu.getCnpj() + " "
+					+ usu.getRazaoSociao());
 		}
-		
-	}
-	}
-		String login = "alex";
-		String senha = "123";
-		String confSenha = "123";
-		if(senha.equals(confSenha)){
-			boolean permitido = true;
-			UsuarioDAO usoDAO = new UsuarioDAO();
-			List<Usuario> usu = usoDAO.pesquisarLogin(login);
-			for (Usuario u : usu) {
-				if (u.getLogin().equals(login)) {
-					permitido = false;
-				}	
-			}
-			//Se já existir não é permitido gravar. PODE GRAVAR? FALSE(NAO)
-			if(permitido){
-				Usuario usuGravar = new Usuario();
-				usuGravar.setLogin(login);
-				usuGravar.setSenha(senha);
-				usoDAO.salvar(usuGravar);
 
-				request.setAttribute("usuCAD", usuGravar);
-				
-
-				RequestDispatcher saida = request
-						.getRequestDispatcher("UsuarioLista.jsp");
-				saida.forward(request, response);
-				//Gravar Novo Usuario
-			}else{
-				//Enviar msg de nao pode gravar usuario por conta q ja existe
-				response.sendRedirect("UsuNaoCadastrado.jsp");
-			}
-			
-		}else{
-			//Senhas não coincidem
-			response.sendRedirect("UsuNaoCadastrado.jsp");
-		}
-		
 	}
-*/
-	/*
-	 * List<Usuario> listaUsu = usoDAO.ListarUsuarios(); for(Usuario u: listaUsu
-	 * ){ System.out.println("Login: "+u.getLogin()+" Senha: "+ u.getSenha()); }
-	 * System.exit(0);
-	 * 
-	 * PESQUISAR E EDITAR uso = usoDAO.pesquisarCodigo(1); uso.setLogin("neto");
-	 * usoDAO.editar(uso);
-	 * 
-	 * TESTE CADASTRO uso.setLogin("Maria"); uso.setSenha("5678");
-	 * usoDAO.salvar(uso);
-	 */
 
+	public static void main(String[] args) {
+		// cadastrar();
+		// buscar();
+		// excluir();
+		// alterar();
+		lista();
+	}
+}

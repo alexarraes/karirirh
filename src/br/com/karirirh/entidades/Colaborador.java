@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Colaborador {
@@ -47,6 +48,9 @@ public class Colaborador {
 	@Column(length = 50, nullable = false)
     private String escolaridade;
 	
+	@Column(length = 50, nullable = false)
+    private String curso;
+	
 	@Column(length = 20, nullable=false)
 	private String estadoCivil;
 	
@@ -80,5 +84,210 @@ public class Colaborador {
 	@Column(length = 50, nullable=false)
 	private String cidade;
 	
+	@ManyToOne
+	private Usuario usuario;
+	
+	@ManyToOne
+	private Cargo cargo;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getRg() {
+		return rg;
+	}
+
+	public void setRg(int rg) {
+		this.rg = rg;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCtps() {
+		return ctps;
+	}
+
+	public void setCtps(String ctps) {
+		this.ctps = ctps;
+	}
+
+	public String getPis() {
+		return pis;
+	}
+
+	public void setPis(String pis) {
+		this.pis = pis;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public double getSalarioAtual() {
+		return salarioAtual;
+	}
+
+	public void setSalarioAtual(double salarioAtual) {
+		this.salarioAtual = salarioAtual;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public String getEscolaridade() {
+		return escolaridade;
+	}
+
+	public void setEscolaridade(String escolaridade) {
+		this.escolaridade = escolaridade;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDataAdm() {
+		return dataAdm;
+	}
+
+	public void setDataAdm(Date dataAdm) {
+		this.dataAdm = dataAdm;
+	}
+
+	public Date getDataDem() {
+		return dataDem;
+	}
+
+	public void setDataDem(Date dataDem) {
+		this.dataDem = dataDem;
+	}
+
+	public int getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
 
 }

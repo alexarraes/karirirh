@@ -39,10 +39,7 @@ public class SetorControlador extends HttpServlet {
 			String nome = request.getParameter("nome");
 			if (setorDAO.buscarNomeEspecifico(nome) == null) {
 				setor.setNome(nome);
-				setor.setQtdFuncionarios(Integer.parseInt(request.getParameter("qtdFuncionarios")));
-				setor.setQtdFerias(Integer.parseInt(request.getParameter("qtdFerias")));
-		
-
+			
 				setorDAO.salvar(setor);
 				String msg = "Setor " + nome + " cadastrado com sucesso!";
 				request.setAttribute("msg", msg);
@@ -64,10 +61,7 @@ public class SetorControlador extends HttpServlet {
 
 			setor = setorDAO.pesquisarCodigo((Integer.parseInt(request
 					.getParameter("idSetor"))));
-
 			setor.setNome(request.getParameter("nome"));
-			setor.setQtdFerias(Integer.parseInt(request.getParameter("qtdFerias")));
-			setor.setQtdFuncionarios(Integer.parseInt(request.getParameter("qtdFucinonarios")));
 			setorDAO.editar(setor);
 
 			request.setAttribute("setor", setor);

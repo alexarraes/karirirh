@@ -72,7 +72,7 @@ public class UsuarioControlador extends HttpServlet {
 			usu.setLogin(request.getParameter("login"));
 			usu.setCnpj(request.getParameter("cnpj"));
 			usu.setSenha(request.getParameter("senha"));
-			usu.setAdmin(admin);
+			
 			
 			usuDAO.editar(usu);
 			request.setAttribute("usuario", usu);
@@ -112,7 +112,7 @@ public class UsuarioControlador extends HttpServlet {
 					usuGravar.setLogin(login);
 					usuGravar.setCnpj(cnpj);
 					usuGravar.setSenha(senha);
-					usuGravar.setAdmin(admin);
+					
 					
 					usoDAO.salvar(usuGravar);
 					String msg= "Usuário "+login+" cadastrado com sucesso!";

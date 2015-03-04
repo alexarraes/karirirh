@@ -16,7 +16,6 @@ import br.com.karirirh.util.HibernateUtil;
 public class SetorDAO extends GenericDAO<Setor> {
 
 	public SetorDAO() {
-		// TODO Auto-generated constructor stub
 		super(Setor.class);
 	}
 
