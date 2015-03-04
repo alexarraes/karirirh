@@ -18,12 +18,14 @@ public class Usuario {
 	
 	@Column(length = 18, nullable = false)
 	private String cnpj;
-
+	
+	@Column(length = 45, nullable = false)
+	private String razaoSociao;
+	
 	@Column(length = 8, nullable = false)
 	private String senha;
 
-	@ManyToOne 
-	private Admin admin;
+
 
 	public int getId() {
 		return id;
@@ -57,14 +59,14 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Admin getAdmin() {
-		return admin;
+	public String getRazaoSociao() {
+		return razaoSociao;
 	}
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
+	public void setRazaoSociao(String razaoSociao) {
+		this.razaoSociao = razaoSociao;
 	}
-	
+
 	
 
 }

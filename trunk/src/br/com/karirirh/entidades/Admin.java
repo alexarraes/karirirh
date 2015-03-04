@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Admin {
@@ -17,6 +18,9 @@ public class Admin {
 	
 	@Column(length = 8, nullable = false)
 	private String senha;
+	
+	@ManyToOne 
+	private Admin admin;
 
 	public int getId() {
 		return id;
