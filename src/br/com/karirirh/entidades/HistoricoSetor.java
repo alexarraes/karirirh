@@ -22,12 +22,12 @@ public class HistoricoSetor {
 	@Temporal(TemporalType.DATE)
 	private Date dataInicio;
 	
-	@Column(nullable=false)
+	@Column
 	@Temporal(TemporalType.DATE)
 	private Date dataFim;
 	
-	@Column(length = 50, nullable=true)
-	private String cargo;
+	@ManyToOne
+	private Cargo cargo;
 	
 	@ManyToOne
 	private Setor setor;
@@ -67,11 +67,11 @@ public class HistoricoSetor {
 		this.setor = setor;
 	}
 
-	public String getCargo() {
+	public Cargo getCargo() {
 		return cargo;
 	}
 
-	public void setCargo(String cargo) {
+	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
 

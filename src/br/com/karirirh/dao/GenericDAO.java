@@ -66,6 +66,15 @@ public class GenericDAO<T> {
          return object;
      }
      
+     public List<T> pesquisarId(int valor){
+         sessao = HibernateUtil.getSessionFactory().openSession();
+         List<T> object;
+         object=(List<T>)sessao.createCriteria(classe).
+        		 add(Restrictions.eq("id",valor)).list();
+         sessao.close();
+         return object;
+     }
+     
      public List<T> listar(){
          sessao = HibernateUtil.getSessionFactory().openSession();
          List<T> object;
