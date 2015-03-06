@@ -85,10 +85,20 @@ public class Colaborador {
 	private String cidade;
 	
 	@ManyToOne
-	private Usuario usuario;
-	
+	private Empresa empresa;
+
 	@ManyToOne
 	private Cargo cargo;
+	
+	
+	
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
 	public int getId() {
 		return id;
@@ -266,12 +276,12 @@ public class Colaborador {
 		this.cidade = cidade;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Empresa getUsuario() {
+		return empresa;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 	public Cargo getCargo() {

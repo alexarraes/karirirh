@@ -18,9 +18,9 @@ public class CargoTeste implements Teste {
 	@Override
 	public void cadastrar() {
 		// cargo.setId();
-		cargo.setNome("Programador");
+		cargo.setNome("Analista");
 		cargo.setSalario(Double.parseDouble("100.00"));
-		cargo.setDescricao("Criador de codigos");
+		cargo.setDescricao("Analisa");
 		setor =(Setor) setorDAO.pesquisarId(1).get(0);
 		cargo.setSetor(setor);
 

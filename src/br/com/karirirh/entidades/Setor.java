@@ -18,15 +18,23 @@ public class Setor {
 	private String nome;
 	
 	@ManyToOne
-	private Usuario usuario;
+	private Empresa empresa;
 
 	
-	public Usuario getUsuario() {
-		return usuario;
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public Empresa getUsuario() {
+		return empresa;
+	}
+
+	public void setUsuario(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 	public int getId() {

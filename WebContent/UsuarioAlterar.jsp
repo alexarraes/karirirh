@@ -1,5 +1,5 @@
+<%@page import="br.com.karirirh.entidades.Empresa"%>
 <%@page import="br.com.karirirh.entidades.Usuario"%>
-<%@page import="br.com.karirirh.entidades.Admin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="UsuarioCabecalho.jsp"></jsp:include>
@@ -21,15 +21,15 @@ function comprovarSenha(){
 
 
 <%
-HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+	HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 String url = httpServletRequest .getRequestURI();
 HttpSession sessao = httpServletRequest .getSession();
-Admin admin =(Admin)sessao.getAttribute("adminAutenticado");
+Usuario admin =(Usuario)sessao.getAttribute("adminAutenticado");
 %>
 
 <legend>Alterar Dados</legend>
 <%
-	Usuario usu = (Usuario) request.getAttribute("usuario");
+	Empresa usu = (Empresa) request.getAttribute("usuario");
 %>
 <form name="UsuarioAlt" action="UsuarioControlador" method="get">
 	<fieldset>

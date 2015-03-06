@@ -10,10 +10,10 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 
 import br.com.karirirh.dao.CargoDAO;
 import br.com.karirirh.dao.ColaboradorDAO;
-import br.com.karirirh.dao.UsuarioDAO;
+import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.entidades.Cargo;
 import br.com.karirirh.entidades.Colaborador;
-import br.com.karirirh.entidades.Usuario;
+import br.com.karirirh.entidades.Empresa;
 
 public class ColaboradorTeste implements Teste {
 	Colaborador col = new Colaborador();
@@ -22,42 +22,42 @@ public class ColaboradorTeste implements Teste {
 	Cargo cargo = new Cargo();
 	CargoDAO cargoDAO = new CargoDAO();
 	
-	Usuario usu = new Usuario();
-	UsuarioDAO usuDAO = new UsuarioDAO();
+	Empresa usu = new Empresa();
+	EmpresaDAO usuDAO = new EmpresaDAO();
 	 DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 	
 	public void cadastrar() {
 		//col.setId();
-		col.setBairro("São Francisco");
-		col.setCep("63260000");
-		col.setCidade("Brejo Santo");
-		col.setComplemento("Próximo ao Logos");
+		col.setBairro("Aldeota");
+		col.setCep("63300000");
+		col.setCidade("Barbalha");
+		col.setComplemento("Próximo a matriz");
 		col.setCpf("000.000.000-00");
 		col.setCtps("111111");
-		col.setCurso("Analista");
+		col.setCurso("Informatica");
 		col.setDataAdm(new Date());
 		try {
-			col.setDataDem((java.util.Date)formatter.parse("20/02/2015"));
+			//col.setDataDem((java.util.Date)formatter.parse("20/02/2015"));
 			col.setDataNascimento((java.util.Date)formatter.parse("31/01/1991"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		col.setEmail("exemplo@leao.com");
-		col.setEscolaridade("Superior Completo");
-		col.setEstadoCivil("Solteiro");
-		col.setMatricula(Integer.parseInt("2012201200"));
-		col.setNome("Alex Arraes");
-		col.setNumero(Integer.parseInt("156"));
+		col.setEscolaridade("Superior incompleto");
+		col.setEstadoCivil("Casao");
+		col.setMatricula(Integer.parseInt("2012341"));
+		col.setNome("Frederico");
+		col.setNumero(Integer.parseInt("200"));
 		col.setPis("999999");
 		col.setRg(Integer.parseInt("888888888"));
-		col.setRua("Rua Santa Terezinha	");
-		col.setSalarioAtual(Double.parseDouble("788.00"));
+		col.setRua("Rua Pedro Basilio");
+		col.setSalarioAtual(Double.parseDouble("800.00"));
 		col.setSexo("Masculino");
 		col.setStatus(true);
 		cargo = (Cargo)cargoDAO.pesquisarId(1).get(0);
 		col.setCargo(cargo);
-		usu= (Usuario)usuDAO.pesquisarId(1).get(0);
+		usu= (Empresa)usuDAO.pesquisarId(1).get(0);
 		col.setUsuario(usu);
 		
 		colDAO.salvar(col);
@@ -138,12 +138,12 @@ public class ColaboradorTeste implements Teste {
 	col.setPis("999999");
 	col.setRg(Integer.parseInt("888888888"));
 	col.setRua("Rua Santa Terezinha	");
-	col.setSalarioAtual(Double.parseDouble("788.00"));
+	col.setSalarioAtual(Double.parseDouble("798.00"));
 	col.setSexo("Masculino");
 	col.setStatus(true);
-	cargo = (Cargo)cargoDAO.pesquisarId(1).get(0);
+	cargo = (Cargo)cargoDAO.pesquisarId(2).get(0);
 	col.setCargo(cargo);
-	usu= (Usuario)usuDAO.pesquisarId(1).get(0);
+	usu= (Empresa)usuDAO.pesquisarId(1).get(0);
 	col.setUsuario(usu);
 	
 	colDAO.editar(col);
@@ -192,7 +192,7 @@ public class ColaboradorTeste implements Teste {
 	public static void main(String[] args) {
 		ColaboradorTeste ct = new ColaboradorTeste();
 		//ct.cadastrar();
-		ct.alterar(1);
+		ct.alterar(2);
 		
 	}
 

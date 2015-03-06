@@ -22,9 +22,6 @@ public class Telefone {
 	
 	@ManyToOne
 	private Colaborador colaborador;
-
-	@ManyToOne
-	private Usuario usuario;
 	
 	public int getId() {
 		return id;
@@ -57,16 +54,5 @@ public class Telefone {
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	
-	
 	
 }

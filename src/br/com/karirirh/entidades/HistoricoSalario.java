@@ -26,9 +26,6 @@ public class HistoricoSalario {
 	@Column()
 	private double valor;
 	
-	@Column(length= 50)
-	private String motivo;
-	
 	@ManyToOne
 	private Colaborador colaborador;
 
@@ -54,14 +51,6 @@ public class HistoricoSalario {
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	}
-
-	public String getMotivo() {
-		return motivo;
-	}
-
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
 	}
 
 	public Colaborador getColaborador() {

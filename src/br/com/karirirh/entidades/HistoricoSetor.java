@@ -26,6 +26,9 @@ public class HistoricoSetor {
 	@Temporal(TemporalType.DATE)
 	private Date dataFim;
 	
+	@Column
+	private boolean finalizado;
+	
 	@ManyToOne
 	private Cargo cargo;
 	
@@ -82,5 +85,14 @@ public class HistoricoSetor {
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
 	}
+
+	public boolean isFinalizado() {
+		return finalizado;
+	}
+
+	public void setFinalizado(boolean finalizado) {
+		this.finalizado = finalizado;
+	}
+	
 	
 }

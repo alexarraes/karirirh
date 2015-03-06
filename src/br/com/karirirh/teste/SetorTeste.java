@@ -3,9 +3,9 @@ package br.com.karirirh.teste;
 import java.util.List;
 
 import br.com.karirirh.dao.SetorDAO;
-import br.com.karirirh.dao.UsuarioDAO;
+import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.entidades.Setor;
-import br.com.karirirh.entidades.Usuario;
+import br.com.karirirh.entidades.Empresa;
 
 public class SetorTeste {
 	
@@ -21,8 +21,8 @@ public class SetorTeste {
 	public static void cadastrar() {
 		Setor setor = new Setor();
 		SetorDAO setorDAO = new SetorDAO();
-		Usuario usu = new Usuario();
-		UsuarioDAO usuDAO = new UsuarioDAO();
+		Empresa usu = new Empresa();
+		EmpresaDAO usuDAO = new EmpresaDAO();
 		setor.setNome("Recursos Humanos");
 		usu = usuDAO.pesquisarId(1).get(0);
 		setor.setUsuario(usu);

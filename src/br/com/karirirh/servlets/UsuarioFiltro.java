@@ -1,3 +1,4 @@
+package br.com.karirirh.servlets;
 /*filterName="UsuarioFiltro", urlPatterns = {"/UsuarioRodape.jsp",
 "UsuarioAlterar.jsp", "UsuarioBuscar.jsp", "UsuarioCabecalho.jsp", "UsuarioCadastro.jsp",
 "UsuarioLista.jsp"}*/

@@ -6,7 +6,7 @@
     <session-factory>
         <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/karirirhtestes</property>
+        <property name="connection.url">jdbc:mysql://localhost/kariri</property>
         <property name="connection.username">root</property>
         <property name="connection.password">dudu1991</property>
         <property name="show_sql">true</property>
@@ -14,8 +14,8 @@
         <property name="generate_statistics">true</property>
         <property name="use_sql_coments">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <mapping class="br.com.karirirh.entidades.Admin"/>
         <mapping class="br.com.karirirh.entidades.Usuario"/>
+        <mapping class="br.com.karirirh.entidades.Empresa"/>
         <mapping class="br.com.karirirh.entidades.Setor"/>
         <mapping class="br.com.karirirh.entidades.Cargo"/>
         <mapping class="br.com.karirirh.entidades.Colaborador"/> 

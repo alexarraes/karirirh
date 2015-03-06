@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.karirirh.dao.ColaboradorDAO;
 import br.com.karirirh.dao.TelefoneDAO;
-import br.com.karirirh.dao.UsuarioDAO;
+import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.entidades.Colaborador;
 import br.com.karirirh.entidades.Telefone;
-import br.com.karirirh.entidades.Usuario;
+import br.com.karirirh.entidades.Empresa;
 
 public class TelefoneTeste implements Teste {
 	Telefone tel = new Telefone();
@@ -16,8 +16,8 @@ public class TelefoneTeste implements Teste {
 	Colaborador col = new Colaborador();
 	ColaboradorDAO colDAO = new ColaboradorDAO();
 	
-	Usuario usu = new Usuario();
-	UsuarioDAO usuDAO = new UsuarioDAO();
+	Empresa usu = new Empresa();
+	EmpresaDAO usuDAO = new EmpresaDAO();
 	
 	@Override
 	public void cadastrar() {

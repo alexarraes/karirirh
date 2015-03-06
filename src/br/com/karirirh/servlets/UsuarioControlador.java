@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.karirirh.dao.AdminDAO;
 import br.com.karirirh.dao.UsuarioDAO;
-import br.com.karirirh.entidades.Admin;
+import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.entidades.Usuario;
+import br.com.karirirh.entidades.Empresa;
 
 @WebServlet("/UsuarioControlador")
 public class UsuarioControlador extends HttpServlet {
@@ -26,16 +26,16 @@ public class UsuarioControlador extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Admin admin = new Admin();
-		AdminDAO adminDAO = new AdminDAO();
+		Usuario usuario = new Usuario();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
-		Usuario usu = new Usuario();
-		UsuarioDAO usuDAO = new UsuarioDAO();
+		Empresa usu = new Empresa();
+		EmpresaDAO usuDAO = new EmpresaDAO();
 		
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equals("lista")) {
-			List<Usuario> lista = usuDAO.listar();
+			List<Empresa> lista = usuDAO.listar();
 			request.setAttribute("lista", lista);
 			RequestDispatcher saida = request
 					.getRequestDispatcher("UsuarioLista.jsp");
@@ -48,9 +48,9 @@ public class UsuarioControlador extends HttpServlet {
 			response.sendRedirect("UsuarioControlador?acao=lista");
 
 		} else if (acao != null && acao.equals("alterar")) {
-			Usuario usuario = usuDAO.pesquisarEq("id", Integer.parseInt(request
+			Empresa empresa = usuDAO.pesquisarEq("id", Integer.parseInt(request
 					.getParameter("id"))).get(0);
-			request.setAttribute("usuario", usuario);
+			request.setAttribute("usuario", empresa);
 			request.getRequestDispatcher("UsuarioAlterar.jsp").forward(request,
 					response);
 
@@ -66,7 +66,7 @@ public class UsuarioControlador extends HttpServlet {
 		} else if (acao != null && acao.equals("alterarCadastro")) {
 			usu = usuDAO.pesquisarEq("id", Integer.parseInt(request
 					.getParameter("id"))).get(0);
-			admin = adminDAO.pesquisarCodigo((Integer.parseInt(request
+			usuario = usuarioDAO.pesquisarCodigo((Integer.parseInt(request
 					.getParameter("idAdmin"))));
 			
 			usu.setLogin(request.getParameter("login"));
@@ -79,7 +79,7 @@ public class UsuarioControlador extends HttpServlet {
 			request.getRequestDispatcher("UsuarioAlterar.jsp").forward(request,
 					response);
 		} else if (acao != null && acao.equals("usuarioBuscar")) {
-			List<Usuario> lista = usuDAO.pesquisarLike("login",
+			List<Empresa> lista = usuDAO.pesquisarLike("login",
 					request
 					.getParameter("login"));
 			request.setAttribute("lista", lista);
@@ -96,18 +96,18 @@ public class UsuarioControlador extends HttpServlet {
 			String confSenha = request.getParameter("senhaConfirmar");
 			if (senha.equals(confSenha)) {
 				boolean permitido = true;
-				UsuarioDAO usoDAO = new UsuarioDAO();
-				List<Usuario> usua = usoDAO.pesquisarLike("login", 
+				EmpresaDAO usoDAO = new EmpresaDAO();
+				List<Empresa> usua = usoDAO.pesquisarLike("login", 
 						login);
-				for (Usuario u : usua) {
+				for (Empresa u : usua) {
 					if (u.getLogin().equals(login)) {
 						permitido = false;
 					}
 				}
 				// Se já existir não é permitido gravar. PODE GRAVAR? FALSE(NAO)
 				if (permitido) {
-					Usuario usuGravar = new Usuario();
-					admin = adminDAO.pesquisarCodigo(idAdmin);
+					Empresa usuGravar = new Empresa();
+					usuario = usuarioDAO.pesquisarCodigo(idAdmin);
 					
 					usuGravar.setLogin(login);
 					usuGravar.setCnpj(cnpj);

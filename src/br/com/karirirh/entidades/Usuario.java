@@ -12,20 +12,35 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private int id;
-
+	
 	@Column(length = 45, nullable = false)
 	private String login;
 	
-	@Column(length = 18, nullable = false)
-	private String cnpj;
-	
-	@Column(length = 45, nullable = false)
-	private String razaoSociao;
-	
 	@Column(length = 8, nullable = false)
 	private String senha;
+	
+	@Column
+	private boolean admin;
+	
+	@ManyToOne 
+	private Empresa empresa;
 
+	
+	public boolean isAdmin() {
+		return admin;
+	}
 
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
 	public int getId() {
 		return id;
@@ -43,14 +58,6 @@ public class Usuario {
 		this.login = login;
 	}
 
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
 	public String getSenha() {
 		return senha;
 	}
@@ -58,15 +65,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public String getRazaoSociao() {
-		return razaoSociao;
-	}
-
-	public void setRazaoSociao(String razaoSociao) {
-		this.razaoSociao = razaoSociao;
-	}
-
 	
-
+	
+	
 }

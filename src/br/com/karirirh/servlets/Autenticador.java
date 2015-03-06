@@ -9,18 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.karirirh.dao.AdminDAO;
 import br.com.karirirh.dao.UsuarioDAO;
-import br.com.karirirh.entidades.Admin;
 import br.com.karirirh.entidades.Usuario;
 
-@WebServlet("/ADMAutenticador")
-public class ADMAutenticador extends HttpServlet {
+@WebServlet("/Autenticador")
+public class Autenticador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ADMAutenticador() {
+	public Autenticador() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request,
@@ -29,7 +26,7 @@ public class ADMAutenticador extends HttpServlet {
 		if (sessao != null) {
 			sessao.invalidate();
 		}
-		response.sendRedirect("UsuarioADMLogar.jsp");
+		response.sendRedirect("login.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -38,20 +35,28 @@ public class ADMAutenticador extends HttpServlet {
 		String sLogin = request.getParameter("login");
 		String sSenha = request.getParameter("senha");
 
-		AdminDAO adminDAO = new AdminDAO();
-		Admin adminAutenticado = adminDAO.autenticador(sLogin, sSenha);
-		
-		if (adminAutenticado != null) {
+		Usuario usu = new Usuario();
+		UsuarioDAO usuDAO = new UsuarioDAO();
+
+		usu = usuDAO.autenticador(sLogin, sSenha);
+
+		if (usu == null) {
+			response.sendRedirect("login.jsp");	
+		} else if (usu.isAdmin()) {
 			HttpSession sessao = request.getSession();
-			sessao.setAttribute("adminAutenticado", adminAutenticado);
+			sessao.setAttribute("administrador", usu);
 			sessao.setMaxInactiveInterval(3000);
 
-			request.getRequestDispatcher("UsuarioCadastro.jsp").forward(
+			request.getRequestDispatcher("EmpresaCadastro.jsp").forward(
 					request, response);
 		} else {
-			request.getSession().setAttribute("msg", "Dados Incorretos!");
-			response.sendRedirect("erroLogin.jsp");
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("usuario", usu);
+			sessao.setMaxInactiveInterval(3000);
+			request.getRequestDispatcher("Cabecalho.jsp").forward(request,
+					response);
 		}
+
 	}
 
 }
