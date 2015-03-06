@@ -49,11 +49,19 @@ public class UsuarioTeste {
 	}
 
 	public static void buscar() {
-		Empresa usu = new Empresa();
-		EmpresaDAO usuDAO = new EmpresaDAO();
-		usu = (Empresa) usuDAO.pesquisarEq("login", "KaririRH").get(0);
-		System.out.println(usu.getId() + " " + usu.getCnpj() + " "
-				+ usu.getRazaoSociao());
+		Empresa emp = new Empresa();
+		EmpresaDAO empDAO = new EmpresaDAO();
+		emp = (Empresa) empDAO.pesquisarEq("cnpj", "049999").get(0);
+		
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		List<Usuario> usuList = usuDAO.listar();
+		emp.setUsuario(usuList);
+		
+		System.out.println(emp.getId() + " " + emp.getCnpj() + " "
+				+ emp.getRazaoSociao()+ ""+ emp.getUsuario().get(0).getEmpresa()
+				);
+		
+		
 	}
 
 	public static void excluir() {
@@ -89,8 +97,8 @@ public class UsuarioTeste {
 	}
 
 	public static void main(String[] args) {
-		cadastrar();
-		// buscar();
+		//cadastrar();
+		 buscar();
 		// excluir();
 		// alterar();
 		// lista();

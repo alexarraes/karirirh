@@ -31,6 +31,7 @@ public class UsuarioControlador extends HttpServlet {
 		
 		Empresa usu = new Empresa();
 		EmpresaDAO usuDAO = new EmpresaDAO();
+		usuDAO.pes
 		
 		String acao = request.getParameter("acao");
 

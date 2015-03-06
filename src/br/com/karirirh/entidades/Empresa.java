@@ -1,9 +1,13 @@
 package br.com.karirirh.entidades;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Empresa {
@@ -24,6 +28,19 @@ public class Empresa {
 	@Column(length = 45)
 	private String fone;
 	
+	@Column()
+	@OneToMany(mappedBy="empresa")
+	private List<Usuario> usuario;
+	
+	
+	public List<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<Usuario> usuario) {
+		this.usuario = usuario;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -96,6 +96,28 @@ public class AdministradorControlador extends HttpServlet {
 				saida.forward(request, response);
 			}
 
+		}else if (acao != null && acao.equals("buscar")){
+			System.out.println(request.getParameter("campo"));
+			
+			String valor = request.getParameter("valor");
+			String campo = request.getParameter("campo");
+			List<Empresa> lista = empDAO.pesquisarLike(campo, valor);
+			List<Usuario> usuList;
+			
+			
+			request.setAttribute("lista", lista);
+			
+
+			RequestDispatcher saida = request
+					.getRequestDispatcher("EmpresaLista.jsp");
+			saida.forward(request, response);
+			
+			
+		}else if (acao != null && acao.equals("excluir")) {
+			emp = empDAO.pesquisarId(Integer.parseInt(request.getParameter("id"))).get(0);
+			empDAO.excluir(emp);
+			System.out.println("Excluido");
+			response.sendRedirect("AdministradorControlador?acao=menuListar");
 		}
 
 	}
