@@ -7,7 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.karirirh.entidades.Usuario;
+import br.com.karirirh.entidades.Empresa;
 import br.com.karirirh.util.HibernateUtil;
 
 public class GenericDAO<T> {

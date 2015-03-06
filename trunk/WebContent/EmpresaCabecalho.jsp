@@ -30,16 +30,16 @@
               <a>Usuário</a>
             </li>
             <li>
-              <a href="UsuarioControlador?acao=cadastrar">Cadastrar</a>
+              <a href="AdministradorControlador?acao=menuCadastrar">Cadastrar</a>
             </li>
             <li>
-              <a href="UsuarioControlador?acao=buscar">Buscar</a>
+              <a href="AdministradorControlador?acao=menuBuscar">Buscar</a>
             </li>
             <li>
-              <a href="UsuarioControlador?acao=lista">Lista de Usuários</a>
+              <a href="AdministradorControlador?acao=menuListar">Lista de Usuários</a>
             </li>
             <li>
-              <a class=" glyphicon glyphicon-log-out" href="ADMAutenticador"> <span aria-hidden="true"></span>Sair</a>
+              <a class=" glyphicon glyphicon-log-out" href="Autenticador"> <span aria-hidden="true"></span>Sair</a>
             </li>
           </ul>
         </div>

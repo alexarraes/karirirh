@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="br.com.karirirh.entidades.Usuario"%>
+<%@page import="br.com.karirirh.entidades.Empresa"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -38,14 +38,14 @@ function excluir(id, nome) {
 				</thead>
 				
 				<%
-				List<Usuario> listaResultado = (List<Usuario>) request
-						.getAttribute("lista");
-			%>
+									List<Empresa> listaResultado = (List<Empresa>) request
+												.getAttribute("lista");
+								%>
 				<%
 					int num = 1;
-					for (Usuario u : listaResultado) {
-						num++;
-						if ((num % 2) == 0) {
+							for (Empresa u : listaResultado) {
+								num++;
+								if ((num % 2) == 0) {
 				%>
 
 				
