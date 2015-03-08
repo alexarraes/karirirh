@@ -21,8 +21,9 @@
 </head>
 <body>
 
-	<legend>Usuários Encotrados</legend>
+	
 	<fieldset>
+	<legend>Empresas Encotradas</legend>
 		<table
 			class="table table-bordered table-striped visible-lg visible-md visible-sm visible-xs">
 			<thead>
@@ -44,9 +45,6 @@
 					num++;
 					if ((num % 2) == 0) {
 			%>
-
-
-
 			<tr>
 				<td class="success"><%=u.getId()%></td>
 				<td class="success"><%=u.getRazaoSociao()%></td>
@@ -57,11 +55,9 @@
 					class="btn btn-block btn-danger btn-sm">Excluir<span
 						class="glyphicon glyphicon-remove"></span></a></td>
 				<td class="success"><a class="btn btn-block btn-primary btn-sm"
-					href="UsuarioControlador?acao=alterar&id=<%=u.getId()%>">Alterar<span
+					href="AdministradorControlador?acao=btnAlterar&id=<%=u.getId()%>">Alterar<span
 						class="glyphicon glyphicon-repeat"></span></a></td>
 			</tr>
-
-
 			<%
 				} else {
 			%>
@@ -69,17 +65,14 @@
 			<td ><%=u.getId()%></td>
 				<td ><%=u.getRazaoSociao()%></td>
 				<td><%=u.getCnpj()%></td>
-				<td><a type="button"
+				<td ><a type="button"
 					onclick="excluir('<%=u.getId()%>','<%=u.getRazaoSociao() %>')"
 					class="btn btn-block btn-danger btn-sm">Excluir<span
 						class="glyphicon glyphicon-remove"></span></a></td>
-				<td><a class="btn btn-block btn-primary btn-sm"
-					href="UsuarioControlador?acao=alterar&id=<%=u.getId()%>">Alterar<span
+				<td ><a class="btn btn-block btn-primary btn-sm"
+					href="AdministradorControlador?acao=btnAlterar&id=<%=u.getId()%>">Alterar<span
 						class="glyphicon glyphicon-repeat"></span></a></td>
-
 			</tr>
-
-
 			<%
 				}
 				}

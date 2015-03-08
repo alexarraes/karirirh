@@ -4,31 +4,35 @@ import java.util.List;
 
 import br.com.karirirh.dao.SetorDAO;
 import br.com.karirirh.dao.EmpresaDAO;
+import br.com.karirirh.dao.UsuarioDAO;
 import br.com.karirirh.entidades.Setor;
 import br.com.karirirh.entidades.Empresa;
+import br.com.karirirh.entidades.Usuario;
 
 public class SetorTeste {
-	
+
 	public static void main(String[] args) {
-		cadastrar();
-		//buscar();
-		//alterar();
-		//lista();
-		//excluir();
-		
+		//cadastrar();
+		// buscar();
+		// alterar();
+		lista();
+		// excluir();
+
 	}
-	
+
 	public static void cadastrar() {
 		Setor setor = new Setor();
 		SetorDAO setorDAO = new SetorDAO();
-		Empresa usu = new Empresa();
-		EmpresaDAO usuDAO = new EmpresaDAO();
-		setor.setNome("Recursos Humanos");
-		usu = usuDAO.pesquisarId(1).get(0);
-		setor.setUsuario(usu);
-		setorDAO.salvar(setor);
+	
+		String nome = "nome";
+	
+			setor.setNome(nome);
+
+			setorDAO.salvar(setor);
+			String msg = "Setor " + nome + " cadastrado com sucesso!";
+
+			System.out.println("Cadastro Salvo!" + msg);
 		
-		System.out.println("Cadastro Salvo!");
 	}
 
 	public static void buscar() {
@@ -56,11 +60,13 @@ public class SetorTeste {
 	}
 
 	public static void lista() {
-
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		Usuario usu = usuDAO.pesquisarCodigo(2);
+		Empresa empresa = usu.getEmpresa();
 		SetorDAO setorDAO = new SetorDAO();
-		List<Setor> s = setorDAO.listar();
-		for (Setor usu : s) 
-			System.out.println(usu.getId() + " " + usu.getNome());
+		List<Setor> s = setorDAO.ListarSetores(empresa);
+		for (Setor emp : s)
+			System.out.println(emp.getId() + " " + emp.getNome());
 
 	}
 }

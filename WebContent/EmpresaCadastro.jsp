@@ -73,10 +73,4 @@ Usuario admin =(Usuario)sessao.getAttribute("administrador");
 
 </form>
 
-
-</div>
-
-
-</div>
-</div>
 <jsp:include page="EmpresaRodape.jsp"></jsp:include>

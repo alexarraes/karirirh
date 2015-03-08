@@ -20,7 +20,8 @@ public class EmpresaDAO extends GenericDAO<Empresa>{
 		super(Empresa.class);
 	}
 	
-	 
+	
+	
 	/*public Usuario pesquisarCodigo(int id){
          setSessao(HibernateUtil.getSessionFactory().openSession());
          Usuario u;
@@ -45,9 +46,9 @@ public class EmpresaDAO extends GenericDAO<Empresa>{
          u=(List<Usuario>)sessao.createCriteria(Usuario.class).list();
          sessao.close();
          return u;
-   
+  
 
-       public Empresa autenticador(String login, String senha){
+       public Empresa pesquisaSetores(String login, String senha){
            setSessao(HibernateUtil.getSessionFactory().openSession());
            Empresa u; //Se for um ou trocar o eq por or
            u=(Empresa)getSessao().createCriteria(Empresa.class)
@@ -59,6 +60,6 @@ public class EmpresaDAO extends GenericDAO<Empresa>{
            return u;
            
        }
-         }*/
+          }*/
        
 }

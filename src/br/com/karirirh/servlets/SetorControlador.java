@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.karirirh.dao.CargoDAO;
 import br.com.karirirh.dao.SetorDAO;
-import br.com.karirirh.entidades.Cargo;
+import br.com.karirirh.entidades.Empresa;
 import br.com.karirirh.entidades.Setor;
+import br.com.karirirh.entidades.Setor;
+import br.com.karirirh.entidades.Usuario;
 
 @WebServlet("/SetorControlador")
 public class SetorControlador extends HttpServlet {
@@ -26,9 +27,9 @@ public class SetorControlador extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		Cargo cargo = new Cargo();
-		CargoDAO cargoDAO = new CargoDAO();
-
+		Usuario usuario =(Usuario) request.getSession().getAttribute("usuario");
+		Empresa empresa = usuario.getEmpresa();
+		
 		Setor setor = new Setor();
 		SetorDAO setorDAO = new SetorDAO();
 
@@ -37,25 +38,42 @@ public class SetorControlador extends HttpServlet {
 		if (acao != null && acao.equals("salvar")) {
 			
 			String nome = request.getParameter("nome");
-			if (setorDAO.buscarNomeEspecifico(nome) == null) {
+			boolean permitido = true;
+			List<Setor> setorList = setorDAO.pesquisarEq("nome", nome);
+			for (Setor s : setorList) {
+				if (s.getNome().equals(nome)) {
+					permitido = false;
+				}
+			}
+
+			if (permitido) {
 				setor.setNome(nome);
-			
+				setor.setEmpresa(empresa);
 				setorDAO.salvar(setor);
+			
+				
 				String msg = "Setor " + nome + " cadastrado com sucesso!";
 				request.setAttribute("msg", msg);
 				RequestDispatcher saida = request
 						.getRequestDispatcher("SetorCadastro.jsp");
 				saida.forward(request, response);
-			} else
-				response.sendRedirect("UsuNaoCadastrado.jsp");
+			} else{
+				String msg = "Setor " + nome + " NÃO cadastrado, pois já existe SETOR com esse nome!";
+				request.setAttribute("msg", msg);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("SetorCadastro.jsp");
+				saida.forward(request, response);
+				
+			}
+				
 
 		} else if (acao != null && acao.equals("excluir")) {
 			setor = setorDAO.pesquisarCodigo(Integer.parseInt(request
 					.getParameter("id")));
 			setorDAO.excluir(setor);
-			response.sendRedirect("SetorControlador?acao=lista");
+			response.sendRedirect("SetorControlador?acao=listar");
 
-		} else if (acao != null && acao.equals("alterarCadastro")) {
+		} else if (acao != null && acao.equals("alterar")) {
 			setor = setorDAO.pesquisarCodigo(Integer.parseInt(request
 					.getParameter("id")));
 
@@ -67,18 +85,18 @@ public class SetorControlador extends HttpServlet {
 			request.setAttribute("setor", setor);
 			request.getRequestDispatcher("SetorAlterar.jsp").forward(request,
 					response);
-		} else if (acao != null && acao.equals("alterar")) {
-			setor = setorDAO.pesquisarCodigo(Integer.parseInt(request
-					.getParameter("id")));
-			request.setAttribute("setor", setor);
-			request.getRequestDispatcher("SetorAlterar.jsp").forward(request,
+		} else if (acao != null && acao.equals("buscar")) {
+			String nome = request.getParameter("nome");
+			List<Setor> setorList = setorDAO.pesquisarNome(empresa, nome);
+			request.setAttribute("lista", setorList);
+			request.getRequestDispatcher("SetorListar.jsp").forward(request,
 					response);
 
-		} else if (acao != null && acao.equals("buscar")) {
-			List<Setor> lista = setorDAO.buscaNome(request.getParameter("nome"));
+		} else if (acao != null && acao.equals("listar")) {
+			List<Setor> lista = setorDAO.ListarSetores(empresa);
 			request.setAttribute("lista", lista);
 			RequestDispatcher saida = request
-					.getRequestDispatcher("SetorLista.jsp");
+					.getRequestDispatcher("SetorListar.jsp");
 			saida.forward(request, response);
 		}
 	}

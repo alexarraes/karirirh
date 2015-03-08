@@ -16,24 +16,18 @@ import br.com.karirirh.entidades.Empresa;
 import br.com.karirirh.entidades.Usuario;
 
 /**
- * Servlet implementation class AdministradorControlador
+ * 
+ * @author Alex Jr Arraes
+ *
  */
 @WebServlet("/AdministradorControlador")
 public class AdministradorControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public AdministradorControlador() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -60,7 +54,6 @@ public class AdministradorControlador extends HttpServlet {
 			saida.forward(request, response);
 		} else if (acao != null && acao.equals("cadastrar")) {
 			String login = request.getParameter("login");
-
 			boolean permitido = true;
 			List<Usuario> usuLista = usuDAO.pesquisarEq("login", login);
 			for (Usuario u : usuLista) {
@@ -73,7 +66,8 @@ public class AdministradorControlador extends HttpServlet {
 				emp.setRazaoSociao(request.getParameter("razaoSocial"));
 				emp.setCnpj(request.getParameter("cnpj"));
 				emp.setFone(request.getParameter("fone"));
-				emp.setEnderecoCompleto(request.getParameter("enderecoCompleto"));
+				emp.setEnderecoCompleto(request
+						.getParameter("enderecoCompleto"));
 				empDAO.salvar(emp);
 				usu.setLogin(request.getParameter("login"));
 				usu.setSenha(request.getParameter("senha"));
@@ -96,39 +90,62 @@ public class AdministradorControlador extends HttpServlet {
 				saida.forward(request, response);
 			}
 
-		}else if (acao != null && acao.equals("buscar")){
+		} else if (acao != null && acao.equals("buscar")) {
 			System.out.println(request.getParameter("campo"));
-			
+
 			String valor = request.getParameter("valor");
 			String campo = request.getParameter("campo");
 			List<Empresa> lista = empDAO.pesquisarLike(campo, valor);
 			List<Usuario> usuList;
-			
-			
+
 			request.setAttribute("lista", lista);
-			
 
 			RequestDispatcher saida = request
 					.getRequestDispatcher("EmpresaLista.jsp");
 			saida.forward(request, response);
-			
-			
-		}else if (acao != null && acao.equals("excluir")) {
-			emp = empDAO.pesquisarId(Integer.parseInt(request.getParameter("id"))).get(0);
+
+		} else if (acao != null && acao.equals("excluir")) {
+			emp = empDAO.pesquisarId(
+					Integer.parseInt(request.getParameter("id"))).get(0);
 			empDAO.excluir(emp);
 			System.out.println("Excluido");
 			response.sendRedirect("AdministradorControlador?acao=menuListar");
+		}else if (acao != null && acao.equals("btnAlterar")) {
+			Empresa empresa = empDAO.pesquisarId(Integer.parseInt(request.getParameter("id"))).get(0);
+			Usuario usuario = usuDAO.pesquisarEq("empresa", empresa).get(0);
+			
+			request.setAttribute("empresa", empresa);
+			request.setAttribute("usuario", usuario);
+			
+			request.getRequestDispatcher("EmpresaAlterar.jsp").forward(request, response);
+		}else if (acao != null && acao.equals("alterar")){
+			int id = Integer.parseInt(request.getParameter("idEmpresa"));
+			emp = empDAO.pesquisarId(id).get(0);
+			String login = request.getParameter("login");
+			usu = usuDAO.pesquisarEq("login", login).get(0);
+			
+			emp.setRazaoSociao(request.getParameter("razaoSocial"));
+			emp.setEnderecoCompleto(request.getParameter("enderecoCompleto"));
+			emp.setFone(request.getParameter("fone"));
+			emp.setCnpj(request.getParameter("cnpj"));
+			empDAO.editar(emp);
+			
+			usu.setSenha(request.getParameter("senha"));
+			usuDAO.editar(usu);
+			
+			String msg = "Empresa "+emp.getRazaoSociao()+ " alterada com sucesso!";
+			request.setAttribute("msg", msg);
+			request.setAttribute("empresa", emp);
+			request.setAttribute("usuario", usu);
+			request.getRequestDispatcher("EmpresaAlterar.jsp").forward(request,
+					response);
 		}
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

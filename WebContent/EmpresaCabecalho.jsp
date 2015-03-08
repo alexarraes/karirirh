@@ -27,7 +27,7 @@
         <div class="col-md-2">
           <ul class="nav nav-pills nav-stacked">
             <li class="active">
-              <a>Usuário</a>
+              <a>Empresa</a>
             </li>
             <li>
               <a href="AdministradorControlador?acao=menuCadastrar">Cadastrar</a>
@@ -36,7 +36,7 @@
               <a href="AdministradorControlador?acao=menuBuscar">Buscar</a>
             </li>
             <li>
-              <a href="AdministradorControlador?acao=menuListar">Lista de Usuários</a>
+              <a href="AdministradorControlador?acao=menuListar">Lista de Empresas</a>
             </li>
             <li>
               <a class=" glyphicon glyphicon-log-out" href="Autenticador"> <span aria-hidden="true"></span>Sair</a>
