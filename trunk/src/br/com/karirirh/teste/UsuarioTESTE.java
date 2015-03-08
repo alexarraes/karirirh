@@ -9,7 +9,7 @@ import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.entidades.Usuario;
 import br.com.karirirh.entidades.Empresa;
 
-public class UsuarioTeste {
+public class  UsuarioTESTE{
 
 	public static void cadastrar() {
 		Empresa emp = new Empresa();

@@ -30,9 +30,9 @@
 <body>
 
 
-	<form name="CadastroSetor" action="SetorControlador" method="get">
+	<form name="BuscarSetor" action="SetorControlador" method="get">
 		<fieldset>
-			<input type="hidden" name="acao" value="salvar">
+			<input type="hidden" name="acao" value="buscar">
 			<!-- Form Name -->
 			<div class="container">
 				<div class="row">
@@ -40,7 +40,7 @@
 						<div class="row">
 							<legend draggable="true">
 								<h1>Setor</h1>
-								Cadastrar
+								Buscar
 							</legend>
 							<div class="col-md-12">
 								<!--nome-->
@@ -51,7 +51,7 @@
 }
 	%>
 								<div class="form-group" draggable="true">
-									<label for="CadastorSetor">Nome do Setor:*</label>
+									<label for="BuscarSetor">Buscar por nome:</label>
 									<div>
 										<input id="nome" name="nome" type="text"
 											placeholder="Ex.: Recursos Humanos"
@@ -62,8 +62,8 @@
 
 						</div>
 						<div class=col-md-12>
-							<button type="submit" class="btn btn-success" for="CadastroSetor">
-								<span class="glyphicon glyphicon-ok"></span>Cadastrar
+							<button type="submit" class="btn btn-success" for="BuscarSetor">
+								<span class="glyphicon glyphicon-ok"></span>Buscar
 							</button>
 							<button type="reset" class="btn btn-danger">
 								<span class="glyphicon glyphicon-remove-sign"></span>Limpar
