@@ -5,6 +5,17 @@
 <html>
 <head>
 <jsp:include page="EmpresaCabecalho.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="DataTable/media/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="DataTable/media/css/jquery.dataTables_themeroller.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="DataTable/media/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="DataTable/media/js/jquery.js"></script>
+<script type="text/javascript"
+	src="DataTable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript"
+	src="DataTable/media/js/jquery.dataTables.min.js"></script>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -16,7 +27,13 @@
 			window.location.href = "AdministradorControlador?acao=excluir&id=" + id
 		}
 	}
+	$(document).ready(function(){
+	    $('#tabela1').DataTable();
+	});
+		
 </SCRIPT>
+
+
 
 </head>
 <body>
@@ -25,10 +42,10 @@
 	<fieldset>
 	<legend>Empresas Encotradas</legend>
 		<table
-			class="table table-bordered table-striped visible-lg visible-md visible-sm visible-xs">
+			class="table table-bordered table-striped visible-lg visible-md visible-sm visible-xs" id="tabela1">
 			<thead>
 				<tr>
-					<th>#</th>
+					<th>ID</th>
 					<th>Razão Social</th>
 					<th>CNPJ</th>
 					<th>Excluir</th>

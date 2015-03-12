@@ -3,8 +3,10 @@ package br.com.karirirh.teste;
 import java.util.List;
 
 import br.com.karirirh.dao.CargoDAO;
+import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.dao.SetorDAO;
 import br.com.karirirh.entidades.Cargo;
+import br.com.karirirh.entidades.Empresa;
 import br.com.karirirh.entidades.Setor;
 
 public class CargoTeste implements Teste {
@@ -65,10 +67,26 @@ public class CargoTeste implements Teste {
 		}	
 	}
 
+	public void listaCargoLike(){
+		
+		 EmpresaDAO empDAO = new EmpresaDAO();
+		 
+			Empresa emp = empDAO.pesquisarId(12).get(0);
+
+			setor = setorDAO.pesquisarId(2).get(0);
+			List<Cargo> cargos = cargoDAO.ListaCargosPorSetores(emp, setor , "u");
+	
+			for(Cargo c: cargos){
+				System.out.println(c.getNome()+" "+c.getSetor().getNome());
+			}
+			
+	}
+	
 	public static void main(String[] args) {
 		CargoTeste ct = new CargoTeste();
-
-		ct.cadastrar();
+		
+		ct.listaCargoLike();
+		//ct.cadastrar();
 
 		//ct.buscar("nome", "Programador");
 	}

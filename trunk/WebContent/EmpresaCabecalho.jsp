@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <title>KaririRH ADM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
     <meta name="author" content="">
    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="text/javascript" src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>

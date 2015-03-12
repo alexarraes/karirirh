@@ -91,8 +91,7 @@ public class AdministradorControlador extends HttpServlet {
 			}
 
 		} else if (acao != null && acao.equals("buscar")) {
-			System.out.println(request.getParameter("campo"));
-
+		
 			String valor = request.getParameter("valor");
 			String campo = request.getParameter("campo");
 			List<Empresa> lista = empDAO.pesquisarLike(campo, valor);

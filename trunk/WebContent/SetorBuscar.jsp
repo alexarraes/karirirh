@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <html>
-
-<head>
-
 <div
 	class="navbar navbar-default navbar-static-top visible-lg visible-md visible-sm visible-xs">
 	<div class="container">
@@ -13,22 +10,17 @@
 	</div>
 </div>
 
+<head>
 <meta charset="utf-8">
-<title>Cadastro Setor</title>
+<title>Buscar Setor</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet">
+<meta name="AlexArraes">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
-
 <body>
-
 
 	<form name="BuscarSetor" action="SetorControlador" method="get">
 		<fieldset>
@@ -44,12 +36,13 @@
 							</legend>
 							<div class="col-md-12">
 								<!--nome-->
-								<%if(request.getAttribute("msg")!=null){
-%>
-<center><%=request.getAttribute("msg") %></center>
-<%
-}
-	%>
+								<%
+									if (request.getAttribute("msg") != null) {
+								%>
+								<center><%=request.getAttribute("msg")%></center>
+								<%
+									}
+								%>
 								<div class="form-group" draggable="true">
 									<label for="BuscarSetor">Buscar por nome:</label>
 									<div>

@@ -27,16 +27,46 @@ public class SetorControlador extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		Usuario usuario =(Usuario) request.getSession().getAttribute("usuario");
+		Usuario usuario = (Usuario) request.getSession()
+				.getAttribute("usuario");
 		Empresa empresa = usuario.getEmpresa();
-		
+
 		Setor setor = new Setor();
 		SetorDAO setorDAO = new SetorDAO();
 
 		String acao = request.getParameter("acao");
 
-		if (acao != null && acao.equals("salvar")) {
-			
+		if (acao != null && acao.equals("menuCadastrar")) {
+			RequestDispatcher saida = request
+					.getRequestDispatcher("SetorCadastro.jsp");
+			saida.forward(request, response);
+
+		} else if (acao != null && acao.equals("menuAlterar")) {
+			List<Setor> lista = setorDAO.ListarSetores(empresa);
+			request.setAttribute("lista", lista);
+			RequestDispatcher saida = request
+					.getRequestDispatcher("SetorAlterarLista.jsp");
+			saida.forward(request, response);
+
+		} else if (acao != null && acao.equals("menuBuscar")) {
+			RequestDispatcher saida = request
+					.getRequestDispatcher("SetorBuscar.jsp");
+			saida.forward(request, response);
+		} else if (acao != null && acao.equals("menuListar")) {
+			List<Setor> lista = setorDAO.ListarSetores(empresa);
+			request.setAttribute("lista", lista);
+			RequestDispatcher saida = request
+					.getRequestDispatcher("SetorListar.jsp");
+			saida.forward(request, response);
+
+		} else if (acao != null && acao.equals("btnAlterar")) {
+			setor = setorDAO.pesquisarId(
+					Integer.parseInt(request.getParameter("id"))).get(0);
+			request.setAttribute("setor", setor);
+			request.getRequestDispatcher("SetorAlterar.jsp").forward(request,
+					response);
+		} else if (acao != null && acao.equals("salvar")) {
+
 			String nome = request.getParameter("nome");
 			boolean permitido = true;
 			List<Setor> setorList = setorDAO.pesquisarEq("nome", nome);
@@ -50,39 +80,38 @@ public class SetorControlador extends HttpServlet {
 				setor.setNome(nome);
 				setor.setEmpresa(empresa);
 				setorDAO.salvar(setor);
-			
-				
+
 				String msg = "Setor " + nome + " cadastrado com sucesso!";
 				request.setAttribute("msg", msg);
 				RequestDispatcher saida = request
 						.getRequestDispatcher("SetorCadastro.jsp");
 				saida.forward(request, response);
-			} else{
-				String msg = "Setor " + nome + " NÃO cadastrado, pois já existe SETOR com esse nome!";
+			} else {
+				String msg = "Setor "
+						+ nome
+						+ " NÃO cadastrado, pois já existe SETOR com esse nome!";
 				request.setAttribute("msg", msg);
 				RequestDispatcher saida = request
 						.getRequestDispatcher("SetorCadastro.jsp");
 				saida.forward(request, response);
-				
+
 			}
-				
 
 		} else if (acao != null && acao.equals("excluir")) {
 			setor = setorDAO.pesquisarCodigo(Integer.parseInt(request
 					.getParameter("id")));
 			setorDAO.excluir(setor);
-			response.sendRedirect("SetorControlador?acao=listar");
+			response.sendRedirect("SetorControlador?acao=menuAlterar");
 
 		} else if (acao != null && acao.equals("alterar")) {
 			setor = setorDAO.pesquisarCodigo(Integer.parseInt(request
 					.getParameter("id")));
 
-			setor = setorDAO.pesquisarCodigo((Integer.parseInt(request
-					.getParameter("idSetor"))));
 			setor.setNome(request.getParameter("nome"));
 			setorDAO.editar(setor);
 
 			request.setAttribute("setor", setor);
+			request.setAttribute("msg", "Setor alterado com sucesso!");
 			request.getRequestDispatcher("SetorAlterar.jsp").forward(request,
 					response);
 		} else if (acao != null && acao.equals("buscar")) {
@@ -92,13 +121,14 @@ public class SetorControlador extends HttpServlet {
 			request.getRequestDispatcher("SetorListar.jsp").forward(request,
 					response);
 
-		} else if (acao != null && acao.equals("listar")) {
+		}else if (acao != null && acao.equals("listar")) {
 			List<Setor> lista = setorDAO.ListarSetores(empresa);
 			request.setAttribute("lista", lista);
 			RequestDispatcher saida = request
 					.getRequestDispatcher("SetorListar.jsp");
 			saida.forward(request, response);
-		}
+		} 
+
 	}
 
 }

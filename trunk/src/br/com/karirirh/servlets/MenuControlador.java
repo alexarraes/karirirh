@@ -30,16 +30,6 @@ public class MenuControlador extends HttpServlet {
 		if (acao != null && acao.equals("home")) {
 			RequestDispatcher saida = request.getRequestDispatcher("home.jsp");
 			saida.forward(request, response);
-		} else if (acao != null && acao.equals("cabecalho")) {
-			RequestDispatcher saida = request
-					.getRequestDispatcher("Cabecalho.jsp");
-			saida.forward(request, response);
-
-		}else if (acao != null && acao.equals("mundo")) {
-			RequestDispatcher saida = request
-					.getRequestDispatcher("login/mundo.jsp");
-			saida.forward(request, response);
-
 		}
 		
 		
