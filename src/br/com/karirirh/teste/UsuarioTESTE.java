@@ -4,8 +4,12 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 
+import br.com.karirirh.dao.CargoDAO;
+import br.com.karirirh.dao.SetorDAO;
 import br.com.karirirh.dao.UsuarioDAO;
 import br.com.karirirh.dao.EmpresaDAO;
+import br.com.karirirh.entidades.Cargo;
+import br.com.karirirh.entidades.Setor;
 import br.com.karirirh.entidades.Usuario;
 import br.com.karirirh.entidades.Empresa;
 
@@ -86,21 +90,15 @@ public class  UsuarioTESTE{
 	}
 
 	public static void lista() {
-
-		EmpresaDAO usuDAO = new EmpresaDAO();
-		List<Empresa> u = usuDAO.listar();
-		for (Empresa usu : u) {
-			System.out.println(usu.getId() + " " + usu.getCnpj() + " "
-					+ usu.getRazaoSociao());
-		}
-
+	
+		
 	}
 
 	public static void main(String[] args) {
 		//cadastrar();
-		 buscar();
+		 //buscar();
 		// excluir();
 		// alterar();
-		// lista();
+		lista();
 	}
 }

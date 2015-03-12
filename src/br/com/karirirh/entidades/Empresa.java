@@ -37,8 +37,8 @@ public class Empresa {
 		return usuario;
 	}
 
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
+	public List<Usuario> setUsuario(List<Usuario> usuario) {
+		return this.usuario = usuario;
 	}
 
 	public int getId() {

@@ -1,45 +1,52 @@
+<%@page import="java.util.List"%>
+<%@page import="br.com.karirirh.entidades.Setor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <html>
 
+<div
+	class="navbar navbar-default navbar-static-top visible-lg visible-md visible-sm visible-xs">
+	<div class="container">
+		<div class="navbar-header">
+			<jsp:include page="Cabecalho.jsp"></jsp:include>
+		</div>
+	</div>
+</div>
+
 <head>
+<meta charset="utf-8">
+<title>Cadastro Cargo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="AlexArraes">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript"
+	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
 
- <div class="navbar navbar-default navbar-static-top visible-lg visible-md visible-sm visible-xs">
-      <div class="container">
-        <div class="navbar-header"> 
-        <jsp:include page="Cabecalho.jsp"></jsp:include>
-</div>
-</div>
-</div>
-	
-	<meta charset="utf-8">
-	<title>Cadastro Cargo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
 
-	<link
-		href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-		rel="stylesheet">
-	<script type="text/javascript"
-		src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	</head>	
-		<body>
-		
-		
-		
+
+
 	<form name="CadastroCargo" action="CargoControlador" method="get">
 		<fieldset>
-		<input type="hidden" name="acao" value="salvar">
+			<input type="hidden" name="acao" value="salvar">
 			<!-- Form Name -->
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row">
 							<legend draggable="true">
-								<h1>Cadastro Cargo</h1>
-								Dados do Cargo
+								<h1>Cargo</h1>
+								Cadastrar
 							</legend>
+							<%
+								if (request.getAttribute("msg") != null) {
+							%>
+							<center><%=request.getAttribute("msg")%></center>
+							<%
+								}
+							%>
 							<div class="col-md-8">
 								<!--nome-->
 								<div class="form-group" draggable="true">
@@ -70,35 +77,44 @@
 							<label for="CadastroCargo">Setor:*</label>
 							<div>
 								<select id="setor" name="setor" class="form-control">
-									<option value="1">Option one</option>
-									<option value="2">Option two</option>
+									<%
+										List<Setor> listaResultado = (List<Setor>) request
+												.getAttribute("lista");
+										for (Setor s : listaResultado) {
+									%>
+
+									<option value="<%=s.getId()%>"><%=s.getNome()%></option>
+
+									<%
+										}
+									%>
 								</select>
 
 							</div>
 						</div>
 					</div>
 				</div>
-				<!--nome-->
-				<div class="col-md-5">
-					<!-- Descricao -->
-					<div class="form-group">
-						<label for="CadastroCargo">Descrição:*</label>
-						<div>
-							<textarea class="form-control" id="descricao" name="descricao"></textarea>
+				<div class="row">
+					<!--nome-->
+					<div class="col-md-5">
+						<!-- Descricao -->
+						<div class="form-group">
+							<label for="CadastroCargo">Descrição:*</label>
+							<div>
+								<textarea class="form-control" id="descricao" name="descricao"></textarea>
+							</div>
 						</div>
+						<!-- Descricao -->
 					</div>
-					<!-- Descricao -->
+					<div class=col-md-12>
+						<button type="submit" class="btn btn-success" for="CadastroCargo">
+							<span class="glyphicon glyphicon-ok"></span>Cadastrar
+						</button>
+						<button type="reset" class="btn btn-danger">
+							<span class="glyphicon glyphicon-remove-sign"></span>Limpar
+						</button>
+					</div>
 				</div>
-				<div class=col-md-12>
-					<button type="submit" class="btn btn-success" for="CadastroCargo">
-						<span class="glyphicon glyphicon-ok"></span>Cadastrar
-					</button>
-					<button type="reset" class="btn btn-danger">
-						<span class="glyphicon glyphicon-remove-sign"></span>Limpar
-					</button>
-				</div>
-			</div>
-
 		</fieldset>
 	</form>
 </body>
