@@ -84,6 +84,12 @@ public class Colaborador {
 	@Column(length = 50, nullable=false)
 	private String cidade;
 	
+	@Column(length = 2, nullable=false)
+	private String uf;
+	
+	@Column(length = 40)
+	private String contrato;
+	
 	@ManyToOne
 	private Empresa empresa;
 
@@ -92,6 +98,22 @@ public class Colaborador {
 	
 	
 	
+	public String getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(String contrato) {
+		this.contrato = contrato;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
 	public Empresa getEmpresa() {
 		return empresa;
 	}

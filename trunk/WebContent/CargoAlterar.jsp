@@ -120,11 +120,13 @@
 								<!-- Descricao -->
 							</div>
 							<div class=col-md-12>
-								<button type="submit" class="btn btn-success" for="CargoAlterar">
-									<span class="glyphicon glyphicon-ok"></span>Alterar
+								<button type="submit" class="btn btn-primary"for="CargoAlterar">
+									<span class="glyphicon glyphicon-repeat"> </span>Alterar
 								</button>
-								<input class="btn btn-danger" type="button" value="Voltar"
-									onClick="history.go(-1)">
+								<button type="button" class="btn btn-warning" onClick="history.go(-1)"> 
+								<span class="glyphicon glyphicon-arrow-left"> </span>Voltar
+								</button>
+							
 							</div>
 						</div>
 		</fieldset>

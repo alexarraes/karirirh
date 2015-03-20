@@ -109,9 +109,12 @@ function descricao(descricao) {
 									<input class="img" onclick="descricao('<%= c.getDescricao() %>')" type=image src="img/interrogacao2.png"></input>
 								</center></td>
 
-							<td class="success"><a type="button"  
-								class="btn btn-block btn-danger btn-sm">Colaboradores<span
-									class="glyphicon glyphicon-remove"></span></a></td>
+							<td class="success"><center> 
+							<input type=image
+									onclick="cargos('<%=c.getId()%>')"
+									 src="img/colaborador24.png"></input>
+							</center>
+							</td>
 						</tr>
 					
 						<%
@@ -122,13 +125,13 @@ function descricao(descricao) {
 							<td><%=c.getNome()%></td>
 							<td><%=c.getSalario()%></td>
 							<td><%=c.getSetor().getNome()%></td>
-							<td><center>
+							<td ><center>
 									<input onclick="descricao('<%=c.getDescricao() %>')"class="img" type=image src="img/interrogacao2.png"></input>
 								</center></td>
 
-							<td><a type="button" 
-								class="btn btn-block btn-danger btn-sm" >Colaboradores<span	
-									class="glyphicon glyphicon-remove"></span></a></td>
+							<td> <center><input type=image
+									onclick="cargos('<%=c.getId()%>')"
+									 src="img/colaborador24.png"></input></center></td>
 						</tr>
 
 			
