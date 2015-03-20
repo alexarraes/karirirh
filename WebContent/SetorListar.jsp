@@ -2,7 +2,7 @@
 <%@page import="br.com.karirirh.entidades.Setor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 
 <div
@@ -33,6 +33,11 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript">
+function cargos(id) {
+	window.location.href = "CargoControlador?acao=cargosDoSetor&id=" + id
+}
+
+
 	$(document).ready(function() {
 		$('#tabela1').DataTable();
 	});
@@ -56,7 +61,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Nome</th>
-								<th>Cargos</th>
+								<th><center>Cargos</center></th>
 							</tr>
 						</thead>
 
@@ -72,10 +77,12 @@
 						<tr>
 							<td class="success"><%=s.getId()%></td>
 							<td class="success"><%=s.getNome()%></td>
-
-							<td class="success"><a type="button"
-								class="btn btn-block btn-danger btn-sm">Cargos<span
-									class="glyphicon glyphicon-remove"></span></a></td>
+							<td class="success"><center>
+									<input type=image
+									onclick="cargos('<%=s.getId()%>')"
+									 src="img/cargo24.png"></input>
+								</center>
+							</td>
 						</tr>
 						<%
 							} else {
@@ -83,9 +90,13 @@
 						<tr>
 							<td><%=s.getId()%></td>
 							<td><%=s.getNome()%></td>
-							<td><a type="button"
-								class="btn btn-block btn-danger btn-sm">Cargos<span
-									class="glyphicon glyphicon-remove"></span></a></td>
+							<td>
+							<center>
+									<input type=image
+									onclick="cargos('<%=s.getId()%>')"
+									 src="img/cargo24.png"></input>
+								</center>
+							</td>
 						</tr>
 
 

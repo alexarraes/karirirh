@@ -1,4 +1,4 @@
-package br.com.karirirh.servlets;
+/*package br.com.karirirh.servlets;
 
 import java.io.IOException;
 import java.util.List;
@@ -144,3 +144,4 @@ public class UsuarioControlador extends HttpServlet {
 	}
 
 }
+*/

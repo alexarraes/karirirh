@@ -4,7 +4,15 @@
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="EmpresaCabecalho.jsp"></jsp:include>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<script>
+<script type="text/javascript"
+	src="js/validador.js"></script>
+	<script src="jQueryUI/external/jquery/jquery.js" type="text/javascript"></script>
+<script src="jQueryUI/jquery.maskedinput.js"  type="text/javascript"></script>
+<script >
+jQuery(function($){  
+	   $("#cnpj").mask("99.999.999/9999-99");  
+	});
+
 function comprovarSenha(){
     senha1 = document.CadastroEmpresa.senha.value;
     senha2 = document.CadastroEmpresa.senhaConfirmar.value;
@@ -46,7 +54,10 @@ Usuario admin =(Usuario)sessao.getAttribute("administrador");
 			placeholder="Ex.: KaririRH" required="required" MAXLENGTH="45">
 			<br />
 		<label for="CadastroEmpresa">CNPJ:</label> <input class="form-control"
-			type="text" name="cnpj" placeholder="Ex.: 71.981.389/0001-41" required="required" MAXLENGTH="18">
+			type="text" id="cnpj" name="cnpj" placeholder="Ex.: 71.981.389/0001-41" 
+			onKeyPress="MascaraCNPJ(CadastroEmpresa.cnpj);" 
+onBlur="ValidarCNPJ(CadastroEmpresa.cnpj);" maxlength="18" 
+			required="required">
 			<br />
 		<label for="CadastroEmpresa">Endereço Completo:</label> <input class="form-control"
 			type="text" name="enderecoCompleto" placeholder="Ex.: Rua: Ipanema, 156 Bairro:Centro Brejo Santo-Ceará" required="required" MAXLENGTH="100">

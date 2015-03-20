@@ -27,9 +27,9 @@
 					Empresa
 					<%=empresa.getRazaoSociao()%>
 					logada com:
-					<%=usuario.getLogin()%>
+					<b><%=usuario.getLogin()%></b>
 					Data:
-					<f:formatDate value="<%=new Date()%>" type="date" />
+					<b><f:formatDate value="<%=new Date()%>" type="date" /></b>
 				</p>
 
 				<li class="active"><a href="MenuControlador?acao=home">Home</a>
@@ -39,21 +39,17 @@
 					aria-expanded="false">Colaborador<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="MenuControlador?acao=cabecalho">Cadastrar</a></li>
+						<li><a href="MenuControlador?acao=cabecalho">Alterar</a></li>
+						<li><a href="MenuControlador?acao=mundo">Buscar</a></li>
+						<li><a href="MenuControlador?acao=mundo">Listar</a></li>
 						<li class="divider"></li>
-						<li><a href="MenuControlador?acao=mundo">Consultar</a></li>
-						<li class="divider"></li>
-
+						<li><a href="MenuControlador?acao=mundo">Histórico</a></li>
+						<li><a href="MenuControlador?acao=mundo">Medida Disciplinar</a></li>
+						<li><a href="MenuControlador?acao=mundo">Férias</a></li>
+						<li><a href="MenuControlador?acao=mundo">Inativar</a></li>
+						<li><a href="MenuControlador?acao=mundo">Afastamento</a></li>
 					</ul></li>
-				<li class="dropdown" draggable="true"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown" role="button"
-					aria-expanded="false">Setor<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="SetorControlador?acao=menuCadastrar">Cadastrar</a></li>
-						<li><a href="SetorControlador?acao=menuAlterar">Alterar</a></li>
-						<li class="divider"></li>
-						<li><a href="SetorControlador?acao=menuBuscar">Buscar</a></li>
-						<li><a href="SetorControlador?acao=menuListar">Listar</a></li>
-					</ul></li>
+				
 				<li class="dropdown" draggable="true"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-expanded="false">Cargo<span class="caret"></span></a>
@@ -64,12 +60,23 @@
 						<li><a href="CargoControlador?acao=menuBuscar">Buscar</a></li>
 						<li><a href="CargoControlador?acao=menuListar">Listar</a></li>
 					</ul></li>
+					
+					<li class="dropdown" draggable="true"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-expanded="false">Setor<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="SetorControlador?acao=menuCadastrar">Cadastrar</a></li>
+						<li><a href="SetorControlador?acao=menuAlterar">Alterar</a></li>
+						<li class="divider"></li>
+						<li><a href="SetorControlador?acao=menuBuscar">Buscar</a></li>
+						<li><a href="SetorControlador?acao=menuListar">Listar</a></li>
+					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Configuração
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Dados da Empresa</a></li>
+						<li><a href="MenuControlador?acao=config">Dados da Empresa</a></li>
 					</ul></li>
 				<li draggable="true"><a href="#">Sobre</a></li>
 			</ul>
