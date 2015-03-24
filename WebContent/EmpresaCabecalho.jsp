@@ -38,7 +38,7 @@
               <a href="AdministradorControlador?acao=menuListar">Lista de Empresas</a>
             </li>
             <li>
-              <a class=" glyphicon glyphicon-log-out" href="Autenticador"> <span aria-hidden="true"></span>Sair</a>
+              <a class=" glyphicon glyphicon-log-out" href="Autenticador?acao=sair"> <span aria-hidden="true"></span>Sair</a>
             </li>
           </ul>
         </div>

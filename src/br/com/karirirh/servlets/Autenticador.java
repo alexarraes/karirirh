@@ -34,7 +34,7 @@ public class Autenticador extends HttpServlet {
 
 		String sLogin = request.getParameter("login");
 		String sSenha = request.getParameter("senha");
-
+		HttpSession sessao = null;
 		Usuario usu = new Usuario();
 		UsuarioDAO usuDAO = new UsuarioDAO();
 
@@ -43,18 +43,24 @@ public class Autenticador extends HttpServlet {
 		if (usu == null) {
 			response.sendRedirect("login.jsp");	
 		} else if (usu.isAdmin()) {
-			HttpSession sessao = request.getSession();
+			sessao = request.getSession();
 			sessao.setAttribute("administrador", usu);
 			sessao.setMaxInactiveInterval(3000);
 
 			request.getRequestDispatcher("EmpresaCadastro.jsp").forward(
 					request, response);
 		} else {
-			HttpSession sessao = request.getSession();
+			sessao = request.getSession();
 			sessao.setAttribute("usuario", usu);
 			sessao.setMaxInactiveInterval(3000);
 			request.getRequestDispatcher("home.jsp").forward(request,
 					response);
+		}
+		
+		String acao = request.getParameter("acao");
+		if(acao != null && acao.equals("sair")){
+			sessao.invalidate();  
+			response.sendRedirect("login.jsp");
 		}
 
 	}

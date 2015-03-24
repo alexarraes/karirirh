@@ -38,10 +38,10 @@
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-expanded="false">Colaborador<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="MenuControlador?acao=cabecalho">Cadastrar</a></li>
-						<li><a href="MenuControlador?acao=cabecalho">Alterar</a></li>
-						<li><a href="MenuControlador?acao=mundo">Buscar</a></li>
-						<li><a href="MenuControlador?acao=mundo">Listar</a></li>
+						<li><a href="ColaboradorControlador?acao=menuCadastro">Cadastrar</a></li>
+						<li><a href="ColaboradorControlador?acao=menuAlterar">Alterar</a></li>
+						<li><a href="ColaboradorControlador?acao=menuBuscar">Buscar</a></li>
+						<li><a href="ColaboradorControlador?acao=menuListar">Listar</a></li>
 						<li class="divider"></li>
 						<li><a href="MenuControlador?acao=mundo">Histórico</a></li>
 						<li><a href="MenuControlador?acao=mundo">Medida Disciplinar</a></li>
@@ -83,7 +83,7 @@
 			<a
 				class="navbar-brand navbar-right visible-lg visible-md visible-sm visible-xs">
 				<img src="img/LogoMenu.png" draggable="true">
-			</a> <a type="button" href="Autenticador"
+			</a> <a type="button" href="Autenticador?acao=sair"
 				class="btn btn-danger btn-sm navbar-btn navbar-right">Sair<span
 				class="glyphicon glyphicon-share"></span></a>
 		</div>
