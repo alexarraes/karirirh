@@ -42,7 +42,7 @@
 </script>
 <script>
 function excluir(id, nome) {
-	if (confirm("Deseja excluir o setor de " + nome + "?")) {
+	if (confirm("Deseja excluir o Cargo de " + nome + "?")) {
 		window.location.href = "CargoControlador?acao=excluir&id=" + id
 	}
 }

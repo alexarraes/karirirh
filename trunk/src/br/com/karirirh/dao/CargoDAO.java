@@ -43,25 +43,26 @@ public class CargoDAO extends GenericDAO<Cargo> {
 		return criteria.list();
 	}
 
-	public List<Cargo> ListaCargosPorSetores(Empresa empresa, Setor setor, String nome) {
+	public List<Cargo> ListaCargosPorSetores(Empresa empresa, Setor setor,
+			String nome) {
 		CargoDAO cargoDAO = new CargoDAO();
 		List<Cargo> cargos = cargoDAO.listar();
 		sessao = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = sessao.createCriteria(Cargo.class, "c");
 		Conjunction e = Restrictions.conjunction();
 		for (Cargo c : cargos) {
-			e.add(Subqueries.exists(DetachedCriteria.forClass(Setor.class, "s")
+			e.add(Subqueries.exists(DetachedCriteria
+					.forClass(Setor.class, "s")
 					.setProjection(Projections.id())
 					.add(Restrictions.eqProperty("c.setor", "s.id"))
 					.add(Restrictions.eq("s.empresa", empresa))
 					.add(Restrictions.eq("c.setor", setor))
-					.add(Restrictions.ilike("c.nome", nome, MatchMode.ANYWHERE))
-					));
+					.add(Restrictions.ilike("c.nome", nome, MatchMode.ANYWHERE))));
 		}
 		criteria.add(e);
 		return criteria.list();
 	}
-	
+
 	public List<Cargo> ListaCargosDoSetor(Empresa empresa, Setor setor) {
 		CargoDAO cargoDAO = new CargoDAO();
 		List<Cargo> cargos = cargoDAO.listar();
@@ -73,12 +74,10 @@ public class CargoDAO extends GenericDAO<Cargo> {
 					.setProjection(Projections.id())
 					.add(Restrictions.eqProperty("c.setor", "s.id"))
 					.add(Restrictions.eq("s.empresa", empresa))
-					.add(Restrictions.eq("c.setor", setor))
-					));
+					.add(Restrictions.eq("c.setor", setor))));
 		}
 		criteria.add(e);
 		return criteria.list();
 	}
-	
-	
+
 }

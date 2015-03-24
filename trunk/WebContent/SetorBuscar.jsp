@@ -55,7 +55,7 @@
 
 						</div>
 						<div class=col-md-12>
-							<button type="submit" class="btn btn-success" for="BuscarSetor">
+							<button type="submit" class="btn btn-info" for="BuscarSetor">
 								<span class="glyphicon glyphicon-ok"></span>Buscar
 							</button>
 							<button type="reset" class="btn btn-danger">
