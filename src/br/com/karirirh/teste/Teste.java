@@ -15,5 +15,7 @@ public interface Teste {
 	public void alterar(int id);
 
 	public void lista();
+	
+	
 
 }

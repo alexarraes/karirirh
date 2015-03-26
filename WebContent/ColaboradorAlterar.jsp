@@ -20,7 +20,7 @@
 </div>
 <head>
 <meta charset="utf-8">
-<title>Cadastro Colaborador</title>
+<title>Alterar Colaborador</title>
 
 <meta name="AlexArraes">
 
@@ -79,21 +79,14 @@
 	});
 
 	jQuery(function($) {
-		$("#cpf").mask("999.999.999-99");
+		//$("#cpf").mask("999.999.999-99");
 		$("#cep").mask("99999-99");
-		$("#pis").mask("999.9999.999-9");
-		$("#celular").mask("(99)9999-9999");
-		$("#fixo").mask("(99)9999-9999");
+		//$("#pis").mask("999.9999.999-9");
+		//$("#celular").mask("(99)9999-9999");
+		//$("#fixo").mask("(99)9999-9999");
 	});
 </script>
-<!-- Data
-<%int dia = Integer.parseInt((new SimpleDateFormat("dd"))
-					.format(new Date()));
-			int mes = Integer.parseInt((new SimpleDateFormat("M"))
-					.format(new Date()));
-			int ano = Integer.parseInt((new SimpleDateFormat("yyyy"))
-					.format(new Date()));%>
--->
+
 
 </head>
 
@@ -110,7 +103,7 @@
 					<div class="col-md-12">
 						<div class="row">
 							<legend draggable="true">
-								<h1>Cadastro Colaborador</h1>
+								<h1>Alterar Colaborador</h1>
 							</legend>
 							<%
 								if (request.getAttribute("msg") != null) {
@@ -119,8 +112,9 @@
 							<%
 								}
 								Colaborador col = (Colaborador) request.getAttribute("col");
-								Telefone tel = (Telefone) request.getAttribute("tel");
-								Dependente dep = (Dependente) request.getAttribute("dep");
+								List<Telefone> tel = (List<Telefone>) request.getAttribute("tel");
+								List<Dependente> dep = (List<Dependente>) request
+										.getAttribute("dep");
 							%>
 							<div id="accordion">
 								<h3>1 - Dados Pessoais</h3>
@@ -129,11 +123,11 @@
 									<div class="col-md-5">
 										<!--nome-->
 										<div class="form-group">
-											<input type="hidden" name="acao" value="salvar"> <label
+											<input type="hidden" name="acao" value="alterar"> <label
 												for="nome">Nome Completo:*</label>
 											<div>
 												<input id="nomeCompleto" name="nomeCompleto" type="text"
-													placeholder="Ex.: João da Silva"
+													placeholder="Ex.: João da Silva" value="<%=col.getNome()%>"
 													class="form-control input-md" required="required"
 													oninvalid="this.setCustomValidity('[1 - Dados Pessoais] Campo NOME não preenchido.')"
 													maxlength="50">
@@ -146,10 +140,25 @@
 											<label for="estCivil">Estado Cívil:*</label>
 											<div>
 												<select id="estCivil" name="estCivil" class="form-control">
-													<option value="1">Solteiro(a)</option>
-													<option value="2">Casado(a)</option>
-													<option value="3">Viuvo(a)</option>
-													<option value="4">Divorciado(a)</option>
+
+													<option
+														<%=(col.getEstadoCivil().equals("Solteiro(a)")) ? "selected"
+					: ""%>
+														value="Solteiro(a)">Solteiro(a)</option>
+													<option
+														<%=(col.getEstadoCivil().equals("Casado(a)")) ? "selected"
+					: ""%>
+														value="Casado(a)">Casado(a)</option>
+													<option
+														<%=(col.getEstadoCivil().equals("Viuvo(a)")) ? "selected"
+					: ""%>
+														value="Viuvo(a)">Viuvo(a)</option>
+													<option
+														<%=(col.getEstadoCivil().equals("Divorciado(a)")) ? "selected"
+					: ""%>
+														value="Divorciado(a)">Divorciado(a)</option>
+
+
 												</select>
 											</div>
 										</div>
@@ -158,9 +167,9 @@
 										<div class="form-group">
 											<label for="nome">Data de Nascimento:*</label>
 											<div>
-												<input type="text" id="dataNasc" name="dataNasc"
+												<input type="text" id="dataNasc" name="dataNasc" readonly="readonly"
 													class="form-control input-md" placeholder="Ex.: 00/00/0000"
-													value="<%=col.getNome()%>" maxlength="10">
+													value="<%=col.getDataNascimento()%>" maxlength="10">
 											</div>
 										</div>
 										<!-- Data Nascim -->
@@ -170,12 +179,12 @@
 											<div class="radio">
 												<label for="sexo-0"> <input type="radio" name="sexo"
 													id="sexo-0" value="masculino"
-													checked="<%=(col.getSexo().equals("masculino") ? "checked" : "")%>">Masculino
+													<%=(col.getSexo().equals("masculino") ? "checked=checked" : "")%>>Masculino
 												</label>
 											</div>
 											<div class="radio">
 												<label for="sexo-1"> <input type="radio" name="sexo"
-													id="sexo-1" value="feminino"<%=(col.getSexo().equals("feminino") ? "checked" : "")%>"
+													id="sexo-1" value="feminino"<%=(col.getSexo().equals("feminino") ? "checked=checked"  : "")%>"
 													>Feminino
 												</label>
 											</div>
@@ -207,16 +216,36 @@
 											<div>
 												<input id="cpf" name="cpf" type="text"
 													placeholder="Ex.: 000.000.000-00" value="<%=col.getCpf()%>"
-													maxlength="14"
+													maxlength="14" readonly="readonly"
 													oninvalid="this.setCustomValidity('[1 - Dados Pessoais] Campo CPF não preenchido.')"
 													class="form-control input-md" required="required">
 											</div>
 										</div>
 										<!--cpf-->
+										
+										
+										<!--Dependentes-->
+										<div class="form-group">
+											<label for="nome">DEPENDENTES:</label>
+											<div>
+										<%
+											for (Dependente d : dep) {
+										%>
+												<input type="text" readonly="readonly"
+													value="<%=d.getNomeDependete()%>"
+													class="form-control input-md" >
+													<%
+											}
+										%>
+											</div>
+										</div>
+										<!--Dependentes-->
+										
 										<!-- DEPENDENTES -->
-
+										
 										<div class="input_fields_wrap">
-											<label for="nome">Dependentes:</label> <input
+										<label for="nome">Adicionar mais Dependentes:</label>
+										 <input
 												class="add_field_button" type=image src="img/mais.png"></input>
 											<div>
 												<input class="form-control input-md" type="text"
@@ -335,7 +364,7 @@
 															<label for="selectbasic">UF:*</label>
 															<div>
 																<select id="estado" name="estado" class="form-control">
-																	<option value="<%=col.getUf()%>" selected>value="<%=col.getUf()%>"
+																	<option value="<%=col.getUf()%>" selected><%=col.getUf()%>
 																	</option>
 																	<option value="AC">AC</option>
 																	<option value="AL">AL</option>
@@ -417,11 +446,18 @@
 														<div class="form-group">
 															<label for="nome">Celular:*</label>
 															<div>
+																<%
+																	for (Telefone t : tel) {
+																		if (t.getTipo().equals("Celular")) {
+																%>
 																<input id="celular" name="celular" type="text"
-																	maxlength="14" value="<%=%>"
-																	placeholder="Ex.: (00)0000-0000"
+																	maxlength="14" value="<%=t.getFone()%>"
 																	oninvalid="this.setCustomValidity('[2 - Dados Residênciais] Campo CELULAR não preenchido.')"
 																	class="form-control input-md" required="required">
+																<%
+																	}
+																	}
+																%>
 															</div>
 														</div>
 														<!--Celular 1-->
@@ -434,9 +470,19 @@
 														<div class="form-group">
 															<label for="nome">Fixo: </label>
 															<div>
+																<%
+																	for (Telefone t : tel) {
+																		if (t.getTipo().equals("Fixo")) {
+																%>
+
 																<input id="fixo" name="fixo" type="text" maxlength="14"
+																	value="<%=t.getFone()%>"
 																	placeholder="Ex.: (00)0000-0000"
 																	class="form-control input-md">
+																<%
+																	}
+																	}
+																%>
 															</div>
 														</div>
 														<!--Fixo -->
@@ -500,7 +546,7 @@
 												<label for="nome">CTPS:*</label>
 												<div>
 													<input id="ctps" name="ctps" type="text" maxlength="8"
-														value="<%=col.getCtps()%>" placeholder="Ex.: 0000000s"
+														value="<%=col.getCtps()%>" placeholder="Ex.: 0000000"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo CTPS não preenchido.')"
 														class="form-control input-md" required="required">
 												</div>
@@ -515,9 +561,9 @@
 												<label for="nome">PIS:*</label>
 												<div>
 													<input id="pis" name="pis" type="text" maxlength="14"
-														value="<%=col.getPis()%>" placeholder="Ex.: 00000000000"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo PIS não preenchido.')"
-														class="form-control input-md" required="required">
+														class="form-control input-md" required="required"
+														value="<%=col.getPis()%>">
 												</div>
 											</div>
 											<!--PIS-->
@@ -555,7 +601,7 @@
 
 														<select id="cargo" name="cargo" class="form-control">
 															<option value="<%=col.getId()%>">
-																<%=col.getNome() + " R$ " + col.getCargo().getSalario()%></option>
+																<%=col.getCargo().getNome() + " R$ " + col.getCargo().getSalario()%></option>
 															<%
 																List<Cargo> listaResultado = (List<Cargo>) request
 																		.getAttribute("cargo");
@@ -580,7 +626,7 @@
 											<div class="form-group">
 												<label for="nome">Salário:*</label>
 												<div>
-													<input id="salario" name="salario" type="text" value=""
+													<input id="salario" name="salario" type="text"
 														maxlength="10" value="<%=col.getSalarioAtual()%>"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo SALÁRIO não preenchido.')"
 														class="form-control input-md" required="required">

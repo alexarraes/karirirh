@@ -54,6 +54,8 @@ public class ColaboradorControlador extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
+			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");      
+			//Date data = fmt.parse("17/12/2007 19:30:20"); 
 			Data dt = new Data();
 			int ano = Integer.parseInt((new SimpleDateFormat("yyyy"))
 					.format(new Date()));
@@ -103,7 +105,7 @@ public class ColaboradorControlador extends HttpServlet {
 						.getRequestDispatcher("ColaboradorListar.jsp");
 				saida.forward(request, response);
 
-			} else if (acao != null && acao.equals("menuAlterar")) {
+			}  else if (acao != null && acao.equals("menuAlterar")) {
 				List<Colaborador> colaboradores = colDAO.pesquisarEq("empresa",
 						empresa);
 				request.setAttribute("lista", colaboradores);
@@ -183,6 +185,106 @@ public class ColaboradorControlador extends HttpServlet {
 						.getRequestDispatcher("ColaboradorListar.jsp");
 				saida.forward(request, response);
 
+			} else if (acao != null && acao.equals("alterar")) {
+				
+				String nomeCompleto = request.getParameter("nomeCompleto");
+				String estCivil = request.getParameter("estCivil");
+				String sDataNascimento = request.getParameter("dataNasc");
+				String sexo = request.getParameter("sexo");
+				String sRg = request.getParameter("rg");
+				String cpf = request.getParameter("cpf");
+				String rua = request.getParameter("rua");
+				int numero = Integer.parseInt(request.getParameter("numero"));
+				String complemento = request.getParameter("complemento");
+				String bairro = request.getParameter("bairro");
+				String cidade = request.getParameter("cidade");
+				String estado = request.getParameter("estado");
+				String cep = request.getParameter("cep");
+				String email = request.getParameter("email");
+				String celular = request.getParameter("celular");
+				String fixo = request.getParameter("fixo");
+				String ctps = request.getParameter("ctps");
+				String pis = request.getParameter("pis");
+				String tipoContrato = request.getParameter("tipoContrato");
+				int car = Integer.parseInt(request.getParameter("cargo"));
+				double salario = Double.parseDouble(request
+						.getParameter("salario"));
+				String escolaridade = request.getParameter("escolaridade");
+				String curso = request.getParameter("curso");
+				
+
+				col = colDAO.pesquisarEq("cpf", cpf).get(0);
+				
+				col.setNome(nomeCompleto);
+				col.setEstadoCivil(estCivil);
+				//col.setDataNascimento(fmt.parse(sDataNascimento));
+				col.setSexo(sexo);
+				col.setRg(Integer.parseInt(sRg));	
+				col.setRua(rua);
+				col.setNumero(numero);
+				col.setComplemento(complemento);
+				col.setBairro(bairro);
+				col.setCidade(cidade);
+				col.setUf(estado);
+				col.setCep(cep);
+				col.setEmail(email);
+				col.setCtps(ctps);
+				col.setPis(pis);
+				col.setContrato(tipoContrato);
+				col.setSalarioAtual(salario);// Obs.:
+				col.setEscolaridade(escolaridade);
+				col.setCurso(curso);
+				cargo = cargoDAO.pesquisarId(car).get(0);
+				col.setCargo(cargo);
+				colDAO.editar(col);
+				
+				tel = telDAO.pesquisarEq("colaborador", col).get(0);//Enviar id do Celular
+				tel.setTipo("Celular");
+				tel.setFone(celular);
+				telDAO.editar(tel);
+				
+				tel = telDAO.pesquisarEq("colaborador", col).get(1);//Enviar id do Fixo
+				tel.setTipo("Fixo");
+				tel.setFone(fixo);	
+				telDAO.editar(tel);
+				
+				
+				int qtdItens = 5;
+				String nome[] = new String[qtdItens];
+				int aux = 1;
+				for (int i = 0; i < qtdItens; i++) {
+					nome[i] = "nome" + aux;
+					aux++;
+				}
+				for (int i = 0; i < nome.length; i++) {
+					nome[i] = request.getParameter(nome[i]);
+				}
+				for (int i = 0; i < nome.length; i++) {
+					if (nome[i] == null || nome[i].equals("")) {
+						System.out.println("Vazio");
+					} else {
+						dep.setTipo("Dependente");
+						dep.setNomeDependete(nome[i]);
+						dep.setColaborador(col);
+						depDAO.salvar(dep);
+					}
+
+				}
+
+				String msg = "Colaborador " + col.getNome()
+						+ " alterado com sucesso, sua matricula é:"
+						+ col.getMatricula();
+				request.setAttribute("msg", msg);
+				List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
+				request.setAttribute("cargo", cargos);
+				List<Telefone> tels= telDAO.pesquisarEq("colaborador", col);
+				List<Dependente> deps = depDAO.pesquisarEq("colaborador", col);
+				request.setAttribute("col", col);
+				request.setAttribute("tel", tels);
+				request.setAttribute("dep", deps);
+				request.getRequestDispatcher("ColaboradorAlterar.jsp").forward(request,
+						response);
+				
 			} else if (acao != null && acao.equals("salvar")) {
 				String nomeCompleto = request.getParameter("nomeCompleto");
 				String estCivil = request.getParameter("estCivil");
@@ -211,6 +313,7 @@ public class ColaboradorControlador extends HttpServlet {
 				String escolaridade = request.getParameter("escolaridade");
 				String curso = request.getParameter("curso");
 				boolean status = true;
+				
 				// Dependentes
 
 				col.setNome(nomeCompleto);
@@ -265,7 +368,7 @@ public class ColaboradorControlador extends HttpServlet {
 					nome[i] = request.getParameter(nome[i]);
 				}
 				for (int i = 0; i < nome.length; i++) {
-					if (nome[i] == null) {
+					if (nome[i] == null  || nome[i].equals("")) {
 						System.out.println("Vazio");
 					} else {
 						dep.setTipo("Dependente");
