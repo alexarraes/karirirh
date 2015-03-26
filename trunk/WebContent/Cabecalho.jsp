@@ -44,7 +44,7 @@
 						<li><a href="ColaboradorControlador?acao=menuListar">Listar</a></li>
 						<li class="divider"></li>
 						<li><a href="MenuControlador?acao=mundo">Histórico</a></li>
-						<li><a href="MenuControlador?acao=mundo">Medida Disciplinar</a></li>
+						<li><a href="MDControlador?acao=menuListar">Medida Disciplinar</a></li>
 						<li><a href="MenuControlador?acao=mundo">Férias</a></li>
 						<li><a href="MenuControlador?acao=mundo">Inativar</a></li>
 						<li><a href="MenuControlador?acao=mundo">Afastamento</a></li>

@@ -81,10 +81,10 @@ function comprovarSenha(){
 			<br /> 
 		
 		<label for="EmpresaAlterar">Senha:</label> <input class="form-control"
-			type="text" name="senha" placeholder="********" required="required" MAXLENGTH="8" value="<%=usu.getSenha()%>">
+			type="password" name="senha" placeholder="********" required="required" MAXLENGTH="8" value="<%=usu.getSenha()%>">
 			<br />
 		<label for="EmpresaAlterar">Corfirmar Senha:</label> <input class="form-control"
-			type="text" name="senhaConfirmar" placeholder="********" required="required" MAXLENGTH="8" value="<%=usu.getSenha()%>"><br />
+			type="password" name="senhaConfirmar" placeholder="********" required="required" MAXLENGTH="8" value="<%=usu.getSenha()%>"><br />
 
 	<button type="button" class="btn btn-primary" for="EmpresaAlterar"onClick="comprovarSenha()"> <span class="glyphicon glyphicon-ok"></span>Alterar</button>
 	<button type="button" class="btn btn-warning" onClick="history.go(-1)"> 
