@@ -87,7 +87,7 @@
 								<div class="form-group">
 									<label for="CargoAlterar">Setor:*</label>
 									<div>
-										<select id="setor" name="setor" class="form-control">
+										<select id="cod" name="cod" class="form-control">
 											<option value="<%=cargo.getSetor().getId()%>"><%=cargo.getSetor().getNome()%></option>
 											<%
 											List<Setor> listaResultado = (List<Setor>) request

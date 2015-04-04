@@ -32,7 +32,7 @@ public class HistoricoAfastamento {
 	@Column(nullable=true)
 	private int codDoenca;
 	
-	@Column(length = 20, nullable=true)
+	@Column(length = 200, nullable=true)
 	private String tipo;
 	
 	@ManyToOne

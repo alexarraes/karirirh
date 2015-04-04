@@ -184,8 +184,9 @@
 											</div>
 											<div class="radio">
 												<label for="sexo-1"> <input type="radio" name="sexo"
-													id="sexo-1" value="feminino"<%=(col.getSexo().equals("feminino") ? "checked=checked"  : "")%>"
-													>Feminino
+													id="sexo-1" value="feminino"
+													<%=(col.getSexo().equals("feminino") ? "checked=checked"  : "")%>>
+													Feminino
 												</label>
 											</div>
 										</div>

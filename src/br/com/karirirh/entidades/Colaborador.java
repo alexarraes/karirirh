@@ -22,7 +22,7 @@ public class Colaborador {
 	private String nome;
 	
 	@Column(length = 25, nullable = false)
-    private int rg;
+    private String rg;
 	
 	@Column(length = 14, nullable = false)
 	private String cpf;
@@ -138,11 +138,11 @@ public class Colaborador {
 		this.nome = nome;
 	}
 
-	public int getRg() {
+	public String getRg() {
 		return rg;
 	}
 
-	public void setRg(int rg) {
+	public void setRg(String rg) {
 		this.rg = rg;
 	}
 

@@ -51,7 +51,7 @@ public class ColaboradorDAO extends GenericDAO<Colaborador> {
 
 	public void editar(Colaborador object) {
 		HistoricoSetor hsVerifica = hsDAO.pesquisarId(object.getId()).get(0);
-		if (hsVerifica.getCargo() != object.getCargo()) {
+		if (hsVerifica.getCargo().getId() != object.getCargo().getId()) {
 			HistoricoSetor atualHistSetor = new HistoricoSetor();
 			atualHistSetor = hsDAO.ultimoHistoico(object);
 			atualHistSetor.setDataFim(new Date());

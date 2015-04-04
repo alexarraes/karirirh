@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import br.com.karirirh.dao.CargoDAO;
 import br.com.karirirh.dao.ColaboradorDAO;
@@ -113,7 +114,15 @@ public class ColaboradorControlador extends HttpServlet {
 						.getRequestDispatcher("ColaboradorListaAlterar.jsp");
 				saida.forward(request, response);
 
-			} else if (acao != null && acao.equals("excluir")) {
+			}else if (acao != null && acao.equals("menuInativar")) {
+				List<Colaborador> colaboradores = colDAO.pesquisarEq("empresa",
+						empresa);
+				request.setAttribute("lista", colaboradores);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("ColaboradorInativar.jsp");
+				saida.forward(request, response);
+
+			}else if (acao != null && acao.equals("excluir")) {
 				int id = Integer.parseInt(request.getParameter("id"));
 				col = colDAO.pesquisarId(id).get(0);
 				List<Telefone> telefones = telDAO.pesquisarEq("colaborador",
@@ -167,7 +176,29 @@ public class ColaboradorControlador extends HttpServlet {
 				request.setAttribute("dep", deps);
 				request.getRequestDispatcher("ColaboradorAlterar.jsp").forward(request,
 						response);
-			} else if (acao != null && acao.equals("buscar")) {
+			}else if (acao != null && acao.equals("ativar")) {
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				col = colDAO.pesquisarId(id).get(0);
+				col.setStatus(true);
+				col.setDataDem(null);
+				colDAO.editar(col);
+				response.sendRedirect("ColaboradorControlador?acao=menuInativar");
+
+				
+			}else if (acao != null && acao.equals("inativar")) {
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				col = colDAO.pesquisarId(id).get(0);
+				col.setStatus(false);
+				col.setDataDem(new Date());
+				colDAO.editar(col);
+				//JOptionPane.showConfirmDialog(null, "teste"+col.getBairro());
+				response.sendRedirect("ColaboradorControlador?acao=menuInativar");
+
+				
+			}
+			else if (acao != null && acao.equals("buscar")) {
 				List<Colaborador> colaboradores = null;
 				String valor = request.getParameter("valor");
 				String nome = request.getParameter("nome");
@@ -219,7 +250,7 @@ public class ColaboradorControlador extends HttpServlet {
 				col.setEstadoCivil(estCivil);
 				//col.setDataNascimento(fmt.parse(sDataNascimento));
 				col.setSexo(sexo);
-				col.setRg(Integer.parseInt(sRg));	
+				col.setRg(sRg);	
 				col.setRua(rua);
 				col.setNumero(numero);
 				col.setComplemento(complemento);
@@ -292,7 +323,7 @@ public class ColaboradorControlador extends HttpServlet {
 				System.out.println(sDataNascimento);
 				String sDataAdmin = request.getParameter("dataAdmin");
 				String sexo = request.getParameter("sexo");
-				int rg = Integer.parseInt(request.getParameter("rg"));
+				String rg = request.getParameter("rg");
 				String cpf = request.getParameter("cpf");
 				String rua = request.getParameter("rua");
 				int numero = Integer.parseInt(request.getParameter("numero"));
