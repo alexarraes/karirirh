@@ -1,5 +1,10 @@
+<%@page import="br.com.karirirh.entidades.HistoricoAfastamento"%>
 <%@page import="java.util.List"%>
-<%@page import="br.com.karirirh.entidades.Colaborador"%>
+<%@page import="br.com.karirirh.entidades.Ferias"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -13,10 +18,11 @@
 </div>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Afastamento</title>
-<script type="text/javascript"
-	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<title>Histórico de Afastamento</title>
+
+<script type="text/javascript" src="modal/js/jquery.min.js"></script>
+<script type="text/javascript" src="modal/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/scripts.js"></script>
 <link href="css/font-awesome.min2.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" media="screen"
@@ -33,9 +39,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript">
-	
-</script>
-<script type="text/javascript">
 	$(document).ready(function() {
 		$('#tabela').DataTable();
 	});
@@ -50,7 +53,7 @@
 				<fieldset>
 					<legend>
 						<h1>Afastamento</h1>
-						Lista de Colaboradores
+						Hitórico de Colanoradores já Afastados.
 					</legend>
 					<table
 						class="table table-bordered table-striped visible-lg visible-md visible-sm visible-xs"
@@ -60,39 +63,57 @@
 								<th class="success">Matrícula</th>
 								<th class="success">Nome</th>
 								<th class="success">CPF</th>
-								<th class="success">CTPS</th>
-								<th class="success">Salário</th>
-								<th class="success">E-Mail</th>
-								<th class="success">Situação</th>
 								<th class="success">Cargo</th>
-								<th class="success">Afastar</th>
+								<th class="success">Tipo de Afastamento </th>
+								<th class="success">Observação</th>
+								<th class="success">Data Inicial</th>
+								<th class="success">Data Final</th>
 							</tr>
 						</thead>
-
 						<%
-							List<Colaborador> listaResultado = (List<Colaborador>) request
+							List<HistoricoAfastamento> listaResultado = (List<HistoricoAfastamento>) request
 									.getAttribute("lista");
-
-							for (Colaborador c : listaResultado) {
+							for (HistoricoAfastamento afast : listaResultado) {
 						%>
 						<tr>
-							<td><%=c.getMatricula()%></td>
-							<td><%=c.getNome()%></td>
-							<td><%=c.getCpf()%></td>
-							<td><%=c.getCtps()%></td>
-							<td><%=c.getSalarioAtual()%></td>
-							<td><%=c.getEmail()%></td>
-							<td><%=c.isStatus() ? "Ativo" : "Inativo"%></td>
-							<td><%=c.getCargo().getNome()%></td>
-							<td><a class="btn btn-warning"
-								href="AfastamentoControlador?acao=btnAfastar&id=<%=c.getId()%>">Afastar</a>
-
-							</td>
+							<td><%=afast.getColaborador().getMatricula() %></td>
+							<td><%=afast.getColaborador().getNome() %></td>							
+							<td><%=afast.getColaborador().getCpf()%></td>
+							<td><%=afast.getColaborador().getCargo().getNome()%></td>
+							<%
+								String tipo = null;
+									switch (afast.getCodDoenca()) {
+									case 1:
+										tipo = "Acidente de trabalho";
+										break;
+									case 2:
+										tipo = "Doença";
+										break;
+									case 3:
+										tipo = "Licença-maternidade";
+										break;
+									case 4:
+										tipo = "Aborto não criminoso";
+										break;
+									case 5:
+										tipo = "Serviço militar";
+										break;
+									case 6:
+										tipo = "Mandato Judicial";
+										break;
+									case 7:
+										tipo = "Outros motivos de afastamento";
+										break;
+									}
+							%>
+							<td><%=tipo%></td>
+							<td><%=afast.getTipo() %></td>
+							<td><%=new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(afast.getDataInicio()) %></td>
+							<td><%=new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(afast.getDataFim()) %></td>
 						</tr>
 						<%
 							}
 						%>
-
 					</table>
 				</fieldset>
 			</div>

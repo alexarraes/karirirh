@@ -17,7 +17,7 @@
 <title>Buscar Cargo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="AlexArraes">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript"
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -33,7 +33,7 @@
 							<div class="col-md-12">
 								<div class="row">
 									<legend draggable="true">
-										<h1>Setor</h1>
+										<h1>Cargo</h1>
 										Buscar
 									</legend>
 									<div class="col-md-3">
@@ -80,7 +80,7 @@
 		<br />
 
 	</form>
-
+<jsp:include page="rodape.jsp"></jsp:include>
 
 </body>
 

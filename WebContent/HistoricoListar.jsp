@@ -32,12 +32,17 @@
 	src="DataTable/media/js/jquery.dataTables.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript">
-</script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#tabela').DataTable();
 	});
+	function con(id, nome) {
+		if (confirm("Consultar Histórico do COLABORADOR: " + nome + "?")) {
+			window.location.href = "HistoricoControlador?acao=Consultar&id="
+					+ id
+		}
+	}
 </script>
 </head>
 <body>
@@ -64,7 +69,8 @@
 								<th class="success">E-Mail</th>
 								<th class="success">Situação</th>
 								<th class="success">Cargo</th>
-								<th class="success">Setor</th>	
+								<th class="success">Setor</th>
+								<th class="success">Histórico</th>
 							</tr>
 						</thead>
 
@@ -72,30 +78,34 @@
 							List<Colaborador> listaResultado = (List<Colaborador>) request
 									.getAttribute("lista");
 
-							
 							for (Colaborador c : listaResultado) {
-							
 						%>
 						<tr>
-							<td ><%=c.getMatricula()%></td>
-							<td ><%=c.getNome()%></td>
-							<td ><%=c.getCpf()%></td>
-							<td ><%=c.getCtps()%></td>
-							<td ><%=c.getSalarioAtual()%></td>
-							<td ><%=c.getEmail()%></td>
-							<td ><%=c.isStatus()?"Ativo":"Inativo"%></td>
-							<td ><%=c.getCargo().getNome()%></td>
-							<td ><%=c.getCargo().getSetor().getNome()%></td>
-							
+							<td><%=c.getMatricula()%></td>
+							<td><%=c.getNome()%></td>
+							<td><%=c.getCpf()%></td>
+							<td><%=c.getCtps()%></td>
+							<td><%=c.getSalarioAtual()%></td>
+							<td><%=c.getEmail()%></td>
+							<td><%=c.isStatus() ? "Ativo" : "Inativo"%></td>
+							<td><%=c.getCargo().getNome()%></td>
+							<td><%=c.getCargo().getSetor().getNome()%></td>
+							<td>
+								<center>
+									<input onclick="con('<%=c.getId()%>','<%=c.getNome()%>')"
+										type=image src="img/historico32.png" />
+								</center>
+							</td>
 						</tr>
 						<%
 							}
-							%>
+						%>
 
 					</table>
 				</fieldset>
 			</div>
 		</div>
 	</div>
+		<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>

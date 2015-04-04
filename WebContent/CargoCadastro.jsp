@@ -18,10 +18,21 @@
 <title>Cadastro Cargo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="AlexArraes">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript"
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script src="jQueryUI/jquery-ui.js"></script>
+<link rel="stylesheet" href="resources/demos/style.css">
+<link rel="stylesheet" href="jQueryUI/jquery-ui.css">
+<script src="jQueryUI/jquery.maskedinput.js"  type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function($) {
+	$("#salario").mask("99999999");
+	
+});
+</script>
 </head>
 
 <body>
@@ -117,6 +128,7 @@
 				</div>
 		</fieldset>
 	</form>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 
 </html>

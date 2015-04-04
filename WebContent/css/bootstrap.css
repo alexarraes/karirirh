@@ -6563,4 +6563,12 @@ button.close {
     display: none !important;
   }
 }
+.rodape {
+	padding: 5px;
+	border-top: 1px dotted gray;
+	background-color: #E6E8FA;
+position:absolute;
+bottom:0;
+width:100%;
+}
 /*# sourceMappingURL=bootstrap.css.map */
