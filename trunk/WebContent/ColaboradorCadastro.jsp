@@ -10,9 +10,9 @@
 	class="navbar navbar-default navbar-static-top visible-lg visible-md visible-sm visible-xs">
 	<div class="container">
 		<div class="navbar-header">
-			
 
-<jsp:include page="Cabecalho.jsp"></jsp:include>
+
+			<jsp:include page="Cabecalho.jsp"></jsp:include>
 		</div>
 	</div>
 </div>
@@ -23,17 +23,22 @@
 <meta name="AlexArraes">
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/jquery.min.js"></script>
+<script type="text/javascript" src="modal/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/scripts.js"></script>
+<link href="css/font-awesome.min2.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <script src="jQueryUI/external/jquery/jquery.js"></script>
 <script src="jQueryUI/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="resources/demos/style.css">
 <link rel="stylesheet" href="jQueryUI/jquery-ui.css">
-<script src="jQueryUI/jquery.maskedinput.js"  type="text/javascript"></script>
-<script type="text/javascript">
+<script src="jQueryUI/jquery.maskedinput.js" type="text/javascript"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+	
+<script>
 	$(document)
 			.ready(
 					function() {
@@ -75,14 +80,14 @@
 			heightStyle : "content"
 		});
 	});
-	
-	jQuery(function($){  
-		   $("#cpf").mask("999.999.999-99");
-		   $("#cep").mask("99999-99"); 
-		   $("#pis").mask("999.9999.999-9");
-		   $("#celular").mask("(99)9999-9999"); 
-		   $("#fixo").mask("(99)9999-9999"); 
-		});
+
+	jQuery(function($) {
+		$("#cpf").mask("999.999.999-99");
+		$("#cep").mask("99999-99");
+		$("#pis").mask("999.9999.999-9");
+		$("#celular").mask("(99)9999-9999");
+		$("#fixo").mask("(99)9999-9999");
+	});
 </script>
 <!-- Data
 <%int dia = Integer.parseInt((new SimpleDateFormat("dd"))
@@ -99,16 +104,17 @@
 
 	<form class="form-horizontal" name="nome"
 		action="ColaboradorControlador" method="get">
-		
+
 		<fieldset>
-		
+
 			<!-- Form Name -->
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row">
 							<legend draggable="true">
-								<h1>Cadastro Colaborador</h1>	
+								<h1>Colaborador</h1>
+								Cadastro
 							</legend>
 							<%
 								if (request.getAttribute("msg") != null) {
@@ -124,8 +130,8 @@
 									<div class="col-md-5">
 										<!--nome-->
 										<div class="form-group">
-										<input type="hidden" name="acao" value="salvar">
-											<label for="nome">Nome Completo:*</label>
+											<input type="hidden" name="acao" value="salvar"> <label
+												for="nome">Nome Completo:*</label>
 											<div>
 												<input id="nomeCompleto" name="nomeCompleto" type="text"
 													placeholder="Ex.: João da Silva"
@@ -199,8 +205,7 @@
 											<label for="nome">CPF:*</label>
 											<div>
 												<input id="cpf" name="cpf" type="text"
-													placeholder="Ex.: 000.000.000-00"
-												maxlength="14"
+													placeholder="Ex.: 000.000.000-00" maxlength="14"
 													oninvalid="this.setCustomValidity('[1 - Dados Pessoais] Campo CPF não preenchido.')"
 													class="form-control input-md" required="required">
 											</div>
@@ -257,8 +262,8 @@
 															<label for="nome">Número:</label>
 															<div>
 																<input id="numero" name="numero" type="text"
-																maxlength="7"
-																	placeholder="Ex.: 9999" class="form-control input-md">
+																	maxlength="7" placeholder="Ex.: 9999"
+																	class="form-control input-md">
 															</div>
 														</div>
 														<!--numero-->
@@ -271,9 +276,10 @@
 														<div class="form-group">
 															<label for="nome">Complemento:</label>
 															<div>
-															
+
 																<input id="complemento" name="complemento" type="text"
-																	placeholder="Ex.: Casa" class="form-control input-md" maxlength="25">
+																	placeholder="Ex.: Casa" class="form-control input-md"
+																	maxlength="25">
 															</div>
 														</div>
 														<!--Complemento-->
@@ -294,8 +300,7 @@
 															<label for="nome">Bairro:*</label>
 															<div>
 																<input id="bairro" name="bairro" type="text"
-																maxlength="25"
-																	placeholder="Ex.: Centro"
+																	maxlength="25" placeholder="Ex.: Centro"
 																	oninvalid="this.setCustomValidity('[2 - Dados Residênciais] Campo BAIRRO não preenchido.')"
 																	class="form-control input-md" required="required">
 															</div>
@@ -311,8 +316,7 @@
 															<label for="nome">Cidade:*</label>
 															<div>
 																<input id="cidade" name="cidade" type="text"
-																maxlength="40"
-																	placeholder="Ex.: Brejo Santo"
+																	maxlength="40" placeholder="Ex.: Brejo Santo"
 																	oninvalid="this.setCustomValidity('[2 - Dados Residênciais] Campo CIDADE não preenchido.')"
 																	class="form-control input-md" required="required">
 															</div>
@@ -366,8 +370,7 @@
 														<div class="form-group">
 															<label for="nome">CEP:*</label>
 															<div>
-																<input id="cep" name="cep" type="text"
-																maxlength="9"
+																<input id="cep" name="cep" type="text" maxlength="9"
 																	placeholder="Ex.: 00000-000"
 																	class="form-control input-md"
 																	oninvalid="this.setCustomValidity('[2 - Dados Residênciais] Campo CEP não preenchido.')"
@@ -406,8 +409,7 @@
 															<label for="nome">Celular:*</label>
 															<div>
 																<input id="celular" name="celular" type="text"
-																maxlength="14"
-																	placeholder="Ex.: (00)0000-0000"
+																	maxlength="14" placeholder="Ex.: (00)0000-0000"
 																	oninvalid="this.setCustomValidity('[2 - Dados Residênciais] Campo CELULAR não preenchido.')"
 																	class="form-control input-md" required="required">
 															</div>
@@ -422,8 +424,7 @@
 														<div class="form-group">
 															<label for="nome">Fixo: </label>
 															<div>
-																<input id="fixo" name="fixo" type="text"
-																maxlength="14"
+																<input id="fixo" name="fixo" type="text" maxlength="14"
 																	placeholder="Ex.: (00)0000-0000"
 																	class="form-control input-md">
 															</div>
@@ -469,8 +470,8 @@
 											<div class="form-group">
 												<label for="nome">Data de Admissão:</label>
 												<div>
-													<input type="text" id="dataAdmin" name="dataAdmin" readonly="readonly"
-														class="form-control input-md"
+													<input type="text" id="dataAdmin" name="dataAdmin"
+														readonly="readonly" class="form-control input-md"
 														value="<%=dia + "/" + mes + "/" + ano%>">
 												</div>
 											</div>
@@ -487,8 +488,7 @@
 											<div class="form-group">
 												<label for="nome">CTPS:*</label>
 												<div>
-													<input id="ctps" name="ctps" type="text"
-													maxlength="8"
+													<input id="ctps" name="ctps" type="text" maxlength="8"
 														placeholder="Ex.: 0000000s"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo CTPS não preenchido.')"
 														class="form-control input-md" required="required">
@@ -503,8 +503,7 @@
 											<div class="form-group">
 												<label for="nome">PIS:*</label>
 												<div>
-													<input id="pis" name="pis" type="text"
-													maxlength="14"
+													<input id="pis" name="pis" type="text" maxlength="14"
 														placeholder="Ex.: 00000000000"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo PIS não preenchido.')"
 														class="form-control input-md" required="required">
@@ -538,25 +537,25 @@
 										<div class="col-md-5">
 											<!-- Cargo -->
 											<div>
-											<div class="form-group">
-												<label for="nome">Cargo:*</label>
-												<div>
-												
-													<select id="cargo" name="cargo" class="form-control">
+												<div class="form-group">
+													<label for="nome">Cargo:*</label>
+													<div>
 
-														<%
-															List<Cargo> listaResultado = (List<Cargo>) request
-																	.getAttribute("cargo");
-															for (Cargo c : listaResultado) {
-														%>
+														<select id="cargo" name="cargo" class="form-control">
 
-														<option value="<%=c.getId()%>"><%=c.getNome()+" R$ "+c.getSalario()%></option>
+															<%
+																List<Cargo> listaResultado = (List<Cargo>) request
+																		.getAttribute("cargo");
+																for (Cargo c : listaResultado) {
+															%>
 
-														<%
-															}
-														%>
-													</select>
-	</div>
+															<option value="<%=c.getId()%>"><%=c.getNome() + " R$ " + c.getSalario()%></option>
+
+															<%
+																}
+															%>
+														</select>
+													</div>
 												</div>
 											</div>
 											<!-- Cargo -->
@@ -569,7 +568,7 @@
 												<label for="nome">Salário:*</label>
 												<div>
 													<input id="salario" name="salario" type="text" value=""
-													maxlength="10"
+														maxlength="10"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo SALÁRIO não preenchido.')"
 														class="form-control input-md" required="required">
 												</div>
@@ -595,18 +594,33 @@
 												<div>
 													<select id="escolaridade" name="escolaridade"
 														class="form-control">
-														<option value="Fundamental - Incompleto">Fundamental - Incompleto</option>
-														<option value="Fundamental - Completo">Fundamental - Completo</option>
-														<option value="Médio - Incompleto">Médio - Incompleto</option>
+														<option value="Fundamental - Incompleto">Fundamental
+															- Incompleto</option>
+														<option value="Fundamental - Completo">Fundamental
+															- Completo</option>
+														<option value="Médio - Incompleto">Médio -
+															Incompleto</option>
 														<option value="Médio - Completo">Médio - Completo</option>
-														<option value="Superior - Incompleto">Superior - Incompleto</option>
-														<option value="Superior - Completo">Superior - Completo</option>
-														<option value="Pós-graduação (Lato senso) - Incompleto">Pós-graduação (Lato senso) - Incompleto</option>
-														<option value="Pós-graduação (Lato senso) - Completo">Pós-graduação (Lato senso) - Completo</option>
-														<option value="Pós-graduação (Stricto sensu, nível mestrado) - Incompleto">Pós-graduação (Stricto sensu, nível mestrado) - Incompleto</option>
-														<option value="Pós-graduação (Stricto sensu, nível mestrado) - Completo">Pós-graduação (Stricto sensu, nível mestrado) - Completo</option>
-														<option value="Pós-graduação (Stricto sensu, nível doutor) - Incompleto">Pós-graduação (Stricto sensu, nível doutor) - Incompleto</option>
-														<option value="Pós-graduação (Stricto sensu, nível doutor) - Completo">Pós-graduação (Stricto sensu, nível doutor) - Completo</option>
+														<option value="Superior - Incompleto">Superior -
+															Incompleto</option>
+														<option value="Superior - Completo">Superior -
+															Completo</option>
+														<option value="Pós-graduação (Lato senso) - Incompleto">Pós-graduação
+															(Lato senso) - Incompleto</option>
+														<option value="Pós-graduação (Lato senso) - Completo">Pós-graduação
+															(Lato senso) - Completo</option>
+														<option
+															value="Pós-graduação (Stricto sensu, nível mestrado) - Incompleto">Pós-graduação
+															(Stricto sensu, nível mestrado) - Incompleto</option>
+														<option
+															value="Pós-graduação (Stricto sensu, nível mestrado) - Completo">Pós-graduação
+															(Stricto sensu, nível mestrado) - Completo</option>
+														<option
+															value="Pós-graduação (Stricto sensu, nível doutor) - Incompleto">Pós-graduação
+															(Stricto sensu, nível doutor) - Incompleto</option>
+														<option
+															value="Pós-graduação (Stricto sensu, nível doutor) - Completo">Pós-graduação
+															(Stricto sensu, nível doutor) - Completo</option>
 													</select>
 												</div>
 											</div>
@@ -623,8 +637,7 @@
 												<div class="form-group">
 													<label for="nome">Área de Atuação:</label>
 													<div>
-														<input id="curso" name="curso" type="text"
-														maxlength="50"
+														<input id="curso" name="curso" type="text" maxlength="50"
 															class="form-control input-md">
 													</div>
 												</div>
@@ -646,6 +659,7 @@
 			</div>
 		</fieldset>
 	</form>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>
 

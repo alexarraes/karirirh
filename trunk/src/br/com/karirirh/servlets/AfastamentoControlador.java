@@ -1,6 +1,7 @@
 package br.com.karirirh.servlets;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -56,22 +57,34 @@ public class AfastamentoControlador extends HttpServlet {
 			RequestDispatcher saida = request
 					.getRequestDispatcher("AfastamentoListar.jsp");
 			saida.forward(request, response);
+		} else if (acao != null && acao.equals("menuEmAfastamento")) {
+			List<HistoricoAfastamento> lista = hADAO.ListaEmAfastamento(
+					empresa, new Date());
+			request.setAttribute("lista", lista);
+			request.getRequestDispatcher("AfastamentoEm.jsp").forward(request,
+					response);
+		} else if (acao != null && acao.equals("menuAfastados")) {
+			List<HistoricoAfastamento> lista = hADAO.ListarAfastados(empresa);
+			request.setAttribute("lista", lista);
+			request.getRequestDispatcher("AfastamentoTodos.jsp").forward(
+					request, response);
 		} else if (acao != null && acao.equals("btnAfastar")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			col = colDAO.pesquisarId(id).get(0);
 			request.setAttribute("col", col);
 			request.getRequestDispatcher("AfastamentoCadastro.jsp").forward(
 					request, response);
-		} else if (acao != null && acao.equals("Salvar")) {
+		} else if (acao != null && acao.equals("salvar")) {
 			int matricula = Integer.parseInt(request.getParameter("matricula"));
 			col = colDAO.pesquisarEq("matricula", matricula).get(0);
 			if (hADAO.emAfastamento(col) != null) {
-				JOptionPane.showMessageDialog(null, "Nao cadastrado");
-				request.setAttribute("msg", "Não Afastado, o Colaborador já se encotra Afastado!");
+
+				request.setAttribute("msg",
+						"Não Afastado, o Colaborador já se encotra Afastado!");
 				request.setAttribute("col", col);
 				request.getRequestDispatcher("AfastamentoCadastro.jsp")
 						.forward(request, response);
-				
+
 			} else {
 				hA.setCodDoenca(Integer.parseInt(request.getParameter("cod")));
 				try {
@@ -85,7 +98,7 @@ public class AfastamentoControlador extends HttpServlet {
 				hA.setTipo(request.getParameter("obs"));
 				hA.setColaborador(col);
 				hADAO.salvar(hA);
-				JOptionPane.showMessageDialog(null, " cadastrado");
+
 				request.setAttribute("msg", "Afastado com Sucesso!");
 				request.setAttribute("col", col);
 				request.getRequestDispatcher("AfastamentoCadastro.jsp")

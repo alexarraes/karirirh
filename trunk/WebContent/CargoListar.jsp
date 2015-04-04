@@ -148,5 +148,6 @@ function descricao(descricao) {
 			</div>
 		</div>
 	</div>
+		<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>

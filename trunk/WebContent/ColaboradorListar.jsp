@@ -31,9 +31,15 @@
 <script type="text/javascript"
 	src="DataTable/media/js/jquery.dataTables.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-
-<script type="text/javascript">
-</script>
+	
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="img/logo144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="img/logo114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="img/logo72.png">
+<link rel="apple-touch-icon-precomposed" href="img/logo57.png">
+<link rel="shortcut icon" href="img/logo32.png">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#tabela').DataTable();
@@ -97,5 +103,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>

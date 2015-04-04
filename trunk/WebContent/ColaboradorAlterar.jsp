@@ -24,17 +24,30 @@
 
 <meta name="AlexArraes">
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/jquery.min.js"></script>
+<script type="text/javascript" src="modal/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/scripts.js"></script>
 
+<link href="css/font-awesome.min2.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="DataTable/media/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="DataTable/media/css/jquery.dataTables_themeroller.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="DataTable/media/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="DataTable/media/js/jquery.js"></script>
 <script type="text/javascript"
-	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script src="jQueryUI/external/jquery/jquery.js"></script>
+	src="DataTable/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript"
+	src="DataTable/media/js/jquery.dataTables.min.js"></script>
 <script src="jQueryUI/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="resources/demos/style.css">
 <link rel="stylesheet" href="jQueryUI/jquery-ui.css">
 <script src="jQueryUI/jquery.maskedinput.js" type="text/javascript"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -103,7 +116,8 @@
 					<div class="col-md-12">
 						<div class="row">
 							<legend draggable="true">
-								<h1>Alterar Colaborador</h1>
+								<h1>Colaborador</h1>
+								Alterar
 							</legend>
 							<%
 								if (request.getAttribute("msg") != null) {

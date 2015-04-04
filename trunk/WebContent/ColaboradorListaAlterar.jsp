@@ -33,8 +33,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript">
-</script>
-<script type="text/javascript">
 	$(document).ready(function() {
 		$('#tabela').DataTable();
 	});
@@ -111,5 +109,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>

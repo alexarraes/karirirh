@@ -79,6 +79,13 @@
 								<h1>Colaborador</h1>
 								Afastamento Temporário
 							</legend>
+							<%
+								if (request.getAttribute("msg") != null) {
+							%>
+							<center><%=request.getAttribute("msg")%></center>
+							<%
+								}
+							%>
 						</div>
 						<div class="row">
 							<div class="col-md-2"></div>
@@ -109,13 +116,13 @@ Colaborador col = (Colaborador)request.getAttribute("col");
 								<div class="form-group has-warning hidden-xs">
 									<label class="control-label">TIPO DE AFASTAMENTO
 										TEMPORÁRIO</label> <select class="form-control input-lg"  id="cod" name="cod">
-										<option value="1">Acidente de trabalho</option>
-										<option value="2">Doença</option>
-										<option value="3">Licença-maternidade</option>
-										<option value="4">Aborto não criminoso</option>
-										<option value="5">Serviço militar</option>
-										<option value="6">Mandato Judicial</option>
-										<option value="7">Outros motivos de afastamento temporário</option>
+										<option value="1">1 - Acidente de trabalho</option>
+										<option value="2">2 - Doença</option>
+										<option value="3">3 - Licença-maternidade</option>
+										<option value="4">4 - Aborto não criminoso</option>
+										<option value="5">5 - Serviço militar</option>
+										<option value="6">6 - Mandato Judicial</option>
+										<option value="7">7 - Outros motivos de afastamento temporário</option>
 									</select>
 								</div>
 							</div>
@@ -130,7 +137,7 @@ Colaborador col = (Colaborador)request.getAttribute("col");
 									</div>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="dataInicial"
-											id="dataInicial" placeholder="00/00/0000" maxlength="10">
+											id="dataInicial" placeholder="00/00/0000" maxlength="10" required="required">
 										<span
 											class="fa fa-calendar fa-lg form-control-feedback text-success"></span>
 									</div>
@@ -142,14 +149,14 @@ Colaborador col = (Colaborador)request.getAttribute("col");
 									</div>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="dataFinal"
-											id="dataFinal" placeholder="00/00/0000" maxlength="10">
+											id="dataFinal" placeholder="00/00/0000" maxlength="10" required="required">
 										<span
 											class="fa fa-calendar fa-lg form-control-feedback text-danger"></span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label  for="afastamento" class="control-label">Observações:</label>
-									<textarea class="form-control" maxlength="50"
+									<textarea class="form-control" maxlength="50" required="required"
 										name="obs" required="required"></textarea>
 								</div>
 							</div>
@@ -172,5 +179,6 @@ Colaborador col = (Colaborador)request.getAttribute("col");
 			</div>
 		</fieldset>
 	</form>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 </html>

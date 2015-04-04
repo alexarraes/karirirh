@@ -16,7 +16,7 @@
 <title>Setor Cargo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="AlexArraes">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript"
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -69,6 +69,7 @@
 			</div>
 		</fieldset>
 	</form>
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 
 </html>

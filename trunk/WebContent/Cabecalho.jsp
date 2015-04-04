@@ -5,7 +5,17 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<head>
+	
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="img/logo144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="img/logo114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="img/logo72.png">
+<link rel="apple-touch-icon-precomposed" href="img/logo57.png">
+<link rel="shortcut icon" href="img/logo32.png">
+</head>
 <div
 	class="navbar navbar-default navbar-fixed-top visible-lg visible-md visible-sm visible-xs">
 	<div class="container">
@@ -44,9 +54,9 @@
 						<li><a href="ColaboradorControlador?acao=menuInativar">Inativar</a></li>
 						<li class="divider"></li>
 						<li><a href="AfastamentoControlador?acao=menuAfastamento">Afastar</a></li>
-						<li><a href="AfastamentoControlador?acao=menuAfastamento">Em
+						<li><a href="AfastamentoControlador?acao=menuEmAfastamento">Em
 								Afastamento</a></li>
-						<li><a href="AfastamentoControlador?acao=menuAfastamento">Histórico
+						<li><a href="AfastamentoControlador?acao=menuAfastados">Histórico
 								de Afastamento</a></li>
 					</ul></li>
 

@@ -14,10 +14,21 @@
 <title>Buscar Colaborador</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="AlexArraes">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript"
-	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/jquery.min.js"></script>
+<script type="text/javascript" src="modal/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="modal/js/scripts.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+
+	
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="img/logo144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="img/logo114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="img/logo72.png">
+<link rel="apple-touch-icon-precomposed" href="img/logo57.png">
+<link rel="shortcut icon" href="img/logo32.png">
+
 </head>
 <body>
 	<form name="ColaboradorBuscar" action="ColaboradorControlador" method="get">
@@ -71,7 +82,7 @@
 		<br />
 
 	</form>
-
+<jsp:include page="rodape.jsp"></jsp:include>
 
 </body>
 

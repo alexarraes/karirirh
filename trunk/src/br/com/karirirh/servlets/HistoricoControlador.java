@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import br.com.karirirh.dao.ColaboradorDAO;
 import br.com.karirirh.entidades.Colaborador;
@@ -30,13 +31,13 @@ public class HistoricoControlador extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		Usuario usuario = (Usuario) request.getSession()
 				.getAttribute("usuario");
 		Empresa empresa = usuario.getEmpresa();
 		ColaboradorDAO colDAO = new ColaboradorDAO();
 		String acao = request.getParameter("acao");
-		
+
 		if (acao != null && acao.equals("menuHistorico")) {
 			List<Colaborador> colaboradores = colDAO.pesquisarEq("empresa",
 					empresa);
@@ -44,6 +45,9 @@ public class HistoricoControlador extends HttpServlet {
 			RequestDispatcher saida = request
 					.getRequestDispatcher("HistoricoListar.jsp");
 			saida.forward(request, response);
+		}else if (acao != null && acao.equals("Consultar")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			JOptionPane.showMessageDialog(null, "Entrou");
 		}
 	}
 

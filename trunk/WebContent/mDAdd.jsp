@@ -16,7 +16,7 @@
 <title>Medida Disciplinar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="AlexArraes">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 <script type="text/javascript"
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -24,7 +24,18 @@
 <script src="jQueryUI/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="jQueryUI/jquery-ui.css">
-<script src="jQueryUI/jquery.maskedinput.js"  type="text/javascript"></script>
+<script src="jQueryUI/jquery.maskedinput.js" type="text/javascript"></script>
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="img/logo144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="img/logo114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="img/logo72.png">
+<link rel="apple-touch-icon-precomposed" href="img/logo57.png">
+<link rel="shortcut icon" href="img/logo32.png">
 <script>
 	$(function() {
 		$("#data").datepicker({
@@ -38,11 +49,11 @@
 			heightStyle : "content"
 		});
 	});
-	
-	jQuery(function($){  
-		   $("#data").mask("99/99/9999");
-		  
-		});
+
+	jQuery(function($) {
+		$("#data").mask("99/99/9999");
+
+	});
 </script>
 </head>
 
@@ -58,16 +69,16 @@
 				<div class="col-md-12">
 					<legend draggable="true">
 						<h1>Colaborador</h1>
-
+						Medida Disciplinar
 					</legend>
 					<%
-									if (request.getAttribute("msg") != null) {
-								%>
-								<center><%=request.getAttribute("msg")%></center>
-								<%
-									}
-								%>
-					
+						if (request.getAttribute("msg") != null) {
+					%>
+					<center><%=request.getAttribute("msg")%></center>
+					<%
+						}
+					%>
+
 					<div class=" panel panel-danger">
 						<div class="panel-heading">
 							<h1 class="panel-title text-center text-inverse">Medida
@@ -99,14 +110,15 @@
 						<div class="col-md-12">
 							<div class="row">
 
-								
+
 								<div class="col-md-2">
 									<!--nome-->
 									<div class="form-group" draggable="true">
 										<label for="md">ID Colaborador:</label>
 										<div>
-											<input id="id" name="id" type="text" value="<%=col.getId()%>" readonly="readonly"
-												class="form-control input-md" required="required">
+											<input id="id" name="id" type="text" value="<%=col.getId()%>"
+												readonly="readonly" class="form-control input-md"
+												required="required">
 										</div>
 									</div>
 								</div>
@@ -116,7 +128,8 @@
 										<label for="md">Data:</label>
 										<div>
 											<input id="data" name="data" type="text"
-												class="form-control input-md" required="required" maxlength="10">
+												class="form-control input-md" required="required"
+												maxlength="10">
 										</div>
 									</div>
 								</div>
@@ -130,8 +143,10 @@
 								<div>
 									<select id="tipo" name="tipo" class="form-control">
 
-										<option value="Adivertência Verbal">Adivertência Verbal</option>
-										<option value="Adivertência Escrita">Adivertência Escrita</option>
+										<option value="Adivertência Verbal">Adivertência
+											Verbal</option>
+										<option value="Adivertência Escrita">Adivertência
+											Escrita</option>
 										<option value="Suspenção">Suspenção</option>
 									</select>
 
@@ -152,7 +167,7 @@
 							<!-- Descricao -->
 						</div>
 						<div class=col-md-12>
-							<button type="submit" class="btn btn-success" >
+							<button type="submit" class="btn btn-success">
 								<span class="glyphicon glyphicon-ok"></span>Atribuir
 							</button>
 							<button type="reset" class="btn btn-danger">
@@ -164,7 +179,7 @@
 			</fieldset>
 		</form>
 	</div>
-
+	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 
 </html>

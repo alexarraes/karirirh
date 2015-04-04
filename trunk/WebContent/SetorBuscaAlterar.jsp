@@ -74,6 +74,7 @@
 			</div>
 		</fieldset>
 	</form>
+		<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 
 </html>
