@@ -62,20 +62,26 @@ public class MDControlador extends HttpServlet {
 				saida.forward(request, response);
 
 			
-		}else if (acao != null && acao.equals("mDAdd")) {
+		}else if (acao != null && acao.equals("salvar")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			col = colDAO.pesquisarId(id).get(0);
 			mD.setColaborador(col);
-			//mD.setData(dt);
+			String sDt = request.getParameter("data");
+			try {
+				mD.setData(dt.formataData(sDt));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			mD.setMotivo(request.getParameter("motivo"));
 			mD.setTipo(request.getParameter("tipo"));
 			mDDAO.salvar(mD);
 	
 			request.setAttribute("col", col);
-			request.setAttribute("msg", "Medida Disciplinar - Cadastrada com Sucesso!");
+			request.setAttribute("msg", "Medida Disciplinar - Atribuida com Sucesso!");
 			RequestDispatcher saida = request
 					.getRequestDispatcher("mDAdd.jsp");
 			saida.forward(request, response);	
+			
 		}else if (acao != null && acao.equals("mDBtn")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			col = colDAO.pesquisarId(id).get(0);

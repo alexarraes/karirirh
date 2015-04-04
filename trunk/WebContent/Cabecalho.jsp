@@ -20,16 +20,11 @@
 							"usuario");
 					Empresa empresa = usuario.getEmpresa();
 				%>
-
-
-
 				<p>
 					Empresa
 					<%=empresa.getRazaoSociao()%>
-					logada com:
-					<b><%=usuario.getLogin()%></b>
-					Data:
-					<b><f:formatDate value="<%=new Date()%>" type="date" /></b>
+					logada com: <b><%=usuario.getLogin()%></b> Data: <b><f:formatDate
+							value="<%=new Date()%>" type="date" /></b>
 				</p>
 
 				<li class="active"><a href="MenuControlador?acao=home">Home</a>
@@ -43,13 +38,30 @@
 						<li><a href="ColaboradorControlador?acao=menuBuscar">Buscar</a></li>
 						<li><a href="ColaboradorControlador?acao=menuListar">Listar</a></li>
 						<li class="divider"></li>
-						<li><a href="MenuControlador?acao=mundo">Histórico</a></li>
-						<li><a href="MDControlador?acao=menuListar">Medida Disciplinar</a></li>
-						<li><a href="MenuControlador?acao=mundo">Férias</a></li>
-						<li><a href="MenuControlador?acao=mundo">Inativar</a></li>
-						<li><a href="MenuControlador?acao=mundo">Afastamento</a></li>
+						<li><a href="HistoricoControlador?acao=menuHistorico">Histórico</a></li>
+						<li><a href="MDControlador?acao=menuListar">Medida
+								Disciplinar</a></li>
+						<li><a href="ColaboradorControlador?acao=menuInativar">Inativar</a></li>
+						<li class="divider"></li>
+						<li><a href="AfastamentoControlador?acao=menuAfastamento">Afastar</a></li>
+						<li><a href="AfastamentoControlador?acao=menuAfastamento">Em
+								Afastamento</a></li>
+						<li><a href="AfastamentoControlador?acao=menuAfastamento">Histórico
+								de Afastamento</a></li>
 					</ul></li>
-				
+
+				<li class="dropdown" draggable="true"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-expanded="false">Férias<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="FeriasControlador?acao=menuFerias">Cadastrar</a></li>
+						<li><a href="FeriasControlador?acao=menuEmFerias">Em
+								Férias</a></li>
+						<li><a href="FeriasControlador?acao=menuCadastradas">Férias
+								Cadastradas</a></li>
+					</ul></li>
+
+
 				<li class="dropdown" draggable="true"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-expanded="false">Cargo<span class="caret"></span></a>
@@ -60,8 +72,8 @@
 						<li><a href="CargoControlador?acao=menuBuscar">Buscar</a></li>
 						<li><a href="CargoControlador?acao=menuListar">Listar</a></li>
 					</ul></li>
-					
-					<li class="dropdown" draggable="true"><a href="#"
+
+				<li class="dropdown" draggable="true"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-expanded="false">Setor<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -71,13 +83,25 @@
 						<li><a href="SetorControlador?acao=menuBuscar">Buscar</a></li>
 						<li><a href="SetorControlador?acao=menuListar">Listar</a></li>
 					</ul></li>
+					
+					<li class="dropdown" draggable="true"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown" role="button"
+					aria-expanded="false">Relatório<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="CargoControlador?acao=menuCadastrar">Gerar</a></li>
+					</ul></li>
+					
+					<li draggable="true"><a href="#">Curriculos</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">Configuração
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="MenuControlador?acao=config">Dados da Empresa</a></li>
+						<li><a href="MenuControlador?acao=config">Dados da
+								Empresa</a></li>
+								
 					</ul></li>
+					
 				<li draggable="true"><a href="#">Sobre</a></li>
 			</ul>
 			<a

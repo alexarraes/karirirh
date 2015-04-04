@@ -50,7 +50,7 @@ public class ColaboradorTeste implements Teste {
 		col.setNome("Frederico");
 		col.setNumero(Integer.parseInt("200"));
 		col.setPis("999999");
-		col.setRg(Integer.parseInt("888888888"));
+		//col.setRg(Integer.parseInt("888888888"));
 		col.setRua("Rua Pedro Basilio");
 		col.setSalarioAtual(Double.parseDouble("800.00"));
 		col.setSexo("Masculino");
@@ -136,7 +136,7 @@ public class ColaboradorTeste implements Teste {
 	col.setNome("Alex Arraes");
 	col.setNumero(Integer.parseInt("156"));
 	col.setPis("999999");
-	col.setRg(Integer.parseInt("888888888"));
+//	col.setRg(Integer.parseInt("888888888"));
 	col.setRua("Rua Santa Terezinha	");
 	col.setSalarioAtual(Double.parseDouble("798.00"));
 	col.setSexo("Masculino");
