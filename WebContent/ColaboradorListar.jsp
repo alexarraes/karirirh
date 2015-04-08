@@ -99,6 +99,7 @@
 							%>
 
 					</table>
+					<input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
 				</fieldset>
 			</div>
 		</div>

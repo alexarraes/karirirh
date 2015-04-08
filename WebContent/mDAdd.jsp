@@ -54,10 +54,20 @@
 		$("#data").mask("99/99/9999");
 
 	});
+	
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
 </script>
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
 </head>
 
-<body>
+<body onLoad="open('<%=msg %>')">
 	<%
 		Colaborador col = (Colaborador) request.getAttribute("col");
 	%>
@@ -70,15 +80,6 @@
 					<legend draggable="true">
 						<h1>Colaborador</h1>
 						Medida Disciplinar
-					</legend>
-					<%
-						if (request.getAttribute("msg") != null) {
-					%>
-					<center><%=request.getAttribute("msg")%></center>
-					<%
-						}
-					%>
-
 					<div class=" panel panel-danger">
 						<div class="panel-heading">
 							<h1 class="panel-title text-center text-inverse">Medida
@@ -143,11 +144,11 @@
 								<div>
 									<select id="tipo" name="tipo" class="form-control">
 
-										<option value="Adivertência Verbal">Adivertência
+										<option value="Adivertencia Verbal">Adivertencia
 											Verbal</option>
-										<option value="Adivertência Escrita">Adivertência
+										<option value="Adivertencia Escrita">Adivertencia
 											Escrita</option>
-										<option value="Suspenção">Suspenção</option>
+										<option value="Suspencao">Suspencao</option>
 									</select>
 
 								</div>

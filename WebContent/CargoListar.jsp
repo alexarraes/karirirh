@@ -42,7 +42,9 @@
 <script>
 function descricao(descricao) {
 	document.getElementById('1').value = descricao;
-	
+}
+function col(id) {
+	window.location.href = "ColaboradorControlador?acao=colDoCargo&id=" + id
 }
 	$(function () {
 		
@@ -95,31 +97,9 @@ function descricao(descricao) {
 						<%
 							List<Cargo> listaResultado = (List<Cargo>) request
 									.getAttribute("lista");
-							int num = 1;
-							for (Cargo c : listaResultado) {
-								num++;
-								if ((num % 2) == 0) {
+							for (Cargo c : listaResultado) {		
 						%>
-						<tr>
-							<td class="success"><%=c.getId()%></td>
-							<td class="success"><%=c.getNome()%></td>
-							<td class="success"><%=c.getSalario()%></td>
-							<td class="success"><%=c.getSetor().getNome()%></td>
-							<td class="success"><center>
-									<input class="img" onclick="descricao('<%= c.getDescricao() %>')" type=image src="img/interrogacao2.png"></input>
-								</center></td>
-
-							<td class="success"><center> 
-							<input type=image
-									onclick="cargos('<%=c.getId()%>')"
-									 src="img/colaborador24.png"></input>
-							</center>
-							</td>
-						</tr>
-					
-						<%
-							} else {
-						%>
+			
 						<tr>
 							<td><%=c.getId()%></td>
 							<td><%=c.getNome()%></td>
@@ -130,15 +110,13 @@ function descricao(descricao) {
 								</center></td>
 
 							<td> <center><input type=image
-									onclick="cargos('<%=c.getId()%>')"
+									onclick="col('<%=c.getId()%>')"
 									 src="img/colaborador24.png"></input></center></td>
 						</tr>
 
 			
 					<%
 						}	
-								
-						}
 							%>
 							</table>
 							<div id="dialog" title="Descrição do Cargo">

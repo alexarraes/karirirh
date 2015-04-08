@@ -51,8 +51,7 @@ public class AfastamentoControlador extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equals("menuAfastamento")) {
-			List<Colaborador> colaboradores = colDAO.pesquisarEq("empresa",
-					empresa);
+			List<Colaborador> colaboradores = colDAO.listaAtivos(empresa);
 			request.setAttribute("lista", colaboradores);
 			RequestDispatcher saida = request
 					.getRequestDispatcher("AfastamentoListar.jsp");

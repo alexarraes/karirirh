@@ -33,12 +33,18 @@ function comprovarSenha(){
     EmpresaAlterar.senha.focus();
     }
 }
+function open(msg) {
+	if(msg != "nada"){alert(msg)}	
+}
 </script>
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+msg = "nada";
+}
+%>
 </head>
-
-<body>
-
-
+<body onLoad="open('<%=msg %>')">
 	<form name="EmpresaAlterar" action="MenuControlador" method="get">
 		<fieldset>
 			<input type="hidden" name="acao" value="alterar">
@@ -54,12 +60,6 @@ function comprovarSenha(){
 	Empresa emp = (Empresa) request.getAttribute("empresa");
 	Usuario usu = (Usuario) request.getAttribute("usuario");
 %>
-<%if(request.getAttribute("msg")!=null){
-%>
-<center><%=request.getAttribute("msg") %></center>
-<%
-}
-	%>
 							<div class="col-md-12">
 								<label for="EmpresaAlterar">Razão Social:</label> <input
 			class="form-control" type="text" name="razaoSocial"
@@ -93,13 +93,17 @@ function comprovarSenha(){
 			</div>
 			</div>
 			</div>
+			<div class="col-md-12">
+						<div class="row">
+						</div>
+						</div>
 			</div>
 			</div>
 	</fieldset>
 	<br />
 
 </form>
-<jsp:include page="rodape.jsp"></jsp:include>
+
 </body>
 
 </html>
