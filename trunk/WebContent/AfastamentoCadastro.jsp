@@ -63,10 +63,19 @@
 		$("#dataInicial").mask("99/99/9999");
 		$("#dataFinal").mask("99/99/9999");
 	});
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
 </script>
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
 </head>
 
-<body>
+<body onLoad="open('<%=msg %>')">
 
 	<form name="afastamento" action="AfastamentoControlador" method="get" class="form-horizontal" role="form">
 		<fieldset>
@@ -79,13 +88,6 @@
 								<h1>Colaborador</h1>
 								Afastamento Temporário
 							</legend>
-							<%
-								if (request.getAttribute("msg") != null) {
-							%>
-							<center><%=request.getAttribute("msg")%></center>
-							<%
-								}
-							%>
 						</div>
 						<div class="row">
 							<div class="col-md-2"></div>

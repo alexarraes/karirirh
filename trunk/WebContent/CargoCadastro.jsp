@@ -28,15 +28,18 @@
 <link rel="stylesheet" href="jQueryUI/jquery-ui.css">
 <script src="jQueryUI/jquery.maskedinput.js"  type="text/javascript"></script>
 <script type="text/javascript">
-jQuery(function($) {
-	$("#salario").mask("99999999");
-	
-});
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
 </script>
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
 </head>
-
-<body>
-
+<body onLoad="open('<%=msg %>')">
 
 
 	<form name="CadastroCargo" action="CargoControlador" method="get">
@@ -51,13 +54,6 @@ jQuery(function($) {
 								<h1>Cargo</h1>
 								Cadastrar
 							</legend>
-							<%
-								if (request.getAttribute("msg") != null) {
-							%>
-							<center><%=request.getAttribute("msg")%></center>
-							<%
-								}
-							%>
 							<div class="col-md-8">
 								<!--nome-->
 								<div class="form-group" draggable="true">

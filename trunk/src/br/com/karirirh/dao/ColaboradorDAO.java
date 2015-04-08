@@ -50,8 +50,10 @@ public class ColaboradorDAO extends GenericDAO<Colaborador> {
 	}
 
 	public void editar(Colaborador object) {
-		HistoricoSetor hsVerifica = hsDAO.pesquisarId(object.getId()).get(0);
-		if (hsVerifica.getCargo().getId() != object.getCargo().getId()) {
+		ColaboradorDAO colDAO = new ColaboradorDAO();
+		Colaborador col = colDAO.pesquisarId(object.getId()).get(0);
+		
+		if (col.getCargo().getId() != object.getCargo().getId()) {
 			HistoricoSetor atualHistSetor = new HistoricoSetor();
 			atualHistSetor = hsDAO.ultimoHistoico(object);
 			atualHistSetor.setDataFim(new Date());
@@ -64,10 +66,9 @@ public class ColaboradorDAO extends GenericDAO<Colaborador> {
 			hs.setCargo(object.getCargo());
 			hsDAO.salvar(hs);
 		}
-
-		HistoricoSalario hSalVerifica = hSalDAO.pesquisarEq("colaborador",
-				object).get(0);
-		if (hSalVerifica.getValor() != object.getSalarioAtual()) {
+		
+	
+		if (col.getSalarioAtual() != object.getSalarioAtual()) {
 			hSal.setData(new Date());
 			hSal.setValor(object.getSalarioAtual());
 			hSal.setColaborador(object);
@@ -110,6 +111,23 @@ public class ColaboradorDAO extends GenericDAO<Colaborador> {
 					.setProjection(Projections.id())
 					.add(Restrictions.eqProperty("c.empresa", "e.id"))
 					.add(Restrictions.eq("c." + nome, valor))));
+		}
+		criteria.add(e);
+		return criteria.list();
+	}
+	
+	public List<Colaborador> listaAtivos(Empresa empresa) {
+		ColaboradorDAO colDAO = new ColaboradorDAO();
+		List<Colaborador> colaboradores = colDAO.listar();
+		sessao = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = sessao.createCriteria(Colaborador.class, "c");
+		Conjunction e = Restrictions.conjunction();
+		for (Colaborador c : colaboradores) {
+			e.add(Subqueries.exists(DetachedCriteria
+					.forClass(Empresa.class, "e")
+					.setProjection(Projections.id())
+					.add(Restrictions.eqProperty("c.empresa", "e.id"))
+					.add(Restrictions.eq("c.status", true))));
 		}
 		criteria.add(e);
 		return criteria.list();

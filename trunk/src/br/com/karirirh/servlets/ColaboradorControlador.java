@@ -197,6 +197,17 @@ public class ColaboradorControlador extends HttpServlet {
 				response.sendRedirect("ColaboradorControlador?acao=menuInativar");
 
 				
+			}else if (acao != null && acao.equals("colDoCargo")) {
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				cargo = cargoDAO.pesquisarId(id).get(0);
+				List<Colaborador> colaboradores = colDAO.pesquisarEq("cargo", cargo);
+				request.setAttribute("lista", colaboradores);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("ColaboradorListar.jsp");
+				saida.forward(request, response);
+
+				
 			}
 			else if (acao != null && acao.equals("buscar")) {
 				List<Colaborador> colaboradores = null;
@@ -217,7 +228,7 @@ public class ColaboradorControlador extends HttpServlet {
 				saida.forward(request, response);
 
 			} else if (acao != null && acao.equals("alterar")) {
-				
+				JOptionPane.showMessageDialog(null, "ate aqui");
 				String nomeCompleto = request.getParameter("nomeCompleto");
 				String estCivil = request.getParameter("estCivil");
 				String sDataNascimento = request.getParameter("dataNasc");
@@ -242,10 +253,10 @@ public class ColaboradorControlador extends HttpServlet {
 						.getParameter("salario"));
 				String escolaridade = request.getParameter("escolaridade");
 				String curso = request.getParameter("curso");
+				JOptionPane.showMessageDialog(null, "ate aqui 2");
 				
-
 				col = colDAO.pesquisarEq("cpf", cpf).get(0);
-				
+				JOptionPane.showMessageDialog(null, "ate aqui 3");
 				col.setNome(nomeCompleto);
 				col.setEstadoCivil(estCivil);
 				//col.setDataNascimento(fmt.parse(sDataNascimento));
@@ -265,10 +276,12 @@ public class ColaboradorControlador extends HttpServlet {
 				col.setSalarioAtual(salario);// Obs.:
 				col.setEscolaridade(escolaridade);
 				col.setCurso(curso);
-				cargo = cargoDAO.pesquisarId(car).get(0);
+				JOptionPane.showMessageDialog(null, "ate aqui 4");
+				cargo = cargoDAO.pesquisarId(car).get(0);// Errro
+				JOptionPane.showMessageDialog(null, "ate aqui 5");
 				col.setCargo(cargo);
-				colDAO.editar(col);
 				
+				JOptionPane.showMessageDialog(null, "ate aqui 6");
 				tel = telDAO.pesquisarEq("colaborador", col).get(0);//Enviar id do Celular
 				tel.setTipo("Celular");
 				tel.setFone(celular);
@@ -313,112 +326,140 @@ public class ColaboradorControlador extends HttpServlet {
 				request.setAttribute("col", col);
 				request.setAttribute("tel", tels);
 				request.setAttribute("dep", deps);
+				
+
+				colDAO.editar(col);
 				request.getRequestDispatcher("ColaboradorAlterar.jsp").forward(request,
 						response);
 				
 			} else if (acao != null && acao.equals("salvar")) {
-				String nomeCompleto = request.getParameter("nomeCompleto");
-				String estCivil = request.getParameter("estCivil");
-				String sDataNascimento = request.getParameter("dataNasc");
-				System.out.println(sDataNascimento);
-				String sDataAdmin = request.getParameter("dataAdmin");
-				String sexo = request.getParameter("sexo");
-				String rg = request.getParameter("rg");
 				String cpf = request.getParameter("cpf");
-				String rua = request.getParameter("rua");
-				int numero = Integer.parseInt(request.getParameter("numero"));
-				String complemento = request.getParameter("complemento");
-				String bairro = request.getParameter("bairro");
-				String cidade = request.getParameter("cidade");
-				String estado = request.getParameter("estado");
-				String cep = request.getParameter("cep");
-				String email = request.getParameter("email");
-				String celular = request.getParameter("celular");
-				String fixo = request.getParameter("fixo");
-				String ctps = request.getParameter("ctps");
-				String pis = request.getParameter("pis");
-				String tipoContrato = request.getParameter("tipoContrato");
-				int car = Integer.parseInt(request.getParameter("cargo"));
-				double salario = Double.parseDouble(request
-						.getParameter("salario"));
-				String escolaridade = request.getParameter("escolaridade");
-				String curso = request.getParameter("curso");
-				boolean status = true;
-				
-				// Dependentes
-
-				col.setNome(nomeCompleto);
-				col.setEstadoCivil(estCivil);
-
-				col.setDataNascimento(dt.formataData(sDataNascimento));
-				col.setDataAdm(dt.formataData(sDataAdmin));
-
-				col.setSexo(sexo);
-				col.setRg(rg);
-				col.setCpf(cpf);
-				col.setRua(rua);
-				col.setNumero(numero);
-				col.setComplemento(complemento);
-				col.setBairro(bairro);
-				col.setCidade(cidade);
-				col.setUf(estado);
-				col.setCep(cep);
-				col.setEmail(email);
-				col.setCtps(ctps);
-				col.setPis(pis);
-				col.setContrato(tipoContrato);
-				col.setSalarioAtual(salario);// Obs.:
-				col.setEscolaridade(escolaridade);
-				col.setCurso(curso);
-				col.setStatus(status);
-				cargo = cargoDAO.pesquisarId(car).get(0);
-				col.setCargo(cargo);
-				col.setEmpresa(empresa);
-				colDAO.salvar(col);
-				col = colDAO.pesquisarEq("cpf", cpf).get(0);
-				tel.setTipo("Celular");
-				tel.setFone(celular);
-				tel.setColaborador(col);
-				telDAO.salvar(tel);
-				tel.setTipo("Fixo");
-				tel.setFone(fixo);
-				tel.setColaborador(col);
-				telDAO.salvar(tel);
-				String matricula = ano + "" + col.getId();
-				col.setMatricula(Integer.parseInt(matricula));
-				colDAO.editar(col);
-
-				int qtdItens = 5;
-				String nome[] = new String[qtdItens];
-				int aux = 1;
-				for (int i = 0; i < qtdItens; i++) {
-					nome[i] = "nome" + aux;
-					aux++;
+				List<Colaborador> listaDeCola =colDAO.pesquisarEq("cpf", cpf);
+				boolean permitido = true;
+				for(Colaborador c: listaDeCola){
+					if(c.getCpf().equals(cpf)){
+						permitido = false;
+					}
 				}
-				for (int i = 0; i < nome.length; i++) {
-					nome[i] = request.getParameter(nome[i]);
-				}
-				for (int i = 0; i < nome.length; i++) {
-					if (nome[i] == null  || nome[i].equals("")) {
-						System.out.println("Vazio");
-					} else {
-						dep.setTipo("Dependente");
-						dep.setNomeDependete(nome[i]);
-						dep.setColaborador(col);
-						depDAO.salvar(dep);
+				if(permitido){
+					
+					
+					String nomeCompleto = request.getParameter("nomeCompleto");
+					String estCivil = request.getParameter("estCivil");
+					String sDataNascimento = request.getParameter("dataNasc");
+					System.out.println(sDataNascimento);
+					String sDataAdmin = request.getParameter("dataAdmin");
+					String sexo = request.getParameter("sexo");
+					String rg = request.getParameter("rg");
+					
+					String rua = request.getParameter("rua");
+					int numero = Integer.parseInt(request.getParameter("numero"));
+					String complemento = request.getParameter("complemento");
+					String bairro = request.getParameter("bairro");
+					String cidade = request.getParameter("cidade");
+					String estado = request.getParameter("estado");
+					String cep = request.getParameter("cep");
+					String email = request.getParameter("email");
+					String celular = request.getParameter("celular");
+					String fixo = request.getParameter("fixo");
+					String ctps = request.getParameter("ctps");
+					String pis = request.getParameter("pis");
+					String tipoContrato = request.getParameter("tipoContrato");
+					int car = Integer.parseInt(request.getParameter("cargo"));
+					double salario = Double.parseDouble(request
+							.getParameter("salario"));
+					String escolaridade = request.getParameter("escolaridade");
+					String curso = request.getParameter("curso");
+					boolean status = true;
+					
+					// Dependentes
+					
+					col.setNome(nomeCompleto);
+					col.setEstadoCivil(estCivil);
+
+					col.setDataNascimento(dt.formataData(sDataNascimento));
+					col.setDataAdm(dt.formataData(sDataAdmin));
+
+					col.setSexo(sexo);
+					col.setRg(rg);
+					col.setCpf(cpf);
+					col.setRua(rua);
+					col.setNumero(numero);
+					col.setComplemento(complemento);
+					col.setBairro(bairro);
+					col.setCidade(cidade);
+					col.setUf(estado);
+					col.setCep(cep);
+					col.setEmail(email);
+					col.setCtps(ctps);
+					col.setPis(pis);
+					col.setContrato(tipoContrato);
+					col.setSalarioAtual(salario);// Obs.:
+					col.setEscolaridade(escolaridade);
+					col.setCurso(curso);
+					col.setStatus(status);
+					cargo = cargoDAO.pesquisarId(car).get(0);
+					col.setCargo(cargo);
+					col.setEmpresa(empresa);
+					colDAO.salvar(col);
+					col = colDAO.pesquisarEq("cpf", cpf).get(0);
+					tel.setTipo("Celular");
+					tel.setFone(celular);
+					tel.setColaborador(col);
+					telDAO.salvar(tel);
+					tel.setTipo("Fixo");
+					tel.setFone(fixo);
+					tel.setColaborador(col);
+					telDAO.salvar(tel);
+					String matricula = ano + "" + col.getId();
+					col.setMatricula(Integer.parseInt(matricula));
+					colDAO.editar(col);
+
+					int qtdItens = 5;
+					String nome[] = new String[qtdItens];
+					int aux = 1;
+					for (int i = 0; i < qtdItens; i++) {
+						nome[i] = "nome" + aux;
+						aux++;
+					}
+					for (int i = 0; i < nome.length; i++) {
+						nome[i] = request.getParameter(nome[i]);
+					}
+					for (int i = 0; i < nome.length; i++) {
+						if (nome[i] == null  || nome[i].equals("")) {
+							System.out.println("Vazio");
+						} else {
+							dep.setTipo("Dependente");
+							dep.setNomeDependete(nome[i]);
+							dep.setColaborador(col);
+							depDAO.salvar(dep);
+						}
+
 					}
 
+					String msg = "Colaborador " + col.getNome()
+							+ " cadastrado com sucesso, sua matricula é:"
+							+ col.getMatricula();
+					request.setAttribute("msg", msg);
+					List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
+					request.setAttribute("cargo", cargos);
+					RequestDispatcher saida = request
+							.getRequestDispatcher("ColaboradorCadastro.jsp");
+					saida.forward(request, response);
+					
+				}else{
+					
+					String msg = "Colaborador NÃO CADASTRADO!"
+							+ " Já existe Colaborador com este CPF: "+cpf;
+					request.setAttribute("msg", msg);
+					List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
+					request.setAttribute("cargo", cargos);
+					RequestDispatcher saida = request
+							.getRequestDispatcher("ColaboradorCadastro.jsp");
+					saida.forward(request, response);
 				}
-
-				String msg = "Colaborador " + col.getNome()
-						+ " cadastrado com sucesso, sua matricula é:"
-						+ col.getMatricula();
-				request.setAttribute("msg", msg);
-				List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
-				request.setAttribute("cargo", cargos);
-				RequestDispatcher saida = request
-						.getRequestDispatcher("ColaboradorCadastro.jsp");
-				saida.forward(request, response);
+				
+				
 			}
 		} catch (Exception e) {
 			System.out.println("Erro na DATA" + e.toString());

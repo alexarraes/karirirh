@@ -21,9 +21,22 @@
 <script type="text/javascript"
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-</head>
 
-<body>
+<script type="text/javascript">
+	function open(msg) {
+		if (msg != "nada") {
+			alert(msg)
+		}
+	}
+</script>
+<%
+	String msg = (String) request.getAttribute("msg");
+	if (msg == null) {
+		msg = "nada";
+	}
+%>
+</head>
+<body onLoad="open('<%=msg%>')">
 	<form name="CargoAlterar" action="CargoControlador" method="get">
 		<fieldset>
 			<input type="hidden" name="acao" value="alterar">
@@ -39,11 +52,6 @@
 							<div class="col-md-12">
 								<!--nome-->
 								<%
-									if (request.getAttribute("msg") != null) {
-								%>
-								<center><%=request.getAttribute("msg")%></center>
-								<%
-									}
 									Cargo cargo = (Cargo) request.getAttribute("cargo");
 								%>
 								<div class="form-group" draggable="true">
@@ -88,16 +96,16 @@
 										<select id="cod" name="cod" class="form-control">
 											<option value="<%=cargo.getSetor().getId()%>"><%=cargo.getSetor().getNome()%></option>
 											<%
-											List<Setor> listaResultado = (List<Setor>) request
-													.getAttribute("lista");
-											for (Setor s : listaResultado) {
-										%>
+												List<Setor> listaResultado = (List<Setor>) request
+														.getAttribute("lista");
+												for (Setor s : listaResultado) {
+											%>
 
 											<option value="<%=s.getId()%>"><%=s.getNome()%></option>
 
 											<%
-											}
-										%>
+												}
+											%>
 										</select>
 
 									</div>
@@ -118,13 +126,14 @@
 								<!-- Descricao -->
 							</div>
 							<div class=col-md-12>
-								<button type="submit" class="btn btn-primary"for="CargoAlterar">
+								<button type="submit" class="btn btn-primary" for="CargoAlterar">
 									<span class="glyphicon glyphicon-repeat"> </span>Alterar
 								</button>
-								<button type="button" class="btn btn-warning" onClick="history.go(-1)"> 
-								<span class="glyphicon glyphicon-arrow-left"> </span>Voltar
+								<button type="button" class="btn btn-warning"
+									onClick="history.go(-1)">
+									<span class="glyphicon glyphicon-arrow-left"> </span>Voltar
 								</button>
-							
+
 							</div>
 						</div>
 		</fieldset>

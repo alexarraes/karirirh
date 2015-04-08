@@ -88,20 +88,27 @@
 		$("#celular").mask("(99)9999-9999");
 		$("#fixo").mask("(99)9999-9999");
 	});
+
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
 </script>
-<!-- Data
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
+</head>
+
+<body onLoad="open('<%=msg %>')">
+
 <%int dia = Integer.parseInt((new SimpleDateFormat("dd"))
 					.format(new Date()));
 			int mes = Integer.parseInt((new SimpleDateFormat("M"))
 					.format(new Date()));
 			int ano = Integer.parseInt((new SimpleDateFormat("yyyy"))
 					.format(new Date()));%>
--->
-
-</head>
-
-<body>
-
 	<form class="form-horizontal" name="nome"
 		action="ColaboradorControlador" method="get">
 
@@ -116,13 +123,6 @@
 								<h1>Colaborador</h1>
 								Cadastro
 							</legend>
-							<%
-								if (request.getAttribute("msg") != null) {
-							%>
-							<center><%=request.getAttribute("msg")%></center>
-							<%
-								}
-							%>
 							<div id="accordion">
 								<h3>1 - Dados Pessoais</h3>
 								<div>
@@ -147,10 +147,10 @@
 											<label for="estCivil">Estado Cívil:*</label>
 											<div>
 												<select id="estCivil" name="estCivil" class="form-control">
-													<option value="1">Solteiro(a)</option>
-													<option value="2">Casado(a)</option>
-													<option value="3">Viuvo(a)</option>
-													<option value="4">Divorciado(a)</option>
+													<option value="Solteiro(a)">Solteiro(a)</option>
+													<option value="Casado(a)">Casado(a)</option>
+													<option value="Viuvo(a)">Viuvo(a)</option>
+													<option value="Divorciado(a)">Divorciado(a)</option>
 												</select>
 											</div>
 										</div>

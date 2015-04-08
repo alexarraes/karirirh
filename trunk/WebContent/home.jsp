@@ -19,6 +19,16 @@
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function menu(opc) {
+	if(opc == 1){window.location.href = "SetorControlador?acao=menuListar"}
+	else if(opc == 2){window.location.href = "CargoControlador?acao=menuListar"}
+	else if(opc == 3){window.location.href = "ColaboradorControlador?acao=menuCadastro"}
+	else if(opc == 4){window.location.href = "HistoricoControlador?acao=menuHistorico"}
+	else if(opc == 5){window.location.href = "MDControlador?acao=menuListar"}
+	else if(opc == 6){window.location.href = "MenuControlador?acao=config"}
+}
+</script>
 </head>
 
 <body>
@@ -35,7 +45,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<img src="img/setor.png" class="img-circle img-responsive">
+				<img  onclick="menu('1')" src="img/setor.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Setor</h3>
@@ -43,7 +53,7 @@
 					empresa aos quais estão vinculados cargos e colaboraores.</p>
 			</div>
 			<div class="col-md-2">
-				<img src="img/cargo.png" class="img-circle img-responsive">
+				<img onclick="menu('2')"  src="img/cargo.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Cargo</h3>
@@ -53,7 +63,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<img src="img/colaborador.png" class="img-circle img-responsive">
+				<img onclick="menu('3')" src="img/colaborador.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Colaborador</h3>
@@ -61,7 +71,7 @@
 					todas as informações essenciais a ele.</p>
 			</div>
 			<div class="col-md-2">
-				<img src="img/historico.png" class="img-circle img-responsive">
+				<img onclick="menu('4')" src="img/historico.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4 text-center">
 				<h3 class="text-left">Hitórico</h3>
@@ -71,7 +81,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<img src="img/medida.png" class="img-circle img-responsive">
+				<img onclick="menu('5')" src="img/medida.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Medida Disciplinar</h3>
@@ -79,7 +89,7 @@
 					educativa ou outro tipo de atitude tomada perante um colaborador.</p>
 			</div>
 			<div class="col-md-2">
-				<img src="img/configuracao.png" class="img-circle img-responsive">
+				<img onclick="menu('6')" src="img/configuracao.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4 text-center">
 				<h3 class="text-left">Configurações</h3>
@@ -88,7 +98,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	
 	<jsp:include page="rodape.jsp"></jsp:include>
 </body>
 

@@ -66,9 +66,19 @@
 	$(document).ready(function() {
 		$('#tabela').DataTable();
 	});
+
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
 </script>
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
 </head>
-<body>
+<body onLoad="open('<%=msg %>')">
 
 	<form name="ferias" action="FeriasControlador" method="get">
 		<div class="container">
@@ -126,13 +136,6 @@
 						<h1>Férias</h1>
 						Lista de Colaboradores
 					</legend>
-					<%
-								if (request.getAttribute("msg") != null) {
-							%>
-							<center><%=request.getAttribute("msg")%></center>
-							<%
-								}
-							%>
 					<table
 						class="table table-bordered table-striped visible-lg visible-md visible-sm visible-xs"
 						id="tabela">

@@ -98,12 +98,20 @@
 		//$("#celular").mask("(99)9999-9999");
 		//$("#fixo").mask("(99)9999-9999");
 	});
+
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
 </script>
-
-
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
 </head>
 
-<body>
+<body onLoad="open('<%=msg %>')">
 
 	<form class="form-horizontal" name="nome"
 		action="ColaboradorControlador" method="get">
@@ -119,12 +127,8 @@
 								<h1>Colaborador</h1>
 								Alterar
 							</legend>
+							
 							<%
-								if (request.getAttribute("msg") != null) {
-							%>
-							<center><%=request.getAttribute("msg")%></center>
-							<%
-								}
 								Colaborador col = (Colaborador) request.getAttribute("col");
 								List<Telefone> tel = (List<Telefone>) request.getAttribute("tel");
 								List<Dependente> dep = (List<Dependente>) request
@@ -615,7 +619,7 @@
 													<div>
 
 														<select id="cargo" name="cargo" class="form-control">
-															<option value="<%=col.getId()%>">
+															<option value="<%=col.getCargo().getId()%>">
 																<%=col.getCargo().getNome() + " R$ " + col.getCargo().getSalario()%></option>
 															<%
 																List<Cargo> listaResultado = (List<Cargo>) request

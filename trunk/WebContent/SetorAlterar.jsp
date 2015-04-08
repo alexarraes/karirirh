@@ -21,10 +21,19 @@
 <script type="text/javascript"
 	src="bootstrap-3.3.2/js/tests/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function open(msg) {
+		if(msg != "nada"){alert(msg)}	
+	}
+</script>
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+%>
 </head>
-
-
-<body>
+<body onLoad="open('<%=msg %>')">
 	<form name="CadastroSetor" action="SetorControlador" method="get">
 		<fieldset>
 			<input type="hidden" name="acao" value="alterar">
@@ -38,13 +47,8 @@
 								Alterar
 							</legend>
 							<div class="col-md-12">
-								<!--nome-->
+							
 								<%
-									if (request.getAttribute("msg") != null) {
-								%>
-								<center><%=request.getAttribute("msg")%></center>
-								<%
-									}
 									Setor setor = (Setor) request.getAttribute("setor");
 								%>
 

@@ -125,8 +125,7 @@ public class CargoControlador extends HttpServlet {
 		} else if (acao != null && acao.equals("alterar")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			cargo = cargoDAO.pesquisarId(id).get(0);
-
-			int idSetor = Integer.parseInt(request.getParameter("setor"));
+			int idSetor = Integer.parseInt(request.getParameter("cod"));
 
 			setor = setorDAO.pesquisarId(idSetor).get(0);
 
