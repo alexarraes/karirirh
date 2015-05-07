@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.karirirh.entidades.Colaborador"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -97,11 +98,9 @@
 							<td><%=c.getCargo().getSetor().getNome()%></td>
 							<td>
 							<a type="button" class="btn btn-danger <%=c.isStatus() ? "" : "disabled"%>" onclick="inativar('<%=c.getId()%>','<%=c.getNome()%>')">Inativar</a>
-							<a type="button" class="btn btn-warning <%=c.isStatus() ? "disabled" : ""%>" onclick="ativar('<%=c.getId()%>','<%=c.getNome()%>')">Ativar</a>
-						
+							<a type="button" class="btn btn-warning <%=c.isStatus() ? "disabled" : ""%>" onclick="ativar('<%=c.getId()%>','<%=c.getNome()%>')">Ativar</a>		
 							</td>
-							<td><%=c.getDataDem()%></td>
-
+							<td><%=(c.getDataDem()!=null)?new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(c.getDataDem()):"Não Possui!" %></td>
 						</tr>
 						<%
 							}

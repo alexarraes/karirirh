@@ -66,6 +66,25 @@ public class GenericDAO<T> {
          return object;
      }
      
+     /*public Object pesquisar(String campo, Object valor){
+         sessao = HibernateUtil.getSessionFactory().openSession();
+         Object object;
+         object=sessao.createCriteria(classe).
+        		 add(Restrictions.eq(campo,valor)).uniqueResult();
+         sessao.close();
+         return object;
+     }
+     */
+
+     public boolean isContemRegistro(String campo, Object valor) {  
+    	 sessao = HibernateUtil.getSessionFactory().openSession();
+         List<Object> lista;
+         lista= (List<Object>) sessao.createCriteria(classe).
+        		 add(Restrictions.eq(campo,valor)).list();
+         sessao.close();
+         return !lista.isEmpty();
+ }  
+     
      public List<T> pesquisarId(int valor){
          sessao = HibernateUtil.getSessionFactory().openSession();
          List<T> object;

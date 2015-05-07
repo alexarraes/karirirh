@@ -34,31 +34,8 @@ public class Teste extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-		if (acao != null && acao.equals("salvar")) {
-
-			int qtdItens = 5;
-			
-			String nome[] = new String[qtdItens];
-
-			int aux = 1;
-			for (int i = 0; i < qtdItens; i++) {
-			
-				nome[i] = "nome" + aux;
-				aux++;
-			}
-
-			for(int i = 0; i<nome.length;i++){
-				nome[i] = request.getParameter(nome[i]);
-			}
-			
-			for (int i = 0; i < nome.length; i++) {
-				if(nome[i]==null){
-					System.out.println("Vazio");
-				}else{
-					System.out.println(" " + nome[i]);	
-				}
-				
-			}
+		if (acao != null && acao.equals("login")) {
+			 request.getRequestDispatcher("login.jsp").forward(request, response);
 
 		}
 

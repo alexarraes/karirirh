@@ -39,6 +39,28 @@
 
 	
 <script>
+function ConsisteNumerico(tam, fld, e) {
+    var key = '';
+    var i = 0;
+    var len = 0;
+    var strCheck = '0123456789';
+    var aux = '';
+    var whichCode = (window.Event) ? e.which : e.keyCode;
+    if (whichCode == 13 || whichCode == 8 || whichCode == 0)
+        return true;  // Enter
+    key = String.fromCharCode(whichCode);  // Get key value from key code
+    if (strCheck.indexOf(key) == -1)
+        return false;  // Not a valid key
+    len = tam -1;
+    aux = '';
+    for(; i < len; i++)
+        if (strCheck.indexOf(fld.value.charAt(i))!=-1)
+            aux += fld.value.charAt(i);
+    aux += key;
+    fld.value = '';
+    fld.value += aux;
+    return false;
+}
 	$(document)
 			.ready(
 					function() {
@@ -489,7 +511,7 @@ if(msg == null){
 												<label for="nome">CTPS:*</label>
 												<div>
 													<input id="ctps" name="ctps" type="text" maxlength="8"
-														placeholder="Ex.: 0000000s"
+														placeholder="Ex.: 0000000"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo CTPS não preenchido.')"
 														class="form-control input-md" required="required">
 												</div>
@@ -567,8 +589,9 @@ if(msg == null){
 											<div class="form-group">
 												<label for="nome">Salário:*</label>
 												<div>
-													<input id="salario" name="salario" type="text" value=""
+													<input id="salario" name="salario" type="text"
 														maxlength="10"
+														onKeyPress="return(ConsisteNumerico('10',this,event))"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo SALÁRIO não preenchido.')"
 														class="form-control input-md" required="required">
 												</div>

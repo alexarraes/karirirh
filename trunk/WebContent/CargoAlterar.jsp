@@ -23,6 +23,29 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+function ConsisteNumerico(tam, fld, e) {
+    var key = '';
+    var i = 0;
+    var len = 0;
+    var strCheck = '0123456789';
+    var aux = '';
+    var whichCode = (window.Event) ? e.which : e.keyCode;
+    if (whichCode == 13 || whichCode == 8 || whichCode == 0)
+        return true;  // Enter
+    key = String.fromCharCode(whichCode);  // Get key value from key code
+    if (strCheck.indexOf(key) == -1)
+        return false;  // Not a valid key
+    len = tam -1;
+    aux = '';
+    for(; i < len; i++)
+        if (strCheck.indexOf(fld.value.charAt(i))!=-1)
+            aux += fld.value.charAt(i);
+    aux += key;
+    fld.value = '';
+    fld.value += aux;
+    return false;
+}
+
 	function open(msg) {
 		if (msg != "nada") {
 			alert(msg)
@@ -81,7 +104,7 @@
 											<label for="CargoAlterar">Valor do Salário R$:*</label>
 											<div>
 												<input id="salario" name="salario" type="text"
-													value="<%=cargo.getSalario()%>" placeholder="788,00"
+													value="<%=cargo.getSalario()%>" onKeyPress="return(ConsisteNumerico('10',this,event))"
 													class="form-control input-md" required="required">
 											</div>
 										</div>

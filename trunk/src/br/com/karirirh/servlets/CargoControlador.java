@@ -9,10 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import br.com.karirirh.dao.CargoDAO;
+import br.com.karirirh.dao.ColaboradorDAO;
 import br.com.karirirh.dao.SetorDAO;
 import br.com.karirirh.entidades.Cargo;
+import br.com.karirirh.entidades.Colaborador;
 import br.com.karirirh.entidades.Empresa;
 import br.com.karirirh.entidades.Setor;
 import br.com.karirirh.entidades.Cargo;
@@ -32,6 +35,9 @@ public class CargoControlador extends HttpServlet {
 		Usuario usuario = (Usuario) request.getSession()
 				.getAttribute("usuario");
 		Empresa empresa = usuario.getEmpresa();
+
+		Colaborador col = new Colaborador();
+		ColaboradorDAO colDAO = new ColaboradorDAO();
 
 		Cargo cargo = new Cargo();
 		CargoDAO cargoDAO = new CargoDAO();
@@ -111,8 +117,23 @@ public class CargoControlador extends HttpServlet {
 		} else if (acao != null && acao.equals("excluir")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			cargo = cargoDAO.pesquisarId(id).get(0);
-			cargoDAO.excluir(cargo);
-			response.sendRedirect("CargoControlador?acao=menuAlterar");
+
+			if (colDAO.isContemRegistro("cargo", cargo)) {
+				List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
+				request.setAttribute("lista", cargos);
+				request.setAttribute(
+						"msg",
+						"Existem colaboradores vinculados ao cargo de "
+								+ cargo.getNome()
+								+ ". Por favor, desvincule e tente novamente.");
+				RequestDispatcher saida = request
+						.getRequestDispatcher("CargoListaAlterar.jsp");
+				saida.forward(request, response);
+			} else {
+				cargoDAO.excluir(cargo);
+				response.sendRedirect("CargoControlador?acao=menuAlterar");
+			}
+
 		} else if (acao != null && acao.equals("btnAlterar")) {
 
 			List<Setor> lista = setorDAO.ListarSetores(empresa);

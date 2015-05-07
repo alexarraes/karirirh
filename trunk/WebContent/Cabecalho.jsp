@@ -98,7 +98,7 @@
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-expanded="false">Relatório<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="CargoControlador?acao=menuCadastrar">Gerar</a></li>
+						<li><a href="MenuControlador?acao=DownRelat">Download</a></li>
 					</ul></li>
 					
 					<li draggable="true"><a href="#">Curriculos</a></li>
@@ -112,7 +112,7 @@
 								
 					</ul></li>
 					
-				<li draggable="true"><a href="#">Sobre</a></li>
+				<li draggable="true"><a href="MenuControlador?acao=Sobre">Sobre</a></li>
 			</ul>
 			<a
 				class="navbar-brand navbar-right visible-lg visible-md visible-sm visible-xs">

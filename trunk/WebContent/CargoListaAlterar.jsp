@@ -70,9 +70,22 @@ function descricao(descricao) {
 			$("#dialog").dialog("open");
 		});
 	});
+	function open(msg) {
+		if(msg != "nada"){
+			alert(msg)
+		}	
+	}
 </script>
 </head>
-<body>
+
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+
+%>
+<body onLoad="open('<%=msg %>')">
 	<br />
 	<div class="container">
 		<div class="row">
@@ -91,7 +104,6 @@ function descricao(descricao) {
 								<th>ID</th>
 								<th>Nome</th>
 								<th>Salário</th>
-								<!--  	<th>Qtd Funcionarios</th>-->
 								<th>Setor</th>
 								<th>Descrição</th>
 								<th>Excluir</th>
@@ -102,8 +114,6 @@ function descricao(descricao) {
 						<%
 							List<Cargo> listaResultado = (List<Cargo>) request
 									.getAttribute("lista");
-
-							String msg=null;
 
 							int num = 1;
 							for (Cargo c : listaResultado) {
