@@ -6567,7 +6567,7 @@ button.close {
 	padding: 5px;
 	border-top: 1px dotted gray;
 	background-color: #E6E8FA;
-position:absolute;
+position:fixed;
 bottom:0;
 width:100%;
 }

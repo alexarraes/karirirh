@@ -49,6 +49,29 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <script type="text/javascript">
+
+function ConsisteNumerico(tam, fld, e) {
+    var key = '';
+    var i = 0;
+    var len = 0;
+    var strCheck = '0123456789';
+    var aux = '';
+    var whichCode = (window.Event) ? e.which : e.keyCode;
+    if (whichCode == 13 || whichCode == 8 || whichCode == 0)
+        return true;  // Enter
+    key = String.fromCharCode(whichCode);  // Get key value from key code
+    if (strCheck.indexOf(key) == -1)
+        return false;  // Not a valid key
+    len = tam -1;
+    aux = '';
+    for(; i < len; i++)
+        if (strCheck.indexOf(fld.value.charAt(i))!=-1)
+            aux += fld.value.charAt(i);
+    aux += key;
+    fld.value = '';
+    fld.value += aux;
+    return false;
+}
 	$(document)
 			.ready(
 					function() {
@@ -187,7 +210,7 @@ if(msg == null){
 											<div>
 												<input type="text" id="dataNasc" name="dataNasc" readonly="readonly"
 													class="form-control input-md" placeholder="Ex.: 00/00/0000"
-													value="<%=col.getDataNascimento()%>" maxlength="10">
+													value="<%=new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(col.getDataNascimento()) %>" maxlength="10">
 											</div>
 										</div>
 										<!-- Data Nascim -->
@@ -547,7 +570,8 @@ if(msg == null){
 												<label for="nome">Data de Admissão:</label>
 												<div>
 													<input type="text" id="dataAdmin" name="dataAdmin"
-														readonly="readonly" value="<%=col.getDataAdm()%>"
+														readonly="readonly"
+								value="<%=new SimpleDateFormat("dd 'de' MMMM 'de' yyyy").format(col.getDataAdm()) %>"
 														class="form-control input-md">
 												</div>
 											</div>
@@ -647,6 +671,7 @@ if(msg == null){
 												<div>
 													<input id="salario" name="salario" type="text"
 														maxlength="10" value="<%=col.getSalarioAtual()%>"
+														onKeyPress="return(ConsisteNumerico('10',this,event))"
 														oninvalid="this.setCustomValidity('[3 - Dados Profissionais] Campo SALÁRIO não preenchido.')"
 														class="form-control input-md" required="required">
 												</div>

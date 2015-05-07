@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MedidaDisciplinar" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e235daf-0253-4fef-af2b-72ca6e418743">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idEmpresa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     empresa.`id` AS empresa_id,
+     empresa.`cnpj` AS empresa_cnpj,
+     empresa.`enderecoCompleto` AS empresa_enderecoCompleto,
+     empresa.`fone` AS empresa_fone,
+     empresa.`razaoSociao` AS empresa_razaoSociao,
+     empresa_A.`id` AS empresa_A_id,
+     empresa_A.`cnpj` AS empresa_A_cnpj,
+     empresa_A.`enderecoCompleto` AS empresa_A_enderecoCompleto,
+     empresa_A.`fone` AS empresa_A_fone,
+     empresa_A.`razaoSociao` AS empresa_A_razaoSociao,
+     colaborador.`bairro` AS colaborador_bairro,
+     colaborador.`cep` AS colaborador_cep,
+     colaborador.`cidade` AS colaborador_cidade,
+     colaborador.`complemento` AS colaborador_complemento,
+     colaborador.`contrato` AS colaborador_contrato,
+     colaborador.`cpf` AS colaborador_cpf,
+     colaborador.`ctps` AS colaborador_ctps,
+     colaborador.`curso` AS colaborador_curso,
+     colaborador.`dataAdm` AS colaborador_dataAdm,
+     colaborador.`dataDem` AS colaborador_dataDem,
+     colaborador.`dataNascimento` AS colaborador_dataNascimento,
+     colaborador.`email` AS colaborador_email,
+     colaborador.`escolaridade` AS colaborador_escolaridade,
+     colaborador.`estadoCivil` AS colaborador_estadoCivil,
+     colaborador.`matricula` AS colaborador_matricula,
+     colaborador.`nome` AS colaborador_nome,
+     colaborador.`numero` AS colaborador_numero,
+     colaborador.`pis` AS colaborador_pis,
+     colaborador.`rg` AS colaborador_rg,
+     colaborador.`rua` AS colaborador_rua,
+     colaborador.`salarioAtual` AS colaborador_salarioAtual,
+     colaborador.`sexo` AS colaborador_sexo,
+     colaborador.`status` AS colaborador_status,
+     colaborador.`uf` AS colaborador_uf,
+     colaborador.`cargo_id` AS colaborador_cargo_id,
+     colaborador.`empresa_id` AS colaborador_empresa_id,
+     historicoafastamento.`id` AS historicoafastamento_id,
+     historicoafastamento.`codDoenca` AS historicoafastamento_codDoenca,
+     historicoafastamento.`dataFim` AS historicoafastamento_dataFim,
+     historicoafastamento.`dataInicio` AS historicoafastamento_dataInicio,
+     historicoafastamento.`tipo` AS historicoafastamento_tipo,
+     historicoafastamento.`colaborador_id` AS historicoafastamento_colaborador_id
+FROM
+     `empresa` empresa_A INNER JOIN `colaborador` colaborador ON empresa_A.`id` = colaborador.`empresa_id`
+     INNER JOIN `historicoafastamento` historicoafastamento ON colaborador.`id` = historicoafastamento.`colaborador_id`,
+     `empresa` empresa
+WHERE
+     `empresa_id` = $P{idEmpresa}]]>
+	</queryString>
+	<field name="empresa_id" class="java.lang.Integer"/>
+	<field name="empresa_cnpj" class="java.lang.String"/>
+	<field name="empresa_enderecoCompleto" class="java.lang.String"/>
+	<field name="empresa_fone" class="java.lang.String"/>
+	<field name="empresa_razaoSociao" class="java.lang.String"/>
+	<field name="empresa_A_id" class="java.lang.Integer"/>
+	<field name="empresa_A_cnpj" class="java.lang.String"/>
+	<field name="empresa_A_enderecoCompleto" class="java.lang.String"/>
+	<field name="empresa_A_fone" class="java.lang.String"/>
+	<field name="empresa_A_razaoSociao" class="java.lang.String"/>
+	<field name="colaborador_bairro" class="java.lang.String"/>
+	<field name="colaborador_cep" class="java.lang.String"/>
+	<field name="colaborador_cidade" class="java.lang.String"/>
+	<field name="colaborador_complemento" class="java.lang.String"/>
+	<field name="colaborador_contrato" class="java.lang.String"/>
+	<field name="colaborador_cpf" class="java.lang.String"/>
+	<field name="colaborador_ctps" class="java.lang.String"/>
+	<field name="colaborador_curso" class="java.lang.String"/>
+	<field name="colaborador_dataAdm" class="java.sql.Timestamp"/>
+	<field name="colaborador_dataDem" class="java.sql.Timestamp"/>
+	<field name="colaborador_dataNascimento" class="java.sql.Timestamp"/>
+	<field name="colaborador_email" class="java.lang.String"/>
+	<field name="colaborador_escolaridade" class="java.lang.String"/>
+	<field name="colaborador_estadoCivil" class="java.lang.String"/>
+	<field name="colaborador_matricula" class="java.lang.Integer"/>
+	<field name="colaborador_nome" class="java.lang.String"/>
+	<field name="colaborador_numero" class="java.lang.Integer"/>
+	<field name="colaborador_pis" class="java.lang.String"/>
+	<field name="colaborador_rg" class="java.lang.String"/>
+	<field name="colaborador_rua" class="java.lang.String"/>
+	<field name="colaborador_salarioAtual" class="java.lang.Double"/>
+	<field name="colaborador_sexo" class="java.lang.String"/>
+	<field name="colaborador_status" class="java.lang.Boolean"/>
+	<field name="colaborador_uf" class="java.lang.String"/>
+	<field name="colaborador_cargo_id" class="java.lang.Integer"/>
+	<field name="colaborador_empresa_id" class="java.lang.Integer"/>
+	<field name="historicoafastamento_id" class="java.lang.Integer"/>
+	<field name="historicoafastamento_codDoenca" class="java.lang.Integer"/>
+	<field name="historicoafastamento_dataFim" class="java.sql.Date"/>
+	<field name="historicoafastamento_dataInicio" class="java.sql.Date"/>
+	<field name="historicoafastamento_tipo" class="java.lang.String"/>
+	<field name="historicoafastamento_colaborador_id" class="java.lang.Integer"/>
+	<variable name="QuantAfast" class="java.lang.Integer" incrementType="Report">
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="143" y="59" width="269" height="20" uuid="20ac254e-a1dc-4440-a10c-123bf1cbda14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Sistema para Gestão de Rotinas do Recursos Humanos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="191" y="0" width="172" height="59" uuid="58cc4af2-9554-4a84-b9fc-a7cf420d9bf1"/>
+				<imageExpression><![CDATA["C:\\APPLICATION\\WEB\\ProjetoHibernate\\karirirh\\WebContent\\img\\LogoMenu.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="553" height="20" uuid="705bc373-eb0a-4d5c-8955-5932d0bd9807"/>
+				<box>
+					<pen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<topPen lineStyle="Double" lineColor="#006633"/>
+					<leftPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double" lineColor="#006633"/>
+					<rightPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_razaoSociao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="20" width="553" height="20" uuid="c539d071-daa1-40da-a69a-4dfb026a0a03"/>
+				<box>
+					<pen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#006633"/>
+					<leftPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double" lineColor="#006633"/>
+					<rightPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="60" width="553" height="20" uuid="5570367e-ce0b-4ea3-8b55-1fd85ad36162"/>
+				<box>
+					<pen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#006633"/>
+					<leftPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<bottomPen lineStyle="Double" lineColor="#006633"/>
+					<rightPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_fone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="40" width="553" height="20" uuid="efb5df99-4c55-49eb-aca6-35d48f23bf01"/>
+				<box>
+					<pen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<topPen lineWidth="0.0" lineStyle="Double" lineColor="#006633"/>
+					<leftPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+					<bottomPen lineWidth="0.0" lineStyle="Double" lineColor="#006633"/>
+					<rightPen lineWidth="1.25" lineStyle="Double" lineColor="#006633"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_enderecoCompleto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="425" y="58" width="65" height="20" uuid="a268ce5a-c85a-473a-928b-e79732751936"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Data Inicial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="58" width="63" height="20" uuid="3ba37b05-285b-4390-b9ae-551b3817af70"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Matrícula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="208" height="20" uuid="86eee607-aae2-424f-a2cb-75398ce2e8f1"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Colaborador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="58" width="65" height="20" uuid="d6278c93-a207-4a3b-be21-c75da680e816"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Data Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="58" width="74" height="20" uuid="ce2be4a6-52d5-404b-85e2-0ce5b71f8644"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[C. Afast.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="58" width="80" height="20" uuid="027696dc-3596-47a1-b145-34d2fca421af"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Motivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="12" width="555" height="20" uuid="7364ab60-fd22-49d9-856c-11b047163951"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Relatório de Colaboradores Afastados]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Prevent">
+			<textField>
+				<reportElement x="0" y="0" width="208" height="20" uuid="5fa553bd-db08-4d21-98af-e223fe5a2a14"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{colaborador_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="0" width="63" height="20" uuid="4c20b52a-e249-4107-b3ad-a840dde713ed"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{colaborador_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="0" width="74" height="20" uuid="aa8664fc-f338-4d08-9e48-45d1f5b3ade8"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{historicoafastamento_codDoenca}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="345" y="0" width="80" height="20" uuid="35e668a2-bf8b-4c7b-8133-3c37f02f7e0e"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{historicoafastamento_tipo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="425" y="0" width="65" height="20" uuid="ea6ccedb-7caa-4e53-a778-65bf247b6e12"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{historicoafastamento_dataInicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="490" y="0" width="65" height="20" uuid="c57c1055-b67b-4fa8-9f10-cd440a0b2558"/>
+				<box>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+					<rightPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{historicoafastamento_dataFim}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="208" height="20" forecolor="#FF3333" uuid="57bced84-e235-4acb-a563-bb2f0149b0de"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Quantidade Total de Afastamentos: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="208" y="0" width="100" height="20" uuid="e882037d-d247-4fe2-a81d-c62001b83340"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="33a621fc-eeb9-43b3-ab45-ddf42d08004e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="0" width="324" height="20" uuid="ba5d83ae-7a35-403b-a99b-513d082df469"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="efef05b3-5eba-49d4-ba90-bc50571acfd7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

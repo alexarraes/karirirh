@@ -13,6 +13,7 @@ import br.com.karirirh.dao.EmpresaDAO;
 import br.com.karirirh.dao.UsuarioDAO;
 import br.com.karirirh.entidades.Empresa;
 import br.com.karirirh.entidades.Usuario;
+import br.com.karirirh.relatorios.RelatorioBean;
 
 /**
  * 
@@ -40,6 +41,9 @@ public class MenuControlador extends HttpServlet {
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equals("home")) {
+			//RelatorioBean rB = new RelatorioBean();
+			//rB.getArquivoRetorno(usuario);
+			
 			RequestDispatcher saida = request.getRequestDispatcher("home.jsp");
 			saida.forward(request, response);
 		}else if (acao != null && acao.equals("config")) {
@@ -68,7 +72,14 @@ public class MenuControlador extends HttpServlet {
 			request.setAttribute("msg", "<h3>Dados Alterados!</h3>");
 			RequestDispatcher saida = request.getRequestDispatcher("ConfigDados.jsp");
 			saida.forward(request, response);
+		}else if (acao != null && acao.equals("DownRelat")){
+			 request.getRequestDispatcher("Relatorios.jsp").forward(request, response);
+			
+		}else if (acao != null && acao.equals("Sobre")){
+			 request.getRequestDispatcher("Sobre.jsp").forward(request, response);
+				
 		}
+		
 		
 		
 		

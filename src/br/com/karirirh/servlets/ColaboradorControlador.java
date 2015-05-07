@@ -228,7 +228,7 @@ public class ColaboradorControlador extends HttpServlet {
 				saida.forward(request, response);
 
 			} else if (acao != null && acao.equals("alterar")) {
-				JOptionPane.showMessageDialog(null, "ate aqui");
+				
 				String nomeCompleto = request.getParameter("nomeCompleto");
 				String estCivil = request.getParameter("estCivil");
 				String sDataNascimento = request.getParameter("dataNasc");
@@ -253,10 +253,10 @@ public class ColaboradorControlador extends HttpServlet {
 						.getParameter("salario"));
 				String escolaridade = request.getParameter("escolaridade");
 				String curso = request.getParameter("curso");
-				JOptionPane.showMessageDialog(null, "ate aqui 2");
+				
 				
 				col = colDAO.pesquisarEq("cpf", cpf).get(0);
-				JOptionPane.showMessageDialog(null, "ate aqui 3");
+				
 				col.setNome(nomeCompleto);
 				col.setEstadoCivil(estCivil);
 				//col.setDataNascimento(fmt.parse(sDataNascimento));
@@ -276,12 +276,11 @@ public class ColaboradorControlador extends HttpServlet {
 				col.setSalarioAtual(salario);// Obs.:
 				col.setEscolaridade(escolaridade);
 				col.setCurso(curso);
-				JOptionPane.showMessageDialog(null, "ate aqui 4");
+				
 				cargo = cargoDAO.pesquisarId(car).get(0);// Errro
-				JOptionPane.showMessageDialog(null, "ate aqui 5");
+				
 				col.setCargo(cargo);
 				
-				JOptionPane.showMessageDialog(null, "ate aqui 6");
 				tel = telDAO.pesquisarEq("colaborador", col).get(0);//Enviar id do Celular
 				tel.setTipo("Celular");
 				tel.setFone(celular);

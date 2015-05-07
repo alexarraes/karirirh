@@ -28,6 +28,29 @@
 <link rel="stylesheet" href="jQueryUI/jquery-ui.css">
 <script src="jQueryUI/jquery.maskedinput.js"  type="text/javascript"></script>
 <script type="text/javascript">
+function ConsisteNumerico(tam, fld, e) {
+	    var key = '';
+	    var i = 0;
+	    var len = 0;
+	    var strCheck = '0123456789';
+	    var aux = '';
+	    var whichCode = (window.Event) ? e.which : e.keyCode;
+	    if (whichCode == 13 || whichCode == 8 || whichCode == 0)
+	        return true;  // Enter
+	    key = String.fromCharCode(whichCode);  // Get key value from key code
+	    if (strCheck.indexOf(key) == -1)
+	        return false;  // Not a valid key
+	    len = tam -1;
+	    aux = '';
+	    for(; i < len; i++)
+	        if (strCheck.indexOf(fld.value.charAt(i))!=-1)
+	            aux += fld.value.charAt(i);
+	    aux += key;
+	    fld.value = '';
+	    fld.value += aux;
+	    return false;
+	}
+
 	function open(msg) {
 		if(msg != "nada"){alert(msg)}	
 	}
@@ -69,9 +92,11 @@ if(msg == null){
 								<!--salario-->
 								<div class="form-group">
 									<label for="CadastrarCargo">Valor do Salário R$:*</label>
-									<div>
+									<div >
 										<input id="salario" name="salario" type="text"
-											placeholder="788,00" class="form-control input-md"
+											placeholder="788" class="form-control input-md"
+											size="10"
+											onKeyPress="return(ConsisteNumerico('10',this,event))"
 											required="required">
 									</div>
 								</div>

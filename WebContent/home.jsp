@@ -45,7 +45,7 @@ function menu(opc) {
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<img  onclick="menu('1')" src="img/setor.png" class="img-circle img-responsive">
+				<img style="cursor:pointer"  onclick="menu('1')" src="img/setor.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Setor</h3>
@@ -53,7 +53,7 @@ function menu(opc) {
 					empresa aos quais estão vinculados cargos e colaboraores.</p>
 			</div>
 			<div class="col-md-2">
-				<img onclick="menu('2')"  src="img/cargo.png" class="img-circle img-responsive">
+				<img style="cursor:pointer"  onclick="menu('2')"  src="img/cargo.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Cargo</h3>
@@ -63,7 +63,7 @@ function menu(opc) {
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<img onclick="menu('3')" src="img/colaborador.png" class="img-circle img-responsive">
+				<img style="cursor:pointer"  onclick="menu('3')" src="img/colaborador.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Colaborador</h3>
@@ -71,7 +71,7 @@ function menu(opc) {
 					todas as informações essenciais a ele.</p>
 			</div>
 			<div class="col-md-2">
-				<img onclick="menu('4')" src="img/historico.png" class="img-circle img-responsive">
+				<img style="cursor:pointer" onclick="menu('4')" src="img/historico.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4 text-center">
 				<h3 class="text-left">Hitórico</h3>
@@ -81,7 +81,7 @@ function menu(opc) {
 		</div>
 		<div class="row">
 			<div class="col-md-2">
-				<img onclick="menu('5')" src="img/medida.png" class="img-circle img-responsive">
+				<img style="cursor:pointer" onclick="menu('5')" src="img/medida.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4">
 				<h3 class="text-left">Medida Disciplinar</h3>
@@ -89,7 +89,7 @@ function menu(opc) {
 					educativa ou outro tipo de atitude tomada perante um colaborador.</p>
 			</div>
 			<div class="col-md-2">
-				<img onclick="menu('6')" src="img/configuracao.png" class="img-circle img-responsive">
+				<img style="cursor:pointer"  onclick="menu('6')" src="img/configuracao.png" class="img-circle img-responsive">
 			</div>
 			<div class="col-md-4 text-center">
 				<h3 class="text-left">Configurações</h3>

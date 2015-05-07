@@ -43,9 +43,22 @@
 	$(document).ready(function() {
 		$('#tabela1').DataTable();
 	});
+	function open(msg) {
+		if(msg != "nada"){
+			alert(msg)
+		}	
+	}
 </script>
 </head>
-<body>
+
+<%
+String msg =(String)request.getAttribute("msg");
+if(msg == null){
+	msg = "nada";
+}
+
+%>
+<body onLoad="open('<%=msg %>')">
 	<br />
 	<div class="container">
 		<div class="row">
