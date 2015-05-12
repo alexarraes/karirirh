@@ -38,7 +38,8 @@ StreamedContent arquivoRetorno = null;
             Connection conexao = (Connection) new Conexao().getConnection();
             
            
-            String caminhoRelatorio = context.getExternalContext().getRealPath("report");
+            String caminhoRelatorio = "report";
+            JOptionPane.showMessageDialog(null, caminhoRelatorio);
             String caminhoArquivoJasper = caminhoRelatorio + File.separator + nomeRelatorioJasper + ".jasper";
             
             String caminhoArquivoRelatorio = null;

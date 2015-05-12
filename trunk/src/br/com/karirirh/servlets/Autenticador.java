@@ -46,13 +46,14 @@ public class Autenticador extends HttpServlet {
 			sessao = request.getSession();
 			sessao.setAttribute("administrador", usu);
 			//sessao.setMaxInactiveInterval(3000);
-
+			sessao.setAttribute("user", usu);
 			request.getRequestDispatcher("EmpresaCadastro.jsp").forward(
 					request, response);
 		} else {
 			sessao = request.getSession();
 			sessao.setAttribute("usuario", usu);
-			sessao.setMaxInactiveInterval(3000);
+			sessao.setAttribute("user", usu);
+			//sessao.setMaxInactiveInterval(3000);
 			request.getRequestDispatcher("home.jsp").forward(request,
 					response);
 		}

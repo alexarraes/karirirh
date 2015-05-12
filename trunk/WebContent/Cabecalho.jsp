@@ -98,7 +98,10 @@
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-expanded="false">Relatório<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="MenuControlador?acao=DownRelat">Download</a></li>
+						<li><a href="#">Férias</a></li>
+						<li><a href="#">Medidas Disciplinares</a></li>
+						<li><a href="#">Afastamentos</a></li>
+						<li><a href="#">Colaboradores</a></li>
 					</ul></li>
 					
 					<li draggable="true"><a href="#">Curriculos</a></li>
