@@ -35,64 +35,71 @@ public class FeriasControlador extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Data dt = new Data();
 
-		Usuario usuario = (Usuario) request.getSession()
-				.getAttribute("usuario");
-		Empresa empresa = usuario.getEmpresa();
-		Ferias fr = new Ferias();
-		FeriasDAO frDAO = new FeriasDAO();
+		if (request.getSession().getAttribute("user") == null) {
+			response.sendRedirect("login.jsp");
+		} else {
+			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Data dt = new Data();
 
-		Colaborador col = new Colaborador();
-		ColaboradorDAO colDAO = new ColaboradorDAO();
-		String acao = request.getParameter("acao");
+			Usuario usuario = (Usuario) request.getSession().getAttribute(
+					"usuario");
+			Empresa empresa = usuario.getEmpresa();
+			Ferias fr = new Ferias();
+			FeriasDAO frDAO = new FeriasDAO();
 
-		if (acao != null && acao.equals("menuFerias")) {
-			List<Colaborador> colaboradores = colDAO.listaAtivos(empresa);
-			request.setAttribute("lista", colaboradores);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("FeriasListar.jsp");
-			saida.forward(request, response);
-		} else if (acao != null && acao.equals("menuEmFerias")) {
-			List<Ferias> ferias = frDAO.ListaEmFerias(empresa, new Date());
-			request.setAttribute("lista", ferias);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("FeriasEm.jsp");
-			saida.forward(request, response);
+			Colaborador col = new Colaborador();
+			ColaboradorDAO colDAO = new ColaboradorDAO();
+			String acao = request.getParameter("acao");
 
-		}  else if (acao != null && acao.equals("menuCadastradas")) {
-			List<Ferias> ferias = frDAO.ListarFerias(empresa);
-			request.setAttribute("lista", ferias);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("FeriasCadastradas.jsp");
-			saida.forward(request, response);
+			if (acao != null && acao.equals("menuFerias")) {
+				List<Colaborador> colaboradores = colDAO.listaAtivos(empresa);
+				request.setAttribute("lista", colaboradores);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("FeriasListar.jsp");
+				saida.forward(request, response);
+			} else if (acao != null && acao.equals("menuEmFerias")) {
+				List<Ferias> ferias = frDAO.ListaEmFerias(empresa, new Date());
+				request.setAttribute("lista", ferias);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("FeriasEm.jsp");
+				saida.forward(request, response);
 
-		} else if (acao != null && acao.equals("salvar")) {
-			try {
-				int matricula = Integer.parseInt(request
-						.getParameter("matricula"));
-				col = colDAO.pesquisarEq("matricula", matricula).get(0);
-				if(frDAO.emFerias(col) != null){
-					List<Colaborador> colaboradores = colDAO.pesquisarEq("empresa",
-							empresa);
-					request.setAttribute("msg", "Férias NÃO CADASTRADA. O Colaborador já encontra-se em Férias!");
-					request.setAttribute("lista", colaboradores);
-					RequestDispatcher saida = request
-							.getRequestDispatcher("FeriasListar.jsp");
-					saida.forward(request, response);
-				}else{
-					fr.setDataInicio(dt.formataData(request
-							.getParameter("dataInicial")));
-					fr.setDataFim(dt.formataData(request.getParameter("dataFinal")));
-					fr.setColaborador(col);
-					frDAO.salvar(fr);
-					response.sendRedirect("FeriasControlador?acao=menuCadastradas");
+			} else if (acao != null && acao.equals("menuCadastradas")) {
+				List<Ferias> ferias = frDAO.ListarFerias(empresa);
+				request.setAttribute("lista", ferias);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("FeriasCadastradas.jsp");
+				saida.forward(request, response);
+
+			} else if (acao != null && acao.equals("salvar")) {
+				try {
+					int matricula = Integer.parseInt(request
+							.getParameter("matricula"));
+					col = colDAO.pesquisarEq("matricula", matricula).get(0);
+					if (frDAO.emFerias(col) != null) {
+						List<Colaborador> colaboradores = colDAO.pesquisarEq(
+								"empresa", empresa);
+						request.setAttribute("msg",
+								"Férias NÃO CADASTRADA. O Colaborador já encontra-se em Férias!");
+						request.setAttribute("lista", colaboradores);
+						RequestDispatcher saida = request
+								.getRequestDispatcher("FeriasListar.jsp");
+						saida.forward(request, response);
+					} else {
+						fr.setDataInicio(dt.formataData(request
+								.getParameter("dataInicial")));
+						fr.setDataFim(dt.formataData(request
+								.getParameter("dataFinal")));
+						fr.setColaborador(col);
+						frDAO.salvar(fr);
+						response.sendRedirect("FeriasControlador?acao=menuCadastradas");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
+			}
 		}
 	}
 

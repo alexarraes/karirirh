@@ -32,167 +32,172 @@ public class CargoControlador extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Usuario usuario = (Usuario) request.getSession()
-				.getAttribute("usuario");
-		Empresa empresa = usuario.getEmpresa();
+		if (request.getSession().getAttribute("user") == null){
+			response.sendRedirect("login.jsp");
+		} else {
+			Usuario usuario = (Usuario) request.getSession().getAttribute(
+					"usuario");
+			Empresa empresa = usuario.getEmpresa();
 
-		Colaborador col = new Colaborador();
-		ColaboradorDAO colDAO = new ColaboradorDAO();
+			Colaborador col = new Colaborador();
+			ColaboradorDAO colDAO = new ColaboradorDAO();
 
-		Cargo cargo = new Cargo();
-		CargoDAO cargoDAO = new CargoDAO();
+			Cargo cargo = new Cargo();
+			CargoDAO cargoDAO = new CargoDAO();
 
-		Setor setor = new Setor();
-		SetorDAO setorDAO = new SetorDAO();
+			Setor setor = new Setor();
+			SetorDAO setorDAO = new SetorDAO();
 
-		String acao = request.getParameter("acao");
+			String acao = request.getParameter("acao");
 
-		if (acao != null && acao.equals("menuCadastrar")) {
-			List<Setor> lista = setorDAO.ListarSetores(empresa);
-			request.setAttribute("lista", lista);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("CargoCadastro.jsp");
-			saida.forward(request, response);
-		} else if (acao != null && acao.equals("menuAlterar")) {
-			List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
-			request.setAttribute("lista", cargos);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("CargoListaAlterar.jsp");
-			saida.forward(request, response);
-		} else if (acao != null && acao.equals("menuBuscar")) {
-			List<Setor> lista = setorDAO.ListarSetores(empresa);
-			request.setAttribute("lista", lista);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("CargoBuscar.jsp");
-			saida.forward(request, response);
-		} else if (acao != null && acao.equals("menuListar")) {
-
-			List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
-			request.setAttribute("lista", cargos);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("CargoListar.jsp");
-			saida.forward(request, response);
-
-		} else if (acao != null && acao.equals("salvar")) {
-
-			String nome = request.getParameter("nome");
-			boolean permitido = true;
-			List<Cargo> cargoList = cargoDAO.pesquisarEq("nome", nome);
-			for (Cargo c : cargoList) {
-				if (c.getNome().equals(nome)) {
-					permitido = false;
-				}
-			}
-
-			if (permitido) {
-				cargo.setNome(nome);
-				cargo.setSalario(Double.parseDouble(request
-						.getParameter("salario")));
-				cargo.setDescricao(request.getParameter("descricao"));
-				int id = Integer.parseInt(request.getParameter("setor"));
-				setor = setorDAO.pesquisarId(id).get(0);
-				cargo.setSetor(setor);
-				cargoDAO.salvar(cargo);
-
-				String msg = "Cargo " + nome + " cadastrado com sucesso!";
-				request.setAttribute("msg", msg);
+			if (acao != null && acao.equals("menuCadastrar")) {
 				List<Setor> lista = setorDAO.ListarSetores(empresa);
 				request.setAttribute("lista", lista);
 				RequestDispatcher saida = request
 						.getRequestDispatcher("CargoCadastro.jsp");
 				saida.forward(request, response);
-			} else {
-				String msg = "Cargo "
-						+ nome
-						+ " NÃO cadastrado, pois já existe CARGO com esse nome!";
-				List<Setor> lista = setorDAO.ListarSetores(empresa);
-				request.setAttribute("lista", lista);
-				request.setAttribute("msg", msg);
-				RequestDispatcher saida = request
-						.getRequestDispatcher("CargoCadastro.jsp");
-				saida.forward(request, response);
-
-			}
-
-		} else if (acao != null && acao.equals("excluir")) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			cargo = cargoDAO.pesquisarId(id).get(0);
-
-			if (colDAO.isContemRegistro("cargo", cargo)) {
+			} else if (acao != null && acao.equals("menuAlterar")) {
 				List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
 				request.setAttribute("lista", cargos);
-				request.setAttribute(
-						"msg",
-						"Existem colaboradores vinculados ao cargo de "
-								+ cargo.getNome()
-								+ ". Por favor, desvincule e tente novamente.");
 				RequestDispatcher saida = request
 						.getRequestDispatcher("CargoListaAlterar.jsp");
 				saida.forward(request, response);
-			} else {
-				cargoDAO.excluir(cargo);
-				response.sendRedirect("CargoControlador?acao=menuAlterar");
-			}
+			} else if (acao != null && acao.equals("menuBuscar")) {
+				List<Setor> lista = setorDAO.ListarSetores(empresa);
+				request.setAttribute("lista", lista);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("CargoBuscar.jsp");
+				saida.forward(request, response);
+			} else if (acao != null && acao.equals("menuListar")) {
 
-		} else if (acao != null && acao.equals("btnAlterar")) {
+				List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
+				request.setAttribute("lista", cargos);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("CargoListar.jsp");
+				saida.forward(request, response);
 
-			List<Setor> lista = setorDAO.ListarSetores(empresa);
-			request.setAttribute("lista", lista);
-			int id = Integer.parseInt(request.getParameter("id"));
-			cargo = cargoDAO.pesquisarId(id).get(0);
-			request.setAttribute("cargo", cargo);
-			request.getRequestDispatcher("CargoAlterar.jsp").forward(request,
-					response);
-		} else if (acao != null && acao.equals("alterar")) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			cargo = cargoDAO.pesquisarId(id).get(0);
-			int idSetor = Integer.parseInt(request.getParameter("cod"));
+			} else if (acao != null && acao.equals("salvar")) {
 
-			setor = setorDAO.pesquisarId(idSetor).get(0);
+				String nome = request.getParameter("nome");
+				boolean permitido = true;
+				List<Cargo> cargoList = cargoDAO.pesquisarEq("nome", nome);
+				for (Cargo c : cargoList) {
+					if (c.getNome().equals(nome)) {
+						permitido = false;
+					}
+				}
 
-			cargo.setNome(request.getParameter("nome"));
-			cargo.setSalario(Double.parseDouble(request.getParameter("salario")));
-			cargo.setDescricao(request.getParameter("descricao"));
-			cargo.setSetor(setor);
+				if (permitido) {
+					cargo.setNome(nome);
+					cargo.setSalario(Double.parseDouble(request
+							.getParameter("salario")));
+					cargo.setDescricao(request.getParameter("descricao"));
+					int id = Integer.parseInt(request.getParameter("setor"));
+					setor = setorDAO.pesquisarId(id).get(0);
+					cargo.setSetor(setor);
+					cargoDAO.salvar(cargo);
 
-			cargoDAO.editar(cargo);
+					String msg = "Cargo " + nome + " cadastrado com sucesso!";
+					request.setAttribute("msg", msg);
+					List<Setor> lista = setorDAO.ListarSetores(empresa);
+					request.setAttribute("lista", lista);
+					RequestDispatcher saida = request
+							.getRequestDispatcher("CargoCadastro.jsp");
+					saida.forward(request, response);
+				} else {
+					String msg = "Cargo "
+							+ nome
+							+ " NÃO cadastrado, pois já existe CARGO com esse nome!";
+					List<Setor> lista = setorDAO.ListarSetores(empresa);
+					request.setAttribute("lista", lista);
+					request.setAttribute("msg", msg);
+					RequestDispatcher saida = request
+							.getRequestDispatcher("CargoCadastro.jsp");
+					saida.forward(request, response);
 
-			List<Setor> lista = setorDAO.ListarSetores(empresa);
-			request.setAttribute("lista", lista);
-			request.setAttribute("msg", "Cargo " + cargo.getNome()
-					+ " alterado com Sucesso!");
-			request.setAttribute("cargo", cargo);
-			request.getRequestDispatcher("CargoAlterar.jsp").forward(request,
-					response);
-		} else if (acao != null && acao.equals("buscar")) {
-			String nome = request.getParameter("nome");
-			String sSetor = request.getParameter("setor");
-			List<Cargo> lista;
-			if (sSetor.equals("todos")) {
-				lista = cargoDAO.CargosComSeusSetores(empresa);
-			} else {
+				}
+
+			} else if (acao != null && acao.equals("excluir")) {
+				int id = Integer.parseInt(request.getParameter("id"));
+				cargo = cargoDAO.pesquisarId(id).get(0);
+
+				if (colDAO.isContemRegistro("cargo", cargo)) {
+					List<Cargo> cargos = cargoDAO.CargosComSeusSetores(empresa);
+					request.setAttribute("lista", cargos);
+					request.setAttribute(
+							"msg",
+							"Existem colaboradores vinculados ao cargo de "
+									+ cargo.getNome()
+									+ ". Por favor, desvincule e tente novamente.");
+					RequestDispatcher saida = request
+							.getRequestDispatcher("CargoListaAlterar.jsp");
+					saida.forward(request, response);
+				} else {
+					cargoDAO.excluir(cargo);
+					response.sendRedirect("CargoControlador?acao=menuAlterar");
+				}
+
+			} else if (acao != null && acao.equals("btnAlterar")) {
+
+				List<Setor> lista = setorDAO.ListarSetores(empresa);
+				request.setAttribute("lista", lista);
+				int id = Integer.parseInt(request.getParameter("id"));
+				cargo = cargoDAO.pesquisarId(id).get(0);
+				request.setAttribute("cargo", cargo);
+				request.getRequestDispatcher("CargoAlterar.jsp").forward(
+						request, response);
+			} else if (acao != null && acao.equals("alterar")) {
+				int id = Integer.parseInt(request.getParameter("id"));
+				cargo = cargoDAO.pesquisarId(id).get(0);
+				int idSetor = Integer.parseInt(request.getParameter("cod"));
+
+				setor = setorDAO.pesquisarId(idSetor).get(0);
+
+				cargo.setNome(request.getParameter("nome"));
+				cargo.setSalario(Double.parseDouble(request
+						.getParameter("salario")));
+				cargo.setDescricao(request.getParameter("descricao"));
+				cargo.setSetor(setor);
+
+				cargoDAO.editar(cargo);
+
+				List<Setor> lista = setorDAO.ListarSetores(empresa);
+				request.setAttribute("lista", lista);
+				request.setAttribute("msg", "Cargo " + cargo.getNome()
+						+ " alterado com Sucesso!");
+				request.setAttribute("cargo", cargo);
+				request.getRequestDispatcher("CargoAlterar.jsp").forward(
+						request, response);
+			} else if (acao != null && acao.equals("buscar")) {
+				String nome = request.getParameter("nome");
+				String sSetor = request.getParameter("setor");
+				List<Cargo> lista;
+				if (sSetor.equals("todos")) {
+					lista = cargoDAO.CargosComSeusSetores(empresa);
+				} else {
+					int idSetor = Integer.parseInt(sSetor);
+					setor = setorDAO.pesquisarId(idSetor).get(0);
+					lista = cargoDAO
+							.ListaCargosPorSetores(empresa, setor, nome);
+				}
+				request.setAttribute("lista", lista);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("CargoListar.jsp");
+				saida.forward(request, response);
+			} else if (acao != null && acao.equals("cargosDoSetor")) {
+
+				String sSetor = request.getParameter("id");
+				List<Cargo> lista;
+
 				int idSetor = Integer.parseInt(sSetor);
 				setor = setorDAO.pesquisarId(idSetor).get(0);
-				lista = cargoDAO.ListaCargosPorSetores(empresa, setor, nome);
+				lista = cargoDAO.ListaCargosDoSetor(empresa, setor);
+
+				request.setAttribute("lista", lista);
+				RequestDispatcher saida = request
+						.getRequestDispatcher("CargoListar.jsp");
+				saida.forward(request, response);
 			}
-			request.setAttribute("lista", lista);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("CargoListar.jsp");
-			saida.forward(request, response);
-		} else if (acao != null && acao.equals("cargosDoSetor")) {
-
-			String sSetor = request.getParameter("id");
-			List<Cargo> lista;
-
-			int idSetor = Integer.parseInt(sSetor);
-			setor = setorDAO.pesquisarId(idSetor).get(0);
-			lista = cargoDAO.ListaCargosDoSetor(empresa, setor);
-
-			request.setAttribute("lista", lista);
-			RequestDispatcher saida = request
-					.getRequestDispatcher("CargoListar.jsp");
-			saida.forward(request, response);
 		}
-
 	}
 }
